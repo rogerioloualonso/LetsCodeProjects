@@ -35,4 +35,13 @@ public class Conta {
                 ", numAgencia=" + numAgencia +
                 '}';
     }
+
+    public void abrirConta(){
+        numConta += 1;
+        numAgencia += 2;
+        //saldo = null;
+    }
+
+
+
 }
