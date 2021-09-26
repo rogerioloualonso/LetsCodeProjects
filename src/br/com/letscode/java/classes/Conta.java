@@ -2,8 +2,8 @@ package br.com.letscode.java.classes;
 
 public class Conta {
 
-    private int numConta;
-    private int numAgencia;
+    protected int numConta;
+    protected int numAgencia;
 
     public Conta(int numConta, int numAgencia) {
         this.numConta = numConta;

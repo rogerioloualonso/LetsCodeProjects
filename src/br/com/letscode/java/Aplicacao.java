@@ -1,15 +1,53 @@
 package br.com.letscode.java;
 
+import br.com.letscode.java.classes.PessoaFisica;
+import br.com.letscode.java.classes.PessoaJuridica;
+
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Aplicacao {
+
+    final static int TAM = 100;
 
     public static void main(String[] args) {
 
         int key = 0;
         int numConta, numAgencia, tipo, opcao;
-        Double valor;
+        BigDecimal valor;
         Scanner sc = new Scanner(System.in);
+
+        //Dados de Pessoa Física
+
+        PessoaFisica[] PF = new PessoaFisica[TAM];
+        PF[0] = new PessoaFisica(123578718, "Roger", 12547845, "Rua Zé 1");
+        PF[1] = new PessoaFisica(545599874, "Stephania", 96257845, "Rua Zé 2");
+        PF[2] = new PessoaFisica(123654258, "Marcus", 1255727845, "Rua Zé 3");
+        PF[3] = new PessoaFisica(589754815, "Luiz", 74542545, "Rua Zé 4");
+        PF[4] = new PessoaFisica(598751569, "Lucas", 57521845, "Rua Zé 5");
+        PF[5] = new PessoaFisica(321457845, "Maria", 12277845, "Rua Zé 6");
+        PF[6] = new PessoaFisica(125478452, "César", 59547289, "Rua Zé 7");
+        PF[7] = new PessoaFisica(236985475, "Roberta", 15877845, "Rua Zé 8");
+        PF[8] = new PessoaFisica(125478953, "Jean", 82587845, "Rua Zé 9");
+        PF[9] = new PessoaFisica(145788854, "Antonio", 15947845, "Rua Zé 10");
+
+        int contPF = 10;
+
+        //Dados de pessoa Jurídica
+
+        PessoaJuridica[] PJ = new PessoaJuridica[TAM];
+        PJ[0] = new PessoaJuridica(558488955, "Wpp", 75755185, "Rua Maria 1");
+        PJ[0] = new PessoaJuridica(174784545, "Linkedin", 58749185, "Rua Maria 2");
+        PJ[0] = new PessoaJuridica(264785455, "Facebook", 15453055, "Rua Maria 3");
+        PJ[0] = new PessoaJuridica(124785557, "Twitter", 55252185, "Rua Maria 4");
+        PJ[0] = new PessoaJuridica(525747752, "TikTok", 25426185, "Rua Maria 5");
+        PJ[0] = new PessoaJuridica(365784871, "Lets Code", 154885745, "Rua Maria 6");
+        PJ[0] = new PessoaJuridica(214589232, "Sinqia", 152385185, "Rua Maria 7");
+        PJ[0] = new PessoaJuridica(124578845, "Telemar", 52145185, "Rua Maria 8");
+        PJ[0] = new PessoaJuridica(369857845, "Petrobras", 58755185, "Rua Maria 9");
+        PJ[0] = new PessoaJuridica(321457859, "Carrefour", 424285185, "Rua Maria 10");
+
+        int contPJ = 10;
 
         do {
             //Menu do app
@@ -44,6 +82,7 @@ public class Aplicacao {
                                 if(tipo == 1){
                                     //Abrir conta Poupança para Pessoa física
                                     //Chamar o método
+
                                 }else if(tipo == 2){
                                     //Abrir conta corrente para pessoa física
                                     //Chamar o método
@@ -82,7 +121,7 @@ public class Aplicacao {
                     numAgencia = sc.nextInt();
                         //Validar conta?
                     System.out.println("Qual o valor para sacar?");
-                    valor = sc.nextDouble();
+                    valor = sc.nextBigDecimal();
                         //Deveríamos usar bigDecimal
 
                     //Chamar o método para sacar este valor da conta retornando uma mensagem
@@ -96,7 +135,7 @@ public class Aplicacao {
                     numAgencia = sc.nextInt();
                         //Validar conta?
                     System.out.println("Qual o valor para depositar?");
-                    valor = sc.nextDouble();
+                    valor = sc.nextBigDecimal();
                     //Deveríamos usar bigDecimal
 
                     //Chamar o método para depositar este valor na conta retornando uma mensagem
@@ -115,7 +154,7 @@ public class Aplicacao {
                     int numAgenciaDestino = sc.nextInt();
                         //Validar conta?
                     System.out.println("Qual o valor para depositar?");
-                    valor = sc.nextDouble();
+                    valor = sc.nextBigDecimal();
                     //Deveríamos usar bigDecimal
 
                     //Chamar o método para transferir este valor retornando uma mensagem
@@ -129,7 +168,7 @@ public class Aplicacao {
                     numAgencia = sc.nextInt();
                         //Validar conta?
                     System.out.println("Qual o valor para investir?");
-                    valor = sc.nextDouble();
+                    valor = sc.nextBigDecimal();
                     //Deveríamos usar bigDecimal
 
                     //Chamar o método para investir este valor retornando uma mensagem

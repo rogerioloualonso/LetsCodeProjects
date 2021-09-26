@@ -1,16 +1,16 @@
 package br.com.letscode.java.classes;
 
 public class Pessoa {
-    private String nome;
-    private int telefone;
-    private String endereço;
-    private int ref;
+    protected String nome;
+    protected int telefone;
+    protected String endereço;
+    protected int ref;
 
     public Pessoa(){
 
     }
 
-    public Pessoa(String nome, int telefone, String endereço, int ref) {
+    public Pessoa(String nome, int telefone, String endereço, int ref){
         this.nome = nome;
         this.telefone = telefone;
         this.endereço = endereço;

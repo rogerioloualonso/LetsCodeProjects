@@ -22,7 +22,9 @@ public class ContaInvestimento extends Conta{
     @Override
     public String toString() {
         return "ContaInvestimento{" +
-                "saldo=" + saldo +
+                "numConta=" + numConta +
+                ", numAgencia=" + numAgencia +
+                ", saldo=" + saldo +
                 '}';
     }
 }
