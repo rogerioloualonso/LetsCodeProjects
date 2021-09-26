@@ -1,4 +1,4 @@
-import br.com.letscode.java.classes.Conta;
+package br.com.letscode.java.classes;
 
 import java.math.BigDecimal;
 
@@ -6,8 +6,8 @@ public class ContaCorrente extends Conta{
 
     private BigDecimal saldo;
 
-    public ContaCorrente(int numConta, int numAgencia, BigDecimal valor) {
-        super(numConta, numAgencia);
+    public ContaCorrente(int certidao,int numConta, int numAgencia, BigDecimal valor) {
+        super(numConta, numAgencia, certidao);
         this.saldo = valor;
     }
 

@@ -6,8 +6,8 @@ public class ContaPoupanca extends Conta{
 
     private BigDecimal saldo;
 
-    public ContaPoupanca(int numConta, int numAgencia, BigDecimal saldo) {
-        super(numConta, numAgencia);
+    public ContaPoupanca(int cpf, int numConta, int numAgencia, BigDecimal saldo) {
+        super(numConta, numAgencia, cpf);
         this.saldo = saldo;
     }
 

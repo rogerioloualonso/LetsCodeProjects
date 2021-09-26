@@ -1,7 +1,6 @@
 package br.com.letscode.java;
 
-import br.com.letscode.java.classes.PessoaFisica;
-import br.com.letscode.java.classes.PessoaJuridica;
+import br.com.letscode.java.classes.*;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -30,7 +29,6 @@ public class Aplicacao {
         PF[7] = new PessoaFisica(236985475, "Roberta", 15877845, "Rua Zé 8");
         PF[8] = new PessoaFisica(125478953, "Jean", 82587845, "Rua Zé 9");
         PF[9] = new PessoaFisica(145788854, "Antonio", 15947845, "Rua Zé 10");
-
         int contPF = 10;
 
         //Dados de pessoa Jurídica
@@ -46,8 +44,38 @@ public class Aplicacao {
         PJ[0] = new PessoaJuridica(124578845, "Telemar", 52145185, "Rua Maria 8");
         PJ[0] = new PessoaJuridica(369857845, "Petrobras", 58755185, "Rua Maria 9");
         PJ[0] = new PessoaJuridica(321457859, "Carrefour", 424285185, "Rua Maria 10");
-
         int contPJ = 10;
+
+        //Dados conta poupança
+
+        ContaPoupanca[] CP = new ContaPoupanca[TAM];
+        CP[0] = new ContaPoupanca(123578718, 2470, 13, new BigDecimal(10000));
+        CP[1] = new ContaPoupanca(145788854, 2471, 12, new BigDecimal(90000));
+        CP[2] = new ContaPoupanca(125478953, 2472, 13, new BigDecimal(3000));
+        CP[3] = new ContaPoupanca(545599874, 2473, 10, new BigDecimal(1000));
+        CP[4] = new ContaPoupanca(123654258, 2474, 11, new BigDecimal(100));
+        int contCP = 5;
+
+        //Dados conta investimento
+
+        ContaInvestimento[] CI = new ContaInvestimento[TAM];
+        CI[0] = new ContaInvestimento(598751569, 2340, 13, new BigDecimal(50000));
+        CI[1] = new ContaInvestimento(123654258, 2341, 10, new BigDecimal(500000));
+        CI[2] = new ContaInvestimento(145788854, 2342, 11, new BigDecimal(10000));
+        int contCI = 3;
+
+        //Dados conta corrente
+
+        ContaCorrente[] CC = new ContaCorrente[TAM];
+        CC[0] = new ContaCorrente(125478953, 2210, 11, new BigDecimal(5000));
+        CC[1] = new ContaCorrente(525747752, 2211, 10, new BigDecimal(7000));
+        CC[2] = new ContaCorrente(321457845, 2212, 13, new BigDecimal(1500));
+        CC[3] = new ContaCorrente(525747752, 2213, 11, new BigDecimal(500));
+        CC[4] = new ContaCorrente(365784871, 2214, 12, new BigDecimal(0));
+        CC[5] = new ContaCorrente(589754815, 2215, 10, new BigDecimal(90000));
+        int contCC = 6;
+
+
 
         do {
             //Menu do app

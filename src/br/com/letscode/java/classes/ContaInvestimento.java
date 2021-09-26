@@ -6,8 +6,8 @@ public class ContaInvestimento extends Conta{
 
     private BigDecimal saldo;
 
-    public ContaInvestimento(int numConta, int numAgencia, BigDecimal saldo) {
-        super(numConta, numAgencia);
+    public ContaInvestimento(int certidao, int numConta, int numAgencia, BigDecimal saldo) {
+        super(numConta, numAgencia, certidao);
         this.saldo = saldo;
     }
 

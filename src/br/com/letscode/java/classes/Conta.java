@@ -4,10 +4,12 @@ public class Conta {
 
     protected int numConta;
     protected int numAgencia;
+    protected int certidao;
 
-    public Conta(int numConta, int numAgencia) {
+    public Conta(int numConta, int numAgencia, int certidao) {
         this.numConta = numConta;
         this.numAgencia = numAgencia;
+        this.certidao = certidao;
     }
 
     public int getNumConta() {
