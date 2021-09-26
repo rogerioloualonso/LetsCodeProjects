@@ -1,14 +1,33 @@
 package br.com.letscode.java.classes;
 
+import java.util.ArrayList;
+
 public class Conta {
 
     protected int numConta;
     protected int numAgencia;
     protected int certidao;
 
+    public Conta(){
+
+    }
+
     public Conta(int numConta, int numAgencia, int certidao) {
         this.numConta = numConta;
         this.numAgencia = numAgencia;
+        this.certidao = certidao;
+    }
+
+    // public void abrirConta(){
+    //   ArrayList<> CP = new ArrayList<>();
+
+    // }
+
+    public int getCertidao() {
+        return certidao;
+    }
+
+    public void setCertidao(int certidao) {
         this.certidao = certidao;
     }
 
@@ -35,13 +54,4 @@ public class Conta {
                 ", numAgencia=" + numAgencia +
                 '}';
     }
-
-    public void abrirConta(){
-        numConta += 1;
-        numAgencia += 2;
-        //saldo = null;
-    }
-
-
-
 }

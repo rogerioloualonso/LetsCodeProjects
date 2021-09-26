@@ -9,6 +9,16 @@ public class Aplicacao {
 
     final static int TAM = 100;
 
+    static int contPF;
+
+    static int contPJ;
+
+    static int cpfExport;
+
+    static int cnpjExport;
+
+    static int nConta;
+
     public static void main(String[] args) {
 
         int key = 0;
@@ -29,22 +39,22 @@ public class Aplicacao {
         PF[7] = new PessoaFisica(236985475, "Roberta", 15877845, "Rua Zé 8");
         PF[8] = new PessoaFisica(125478953, "Jean", 82587845, "Rua Zé 9");
         PF[9] = new PessoaFisica(145788854, "Antonio", 15947845, "Rua Zé 10");
-        int contPF = 10;
+        contPF = 10;
 
         //Dados de pessoa Jurídica
 
         PessoaJuridica[] PJ = new PessoaJuridica[TAM];
         PJ[0] = new PessoaJuridica(558488955, "Wpp", 75755185, "Rua Maria 1");
-        PJ[0] = new PessoaJuridica(174784545, "Linkedin", 58749185, "Rua Maria 2");
-        PJ[0] = new PessoaJuridica(264785455, "Facebook", 15453055, "Rua Maria 3");
-        PJ[0] = new PessoaJuridica(124785557, "Twitter", 55252185, "Rua Maria 4");
-        PJ[0] = new PessoaJuridica(525747752, "TikTok", 25426185, "Rua Maria 5");
-        PJ[0] = new PessoaJuridica(365784871, "Lets Code", 154885745, "Rua Maria 6");
-        PJ[0] = new PessoaJuridica(214589232, "Sinqia", 152385185, "Rua Maria 7");
-        PJ[0] = new PessoaJuridica(124578845, "Telemar", 52145185, "Rua Maria 8");
-        PJ[0] = new PessoaJuridica(369857845, "Petrobras", 58755185, "Rua Maria 9");
-        PJ[0] = new PessoaJuridica(321457859, "Carrefour", 424285185, "Rua Maria 10");
-        int contPJ = 10;
+        PJ[1] = new PessoaJuridica(174784545, "Linkedin", 58749185, "Rua Maria 2");
+        PJ[2] = new PessoaJuridica(264785455, "Facebook", 15453055, "Rua Maria 3");
+        PJ[3] = new PessoaJuridica(124785557, "Twitter", 55252185, "Rua Maria 4");
+        PJ[4] = new PessoaJuridica(525747752, "TikTok", 25426185, "Rua Maria 5");
+        PJ[5] = new PessoaJuridica(365784871, "Lets Code", 154885745, "Rua Maria 6");
+        PJ[6] = new PessoaJuridica(214589232, "Sinqia", 152385185, "Rua Maria 7");
+        PJ[7] = new PessoaJuridica(124578845, "Telemar", 52145185, "Rua Maria 8");
+        PJ[8] = new PessoaJuridica(369857845, "Petrobras", 58755185, "Rua Maria 9");
+        PJ[9] = new PessoaJuridica(321457859, "Carrefour", 424285185, "Rua Maria 10");
+        contPJ = 10;
 
         //Dados conta poupança
 
@@ -54,6 +64,7 @@ public class Aplicacao {
         CP[2] = new ContaPoupanca(125478953, 2472, 13, new BigDecimal(3000));
         CP[3] = new ContaPoupanca(545599874, 2473, 10, new BigDecimal(1000));
         CP[4] = new ContaPoupanca(123654258, 2474, 11, new BigDecimal(100));
+        nConta = 2475;
         int contCP = 5;
 
         //Dados conta investimento
@@ -100,45 +111,76 @@ public class Aplicacao {
                     System.out.println("2 - Pessoa Jurídica");
                     System.out.println("R: ");
                     tipo = sc.nextInt();
+                    if(tipo == 1){
+                        System.out.println("Você escolheu Pessoa física");
+                        //Cadastro pessoa física
+                        PessoaFisica pf = new PessoaFisica();
+                        PF[contPF] = pf.cadastroPf();
+                        cpfExport = PF[contPF].getCpf();
+                        contPF++;
+
+                        System.out.println("\nQual tipo de conta?");
+                        System.out.println("1 - Conta poupança");
+                        System.out.println("2 - Conta corrente");
+                        System.out.println("3 - Conta investimento");
+                        tipo = sc.nextInt();
                         if(tipo == 1){
-                            System.out.println("Você escolheu Pessoa física");
-                            System.out.println("\nQual tipo de conta?");
-                            System.out.println("1 - Conta poupança");
-                            System.out.println("2 - Conta corrente");
-                            System.out.println("3 - Conta investimento");
-                            tipo = sc.nextInt();
-                                if(tipo == 1){
-                                    //Abrir conta Poupança para Pessoa física
-                                    //Chamar o método
+                            //Abrir conta Poupança para Pessoa física
+                            ContaPoupanca cp = new ContaPoupanca();
+                            CP[contCP] = cp.CadastroCp();
+                            contCP++;
+                            nConta++;
 
-                                }else if(tipo == 2){
-                                    //Abrir conta corrente para pessoa física
-                                    //Chamar o método
-                                }else if(tipo == 3){
-                                    //Abrir conta investimento para pessoa física
-                                    //Chamar o método
-                                }else{
-                                    System.out.println("\nOpção inválida!");
-                                }
                         }else if(tipo == 2){
-                            System.out.println("Você escolheu Pessoa jurídica");
-                            System.out.println("\nQual tipo de conta?");
-                            System.out.println("1 - Conta corrente");
-                            System.out.println("2 - Conta investimento");
-                            tipo = sc.nextInt();
+                            //Abrir conta corrente para pessoa física
+                            ContaCorrente cc = new ContaCorrente();
+                            CC[contCC] = cc.CadastroCC();
+                            contCC++;
+                            nConta++;
 
-                            if(tipo == 1){
-                                //Abrir conta corrente para pessoa jurídica
-                                //Chamar o método
-                            }else if(tipo == 2){
-                                //Abrir conta investimento para pessoa jurídica
-                                //Chamar o método
-                            }else{
-                                System.out.println("\nOpção inválida!");
-                            }
+                        }else if(tipo == 3){
+                            //Abrir conta investimento para pessoa física
+                            ContaInvestimento ci = new ContaInvestimento();
+                            CI[contCI] = ci.cadastroCi();
+                            contCI++;
+                            nConta++;
+
                         }else{
                             System.out.println("\nOpção inválida!");
                         }
+                    }else if(tipo == 2){
+                        System.out.println("Você escolheu Pessoa jurídica");
+                        //Cadastro pessoa juridica
+                        PessoaJuridica pj = new PessoaJuridica();
+                        PJ[contPJ] = pj.cadastroPj();
+                        cnpjExport = PJ[contPJ].getCnpj();
+                        contPJ++;
+
+                        System.out.println("\nQual tipo de conta?");
+                        System.out.println("1 - Conta corrente");
+                        System.out.println("2 - Conta investimento");
+                        tipo = sc.nextInt();
+
+                        if(tipo == 1){
+                            //Abrir conta corrente para pessoa jurídica
+                            ContaCorrente cc = new ContaCorrente();
+                            CC[contCC] = cc.CadastroCCJuridico();
+                            contCC++;
+                            nConta++;
+
+                        }else if(tipo == 2){
+                            //Abrir conta investimento para pessoa jurídica
+                            ContaInvestimento ci = new ContaInvestimento();
+                            CI[contCI] = ci.CadastroCiJuridico();
+                            contCI++;
+                            nConta++;
+
+                        }else{
+                            System.out.println("\nOpção inválida!");
+                        }
+                    }else{
+                        System.out.println("\nOpção inválida!");
+                    }
                     break;
 
                 case 2:
@@ -147,10 +189,10 @@ public class Aplicacao {
                     numConta = sc.nextInt();
                     System.out.println("Qual a agência? R:");
                     numAgencia = sc.nextInt();
-                        //Validar conta?
+                    //Validar conta?
                     System.out.println("Qual o valor para sacar?");
                     valor = sc.nextBigDecimal();
-                        //Deveríamos usar bigDecimal
+                    //Deveríamos usar bigDecimal
 
                     //Chamar o método para sacar este valor da conta retornando uma mensagem
                     break;
@@ -161,7 +203,7 @@ public class Aplicacao {
                     numConta = sc.nextInt();
                     System.out.println("Qual a agência? R:");
                     numAgencia = sc.nextInt();
-                        //Validar conta?
+                    //Validar conta?
                     System.out.println("Qual o valor para depositar?");
                     valor = sc.nextBigDecimal();
                     //Deveríamos usar bigDecimal
@@ -175,12 +217,12 @@ public class Aplicacao {
                     numConta = sc.nextInt();
                     System.out.println("Qual a sua agência? R:");
                     numAgencia = sc.nextInt();
-                        //Validar conta?
+                    //Validar conta?
                     System.out.println("\nQual o número da conta de destino? R:");
                     int numContaDestino = sc.nextInt();
                     System.out.println("Qual a agência da conta de destino? R:");
                     int numAgenciaDestino = sc.nextInt();
-                        //Validar conta?
+                    //Validar conta?
                     System.out.println("Qual o valor para depositar?");
                     valor = sc.nextBigDecimal();
                     //Deveríamos usar bigDecimal
@@ -194,7 +236,7 @@ public class Aplicacao {
                     numConta = sc.nextInt();
                     System.out.println("Qual a sua agência? R:");
                     numAgencia = sc.nextInt();
-                        //Validar conta?
+                    //Validar conta?
                     System.out.println("Qual o valor para investir?");
                     valor = sc.nextBigDecimal();
                     //Deveríamos usar bigDecimal
@@ -226,5 +268,20 @@ public class Aplicacao {
         } while (key == 0);
 
 
+
+    }
+
+    public int getCPF(){
+        int cpf = cpfExport;
+        return cpf;
+    }
+
+    public int getCNPJ(){
+        int cnpj = cnpjExport;
+        return cnpj;
+    }
+
+    public static int getnConta() {
+        return nConta;
     }
 }

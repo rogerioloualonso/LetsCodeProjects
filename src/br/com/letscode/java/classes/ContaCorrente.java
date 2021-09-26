@@ -1,6 +1,9 @@
 package br.com.letscode.java.classes;
 
+import br.com.letscode.java.Aplicacao;
+
 import java.math.BigDecimal;
+import java.util.Scanner;
 
 public class ContaCorrente extends Conta{
 
@@ -10,6 +13,10 @@ public class ContaCorrente extends Conta{
     public ContaCorrente(int certidao,int numConta, int numAgencia, BigDecimal valor) {
         super(numConta, numAgencia, certidao);
         this.saldo = valor;
+    }
+
+    public ContaCorrente(){
+
     }
 
     public BigDecimal getSaldo() {
@@ -35,6 +42,7 @@ public class ContaCorrente extends Conta{
         System.out.println("Conta Aberta!");
     }
 
+    //Stephania
     public void sacarContaCorrente(BigDecimal retirada) {
         if (saldo.compareTo(retirada) < 0) {
             System.out.println("Saldo insuficiente para o saque");
@@ -47,11 +55,13 @@ public class ContaCorrente extends Conta{
         }*/ // Colocar a taxa de conta corrente
     }
 
+    //Stephania
     public void depositarContaCorrente (BigDecimal deposito){
         this.saldo.add(deposito);
         System.out.println("Depósito  realizado!");
     }// chamar Conta pelo método Construtor com parâmetros.
 
+    //Stephania
     public void transferirContaCorrente (Conta contaSacar, Conta contaDepositar, BigDecimal valorTransferir){
         /*if(this.ref == 2){
             this.saldo = this.saldo.subtract(this.saldo.multiply(BigDecimal.valueOf(taxa)));
@@ -59,8 +69,32 @@ public class ContaCorrente extends Conta{
         contaSacar.saldo =  saldo.subtract(valorTransferir);
         contaDepositar.saldo = saldo.add(valorTransferir);*/
     }
+
+    //Stephania
     public void consultarSaldoContaCorrente() {
         System.out.println("O saldo da Conta Corrente é: " + this.saldo);
+    }
+
+    public ContaCorrente CadastroCC(){
+        Scanner sc = new Scanner(System.in);
+        Aplicacao dados = new Aplicacao();
+        int cpf = dados.getCPF();
+        int conta = dados.getnConta();
+        int agencia = 12;
+        BigDecimal saldo = BigDecimal.valueOf(0);
+        ContaCorrente cc = new ContaCorrente(cpf, conta, agencia, saldo);
+        return cc;
+    }
+
+    public ContaCorrente CadastroCCJuridico(){
+        Scanner sc = new Scanner(System.in);
+        Aplicacao dados = new Aplicacao();
+        int cnpj = dados.getCNPJ();
+        int conta = dados.getnConta();
+        int agencia = 12;
+        BigDecimal saldo = BigDecimal.valueOf(0);
+        ContaCorrente cc = new ContaCorrente(cnpj, conta, agencia, saldo);
+        return cc;
     }
 
 }
