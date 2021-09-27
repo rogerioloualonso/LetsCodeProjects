@@ -33,6 +33,17 @@ public class Aplicacao {
         return nConta;
     }
 
+    public static int acharConta(int numConta, Conta vetor[], int tam){
+
+        for(int i = 0; i < tam; i++){
+            if(vetor[i].getNumConta() == numConta){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     public static void main(String[] args) {
 
         int key = 0;
@@ -207,15 +218,20 @@ public class Aplicacao {
                     System.out.println("Qual o valor para depositar?");
                     valor = sc.nextBigDecimal();
 
+                    int indice = acharConta(numConta, contas, contConta);
 
+                    int aux = contas[indice].getTipo();
 
-
-
-
-
-
-
-                    //Chamar o método para depositar este valor na conta retornando uma mensagem
+                    if(aux == 0){
+                        ((ContaCorrente)contas[indice]).depositarCC(((ContaCorrente) contas[indice]),
+                                ((ContaCorrente)contas[indice]).getSaldo());
+                    }else if(aux == 1){
+                        ((ContaPoupanca)contas[indice]).depositarCP(((ContaPoupanca) contas[indice]),
+                                ((ContaPoupanca)contas[indice]).getSaldo());
+                    }else if (aux == 2){
+                        ((ContaInvestimento)contas[indice]).depositarCI(((ContaInvestimento) contas[indice]),
+                                ((ContaInvestimento)contas[indice]).getSaldo());
+                    }
                     break;
 
                 case 4:
@@ -277,6 +293,7 @@ public class Aplicacao {
 
 
     }
+
 
 
 }

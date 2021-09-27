@@ -58,4 +58,21 @@ public class ContaInvestimento extends Conta{
         ContaInvestimento ci = new ContaInvestimento(cnpj, conta, agencia, saldo, 2);
         return ci;
     }
+
+    public void depositarCI(ContaInvestimento conta, BigDecimal valor){
+        BigDecimal valorAntigo = conta.getSaldo();
+        valor = valor.add(valorAntigo);
+        conta.setSaldo(valor);
+    }
+
+    public void sacarCI(ContaInvestimento conta, BigDecimal valor){
+        BigDecimal valorAntigo = conta.getSaldo();
+    
+        /*
+        if(valorAntigo >= valor){
+            valor = valor.subtract(valorAntigo);
+            conta.setSaldo(valor);
+        }
+        */
+    }
 }

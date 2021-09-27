@@ -34,16 +34,16 @@ public class Conta {
         return certidao;
     }
 
-    public void setCertidao(int certidao) {
-        this.certidao = certidao;
-    }
-
     public int getNumConta() {
         return numConta;
     }
 
     public int getNumAgencia() {
         return numAgencia;
+    }
+
+    public void setCertidao(int certidao) {
+        this.certidao = certidao;
     }
 
     public void setTipo(int tipo) {
@@ -68,9 +68,4 @@ public class Conta {
                 '}';
     }
 
-    public void acharConta(int numConta){
-
-
-
-    }
 }

@@ -48,4 +48,10 @@ public class ContaPoupanca extends Conta{
         return cp;
     }
 
+    public void depositarCP(ContaPoupanca conta, BigDecimal valor){
+        BigDecimal valorAntigo = conta.getSaldo();
+        valor = valor.add(valorAntigo);
+        conta.setSaldo(valor);
+    }
+
 }

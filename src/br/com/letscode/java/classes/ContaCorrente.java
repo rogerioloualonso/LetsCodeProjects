@@ -100,10 +100,10 @@ public class ContaCorrente extends Conta{
         return cc;
     }
 
-    public void depositar(ContaCorrente conta, BigDecimal valor){
-
-
-
+    public void depositarCC(ContaCorrente conta, BigDecimal valor){
+        BigDecimal valorAntigo = conta.getSaldo();
+        valor = valor.add(valorAntigo);
+        conta.setSaldo(valor);
     }
 
 }
