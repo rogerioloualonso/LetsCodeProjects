@@ -9,8 +9,8 @@ public class ContaPoupanca extends Conta{
 
     private BigDecimal saldo;
 
-    public ContaPoupanca(int numConta, int numAgencia, int certidao, BigDecimal saldo, int tipo) {
-        super(numConta, numAgencia, certidao,saldo, tipo);
+    public ContaPoupanca(int numConta, int numAgencia, int certidao, BigDecimal saldo, int tipo, int ref) {
+        super(numConta, numAgencia, certidao, saldo, tipo, ref);
     }
 
     public ContaPoupanca(){
@@ -43,6 +43,18 @@ public class ContaPoupanca extends Conta{
         BigDecimal valorAntigo = conta.getSaldo();
         valor = valor.add(valorAntigo);
         conta.setSaldo(valor);
+    }
+
+    public void sacarCP(ContaPoupanca conta, BigDecimal valor, int tipo){
+        BigDecimal valorAntigo = conta.getSaldo();
+
+        if(valorAntigo.compareTo(valor) >= 0){
+            valor = valorAntigo.subtract(valor);
+            conta.setSaldo(valor);
+        }else {
+            System.out.println("\n\nSaldo insuficiente!");
+        }
+
     }
 
 }

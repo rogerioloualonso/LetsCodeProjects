@@ -12,6 +12,7 @@ public class Conta {
     protected int numAgencia;
     protected int certidao;
     protected int tipo;
+    protected int ref;
 
     protected BigDecimal saldo;
 
@@ -19,19 +20,18 @@ public class Conta {
 
     }
 
-    public Conta(int numConta, int numAgencia, int certidao,BigDecimal saldo, int tipo) {
+    public Conta(int numConta, int numAgencia, int certidao,BigDecimal saldo, int tipo, int ref) {
         this.numConta = numConta;
         this.numAgencia = numAgencia;
         this.certidao = certidao;
         this.saldo = saldo;
         this.tipo = tipo;
+        this.ref = ref;
     }
 
-    // public void abrirConta(){
-    //   ArrayList<> CP = new ArrayList<>();
-
-    // }
-
+    public int getRef() {
+        return ref;
+    }
 
     public int getTipo() {
         return tipo;
@@ -51,6 +51,10 @@ public class Conta {
 
     public BigDecimal getSaldo() {
         return saldo;
+    }
+
+    public void setRef(int ref) {
+        this.ref = ref;
     }
 
     public void setCertidao(int certidao) {
@@ -80,6 +84,7 @@ public class Conta {
                 ", numAgencia=" + numAgencia +
                 ", certidao=" + certidao +
                 ", tipo=" + tipo +
+                ", ref=" + ref +
                 ", saldo=" + saldo +
                 '}';
     }
@@ -92,7 +97,7 @@ public class Conta {
         int certidao = dados.getCPF();
         int conta = dados.getnConta();
         int agencia = 12;
-        Conta co = new Conta(conta,agencia,certidao,saldo,0);
+        Conta co = new Conta(conta,agencia,certidao,saldo,0, 1);
         return co;
     }
 
@@ -104,7 +109,7 @@ public class Conta {
         int certidao = dados.getCNPJ();
         int conta = dados.getnConta();
         int agencia = 12;
-        Conta co = new Conta(conta,agencia,certidao,saldo,0);
+        Conta co = new Conta(conta,agencia,certidao,saldo,0, 2);
         return co;
     }
 

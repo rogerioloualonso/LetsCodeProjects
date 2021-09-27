@@ -1,5 +1,7 @@
 package br.com.letscode.java.classes;
 
+import java.math.BigDecimal;
+
 public class Pessoa {
     protected String nome;
     protected int telefone;
@@ -59,5 +61,28 @@ public class Pessoa {
                 ", nome='" + nome + '\'' +
                 ", ref=" + ref +
                 '}';
+    }
+
+    public void sacarCI(ContaInvestimento conta, BigDecimal valor, int tipo){
+        BigDecimal valorAntigo = conta.getSaldo();
+
+        if(tipo == 1){
+            if(valorAntigo.compareTo(valor) >= 0){
+                valor = valorAntigo.subtract(valor);
+                conta.setSaldo(valor);
+            }else {
+                System.out.println("\n\nSaldo insuficiente!");
+            }
+        }else if(tipo == 2){
+
+            BigDecimal aux = valor.multiply(BigDecimal.valueOf(0.005));
+            if(aux.compareTo(valor) >= 0){
+                valor = valorAntigo.subtract(aux);
+                conta.setSaldo(valor);
+            }else{
+                System.out.println("\n\nSaldo insuficiente!");
+            }
+        }
+
     }
 }

@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class ContaInvestimento extends Conta{
 
-    public ContaInvestimento(int certidao, int numConta, int numAgencia, BigDecimal saldo, int tipo) {
-        super(numConta, numAgencia, certidao, saldo, tipo);
+    public ContaInvestimento(int certidao, int numConta, int numAgencia, BigDecimal saldo, int tipo, int ref) {
+        super(numConta, numAgencia, certidao, saldo, tipo, ref);
     }
 
     public ContaInvestimento(){
@@ -54,14 +54,26 @@ public class ContaInvestimento extends Conta{
         conta.setSaldo(valor);
     }
 
-    public void sacarCI(ContaInvestimento conta, BigDecimal valor){
+    public void sacarCI(ContaInvestimento conta, BigDecimal valor, int tipo){
         BigDecimal valorAntigo = conta.getSaldo();
 
-        /*
-        if(valorAntigo >= valor){
-            valor = valor.subtract(valorAntigo);
-            conta.setSaldo(valor);
+        if(tipo == 1){
+            if(valorAntigo.compareTo(valor) >= 0){
+                valor = valorAntigo.subtract(valor);
+                conta.setSaldo(valor);
+            }else {
+                System.out.println("\n\nSaldo insuficiente!");
+            }
+        }else if(tipo == 2){
+
+            BigDecimal aux = valor.multiply(BigDecimal.valueOf(0.005));
+            if(aux.compareTo(valor) >= 0){
+                valor = valorAntigo.subtract(aux);
+                conta.setSaldo(valor);
+            }else{
+                System.out.println("\n\nSaldo insuficiente!");
+            }
         }
-        */
+
     }
 }

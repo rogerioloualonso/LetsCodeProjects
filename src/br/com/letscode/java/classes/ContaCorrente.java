@@ -7,11 +7,8 @@ import java.util.Scanner;
 
 public class ContaCorrente extends Conta{
 
-    private double taxa = 0.005;
-
-    public ContaCorrente(int numConta, int numAgencia, int certidao, BigDecimal saldo, int tipo) {
-        super(numConta, numAgencia, certidao, saldo, tipo);
-        this.saldo = saldo;
+    public ContaCorrente(int numConta, int numAgencia, int certidao, BigDecimal saldo, int tipo, int ref) {
+        super(numConta, numAgencia, certidao, saldo, tipo, ref);
     }
 
     public ContaCorrente(){
@@ -41,7 +38,6 @@ public class ContaCorrente extends Conta{
                 ", certidao=" + certidao +
                 ", tipo=" + tipo +
                 ", saldo=" + saldo +
-                ", taxa=" + taxa +
                 '}';
     }
 
@@ -49,6 +45,29 @@ public class ContaCorrente extends Conta{
         BigDecimal valorAntigo = conta.getSaldo();
         valor = valor.add(valorAntigo);
         conta.setSaldo(valor);
+    }
+
+    public void sacarCC(ContaCorrente conta, BigDecimal valor, int tipo){
+        BigDecimal valorAntigo = conta.getSaldo();
+
+        if(tipo == 1){
+            if(valorAntigo.compareTo(valor) >= 0){
+                valor = valorAntigo.subtract(valor);
+                conta.setSaldo(valor);
+            }else {
+                System.out.println("\n\nSaldo insuficiente!");
+            }
+        }else if(tipo == 2){
+
+            BigDecimal aux = valor.multiply(BigDecimal.valueOf(0.005));
+            if(aux.compareTo(valor) >= 0){
+                valor = valorAntigo.subtract(aux);
+                conta.setSaldo(valor);
+            }else{
+                System.out.println("\n\nSaldo insuficiente!");
+            }
+        }
+
     }
 
 }

@@ -46,10 +46,11 @@ public class Aplicacao {
         return -1;
     }
 
+
     public static void main(String[] args) {
 
         int key = 0;
-        int numConta, numAgencia, tipo, opcao, indice, aux;
+        int numConta, numAgencia, tipo, opcao, indice, aux, certidao;
         BigDecimal valor;
         Scanner sc = new Scanner(System.in);
 
@@ -79,20 +80,20 @@ public class Aplicacao {
         //Dados conta
 
         Conta[] contas = new Conta[TAM];
-        contas[0] = new ContaPoupanca(123578718, 2470, 13, new BigDecimal(10000), 1);
-        contas[1] = new ContaPoupanca(145788854, 2471, 12, new BigDecimal(90000), 1);
-        contas[2] = new ContaPoupanca(125478953, 2472, 13, new BigDecimal(3000), 1);
-        contas[3] = new ContaPoupanca(545599874, 2473, 10, new BigDecimal(1000), 1);
-        contas[4] = new ContaPoupanca(123654258, 2474, 11, new BigDecimal(100), 1);
-        contas[5] = new ContaInvestimento(598751569, 2340, 13, new BigDecimal(50000), 2);
-        contas[6] = new ContaInvestimento(123654258, 2341, 10, new BigDecimal(500000), 2);
-        contas[7] = new ContaInvestimento(145788854, 2342, 11, new BigDecimal(10000), 2);
-        contas[8] = new ContaCorrente(125478953, 2210, 11, new BigDecimal(5000), 0);
-        contas[9] = new ContaCorrente(525747752, 2211, 10, new BigDecimal(7000), 0);
-        contas[10] = new ContaCorrente(321457845, 2212, 13, new BigDecimal(1500), 0);
-        contas[11] = new ContaCorrente(525747752, 2213, 11, new BigDecimal(500), 0);
-        contas[12] = new ContaCorrente(365784871, 2214, 12, new BigDecimal(0), 0);
-        contas[13] = new ContaCorrente(589754815, 2215, 10, new BigDecimal(90000), 0);
+        contas[0] = new ContaPoupanca(2470, 10, 123578718, new BigDecimal(10000), 1, 1);
+        contas[1] = new ContaPoupanca(2470, 11, 145788854, new BigDecimal(90000), 1, 1);
+        contas[2] = new ContaPoupanca(2470, 10, 125478953, new BigDecimal(3000), 1, 1);
+        contas[3] = new ContaPoupanca(2470, 12, 545599874, new BigDecimal(1000), 1, 1);
+        contas[4] = new ContaPoupanca(2470, 13, 123654258, new BigDecimal(100), 1, 1);
+        contas[5] = new ContaInvestimento(24709, 13, 598751569, new BigDecimal(50000), 2, 1);
+        contas[6] = new ContaInvestimento(2470, 12, 123654258, new BigDecimal(500000), 2, 1);
+        contas[7] = new ContaInvestimento(2470, 12, 145788854, new BigDecimal(10000), 2, 1);
+        contas[8] = new ContaCorrente(2470, 10, 125478953, new BigDecimal(5000), 0, 1);
+        contas[9] = new ContaCorrente(2470, 11, 525747752, new BigDecimal(7000), 0, 1);
+        contas[10] = new ContaCorrente(2470, 10, 321457845, new BigDecimal(1500), 0, 1);
+        contas[11] = new ContaCorrente(2470, 10, 525747752, new BigDecimal(500), 0, 1);
+        contas[12] = new ContaCorrente(2470, 11, 365784871, new BigDecimal(0), 0, 1);
+        contas[13] = new ContaCorrente(2470, 12, 589754815, new BigDecimal(90000), 0, 1);
         int contConta = 14;
 
 
@@ -196,14 +197,29 @@ public class Aplicacao {
                     System.out.println("Você escolheu sacar");
                     System.out.println("\nQual o número da conta? R:");
                     numConta = sc.nextInt();
-                    System.out.println("Qual a agência? R:");
-                    numAgencia = sc.nextInt();
-                    //Validar conta?
                     System.out.println("Qual o valor para sacar?");
                     valor = sc.nextBigDecimal();
-                    //Deveríamos usar bigDecimal
 
-                    //Chamar o método para sacar este valor da conta retornando uma mensagem
+                    indice = acharConta(numConta, contas, contConta);
+
+                    aux = contas[indice].getTipo();
+
+                    if(contas[indice].getRef() == 1){
+                        if(aux == 0){
+                            ((ContaCorrente)contas[indice]).sacarCC(((ContaCorrente)contas[indice]), valor, 1);
+                        }else if(aux == 1){
+                            ((ContaPoupanca)contas[indice]).sacarCP(((ContaPoupanca)contas[indice]), valor, 1);
+                        }else{
+                            ((ContaInvestimento)contas[indice]).sacarCI(((ContaInvestimento)contas[indice]), valor, 1);
+                        }
+                    }else if(contas[indice].getRef() == 2){
+                        if(aux == 0){
+                            ((ContaCorrente)contas[indice]).sacarCC(((ContaCorrente)contas[indice]), valor, 2);
+                        }else if(aux == 2){
+                            ((ContaInvestimento)contas[indice]).sacarCI(((ContaInvestimento)contas[indice]), valor, 2);
+                        }
+                    }
+                    
                     break;
 
                 case 3:
@@ -271,12 +287,10 @@ public class Aplicacao {
                     System.out.println("Você escolheu Consultar saldo");
                     System.out.println("\nQual o número da sua conta? R:");
                     numConta = sc.nextInt();
-                    System.out.println("Qual a sua agência? R:");
-                    numAgencia = sc.nextInt();
-                    //Validar conta?
 
-                    //Chamar o método para consultar este valor retornando uma mensagem
-                    saldoExport = contas[contConta].getSaldo();
+                    int indiceConsulta = acharConta(sc.nextInt(), contas, TAM);
+                    System.out.println("O saldo da sua conta é de: R$" + contas[indiceConsulta].getSaldo());
+
                 case 7:
                     System.out.println("\nAplicativo encerrado!");
                     key = 1;
