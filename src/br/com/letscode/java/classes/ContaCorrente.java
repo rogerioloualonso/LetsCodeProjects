@@ -59,7 +59,7 @@ public class ContaCorrente extends Conta{
             }
         }else if(tipo == 2){
 
-            BigDecimal aux = valor.multiply(BigDecimal.valueOf(0.005));
+            BigDecimal aux = valor.multiply(BigDecimal.valueOf(1.005));
             if(aux.compareTo(valor) >= 0){
                 valor = valorAntigo.subtract(aux);
                 conta.setSaldo(valor);
