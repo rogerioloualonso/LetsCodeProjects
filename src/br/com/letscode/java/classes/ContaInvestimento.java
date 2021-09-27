@@ -7,23 +7,27 @@ import java.util.Scanner;
 
 public class ContaInvestimento extends Conta{
 
-    private BigDecimal saldo;
-
     public ContaInvestimento(int certidao, int numConta, int numAgencia, BigDecimal saldo, int tipo) {
-        super(numConta, numAgencia, certidao, tipo);
-        this.saldo = saldo;
+        super(numConta, numAgencia, certidao, saldo, tipo);
     }
 
     public ContaInvestimento(){
 
     }
 
-    public BigDecimal getSaldo() {
-        return saldo;
+    @Override
+    public Conta Cadastro() {
+        return super.Cadastro();
     }
 
-    public void setSaldo(BigDecimal saldo) {
-        this.saldo = saldo;
+    @Override
+    public Conta CadastroJuridico() {
+        return super.CadastroJuridico();
+    }
+
+    @Override
+    public void consultarSaldo() {
+        super.consultarSaldo();
     }
 
     @Override
@@ -37,27 +41,6 @@ public class ContaInvestimento extends Conta{
                 '}';
     }
 
-    public ContaInvestimento cadastroCi(){
-        Scanner sc = new Scanner(System.in);
-        Aplicacao dados = new Aplicacao();
-        int cpf = dados.getCPF();
-        int conta = dados.getnConta();
-        int agencia = 12;
-        BigDecimal saldo = BigDecimal.valueOf(0);
-        ContaInvestimento ci = new ContaInvestimento(cpf, conta, agencia, saldo, 2);
-        return ci;
-    }
-
-    public ContaInvestimento CadastroCiJuridico(){
-        Scanner sc = new Scanner(System.in);
-        Aplicacao dados = new Aplicacao();
-        int cnpj = dados.getCNPJ();
-        int conta = dados.getnConta();
-        int agencia = 12;
-        BigDecimal saldo = BigDecimal.valueOf(0);
-        ContaInvestimento ci = new ContaInvestimento(cnpj, conta, agencia, saldo, 2);
-        return ci;
-    }
 
     public void depositarCI(ContaInvestimento conta, BigDecimal valor){
         BigDecimal valorAntigo = conta.getSaldo();
@@ -65,9 +48,15 @@ public class ContaInvestimento extends Conta{
         conta.setSaldo(valor);
     }
 
+    public void investir(ContaInvestimento conta, BigDecimal valor){
+        BigDecimal valorAntigo = conta.getSaldo();
+        valor = valor.add(valorAntigo);
+        conta.setSaldo(valor);
+    }
+
     public void sacarCI(ContaInvestimento conta, BigDecimal valor){
         BigDecimal valorAntigo = conta.getSaldo();
-    
+
         /*
         if(valorAntigo >= valor){
             valor = valor.subtract(valorAntigo);

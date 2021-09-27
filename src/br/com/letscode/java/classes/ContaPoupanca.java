@@ -9,21 +9,22 @@ public class ContaPoupanca extends Conta{
 
     private BigDecimal saldo;
 
-    public ContaPoupanca(int cpf, int numConta, int numAgencia, BigDecimal saldo, int tipo) {
-        super(numConta, numAgencia, cpf, tipo);
-        this.saldo = saldo;
+    public ContaPoupanca(int numConta, int numAgencia, int certidao, BigDecimal saldo, int tipo) {
+        super(numConta, numAgencia, certidao,saldo, tipo);
     }
 
     public ContaPoupanca(){
 
     }
 
-    public BigDecimal getSaldo() {
-        return saldo;
+    @Override
+    public Conta Cadastro() {
+        return super.Cadastro();
     }
 
-    public void setSaldo(BigDecimal saldo) {
-        this.saldo = saldo;
+    @Override
+    public void consultarSaldo() {
+        super.consultarSaldo();
     }
 
     @Override
@@ -37,16 +38,6 @@ public class ContaPoupanca extends Conta{
                 '}';
     }
 
-    public ContaPoupanca CadastroCp(){
-        Scanner sc = new Scanner(System.in);
-        Aplicacao dados = new Aplicacao();
-        int cpf = dados.getCPF();
-        int conta = dados.getnConta();
-        int agencia = 12;
-        BigDecimal saldo = BigDecimal.valueOf(0);
-        ContaPoupanca cp = new ContaPoupanca(cpf, conta, agencia, saldo, 1);
-        return cp;
-    }
 
     public void depositarCP(ContaPoupanca conta, BigDecimal valor){
         BigDecimal valorAntigo = conta.getSaldo();
