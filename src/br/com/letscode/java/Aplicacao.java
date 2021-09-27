@@ -287,6 +287,7 @@ public class Aplicacao {
                     numConta = sc.nextInt();
 
                     int indiceConsulta = acharConta(sc.nextInt(), contas, TAM);
+
                     System.out.println("O saldo da sua conta é de: R$" + contas[indiceConsulta].getSaldo());
 
                 case 7:

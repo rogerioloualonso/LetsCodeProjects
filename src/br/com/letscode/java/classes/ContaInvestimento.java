@@ -50,6 +50,7 @@ public class ContaInvestimento extends Conta{
 
     public void investir(ContaInvestimento conta, BigDecimal valor){
         BigDecimal valorAntigo = conta.getSaldo();
+        valor = valor.multiply(BigDecimal.valueOf(0.002));
         valor = valor.add(valorAntigo);
         conta.setSaldo(valor);
     }
