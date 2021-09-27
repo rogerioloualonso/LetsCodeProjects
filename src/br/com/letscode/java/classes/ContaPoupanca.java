@@ -9,8 +9,8 @@ public class ContaPoupanca extends Conta{
 
     private BigDecimal saldo;
 
-    public ContaPoupanca(int cpf, int numConta, int numAgencia, BigDecimal saldo) {
-        super(numConta, numAgencia, cpf);
+    public ContaPoupanca(int cpf, int numConta, int numAgencia, BigDecimal saldo, int tipo) {
+        super(numConta, numAgencia, cpf, tipo);
         this.saldo = saldo;
     }
 
@@ -31,6 +31,8 @@ public class ContaPoupanca extends Conta{
         return "ContaPoupanca{" +
                 "numConta=" + numConta +
                 ", numAgencia=" + numAgencia +
+                ", certidao=" + certidao +
+                ", tipo=" + tipo +
                 ", saldo=" + saldo +
                 '}';
     }
@@ -42,7 +44,7 @@ public class ContaPoupanca extends Conta{
         int conta = dados.getnConta();
         int agencia = 12;
         BigDecimal saldo = BigDecimal.valueOf(0);
-        ContaPoupanca cp = new ContaPoupanca(cpf, conta, agencia, saldo);
+        ContaPoupanca cp = new ContaPoupanca(cpf, conta, agencia, saldo, 1);
         return cp;
     }
 

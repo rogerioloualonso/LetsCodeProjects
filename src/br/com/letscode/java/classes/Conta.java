@@ -7,21 +7,28 @@ public class Conta {
     protected int numConta;
     protected int numAgencia;
     protected int certidao;
+    protected int tipo;
 
     public Conta(){
 
     }
 
-    public Conta(int numConta, int numAgencia, int certidao) {
+    public Conta(int numConta, int numAgencia, int certidao, int tipo) {
         this.numConta = numConta;
         this.numAgencia = numAgencia;
         this.certidao = certidao;
+        this.tipo = tipo;
     }
 
     // public void abrirConta(){
     //   ArrayList<> CP = new ArrayList<>();
 
     // }
+
+
+    public int getTipo() {
+        return tipo;
+    }
 
     public int getCertidao() {
         return certidao;
@@ -39,6 +46,10 @@ public class Conta {
         return numAgencia;
     }
 
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
     public void setNumConta(int numConta) {
         this.numConta = numConta;
     }
@@ -52,6 +63,14 @@ public class Conta {
         return "Conta{" +
                 "numConta=" + numConta +
                 ", numAgencia=" + numAgencia +
+                ", certidao=" + certidao +
+                ", tipo=" + tipo +
                 '}';
+    }
+
+    public void acharConta(int numConta){
+
+
+
     }
 }

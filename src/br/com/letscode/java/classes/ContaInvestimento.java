@@ -9,8 +9,8 @@ public class ContaInvestimento extends Conta{
 
     private BigDecimal saldo;
 
-    public ContaInvestimento(int certidao, int numConta, int numAgencia, BigDecimal saldo) {
-        super(numConta, numAgencia, certidao);
+    public ContaInvestimento(int certidao, int numConta, int numAgencia, BigDecimal saldo, int tipo) {
+        super(numConta, numAgencia, certidao, tipo);
         this.saldo = saldo;
     }
 
@@ -31,6 +31,8 @@ public class ContaInvestimento extends Conta{
         return "ContaInvestimento{" +
                 "numConta=" + numConta +
                 ", numAgencia=" + numAgencia +
+                ", certidao=" + certidao +
+                ", tipo=" + tipo +
                 ", saldo=" + saldo +
                 '}';
     }
@@ -42,7 +44,7 @@ public class ContaInvestimento extends Conta{
         int conta = dados.getnConta();
         int agencia = 12;
         BigDecimal saldo = BigDecimal.valueOf(0);
-        ContaInvestimento ci = new ContaInvestimento(cpf, conta, agencia, saldo);
+        ContaInvestimento ci = new ContaInvestimento(cpf, conta, agencia, saldo, 2);
         return ci;
     }
 
@@ -53,7 +55,7 @@ public class ContaInvestimento extends Conta{
         int conta = dados.getnConta();
         int agencia = 12;
         BigDecimal saldo = BigDecimal.valueOf(0);
-        ContaInvestimento ci = new ContaInvestimento(cnpj, conta, agencia, saldo);
+        ContaInvestimento ci = new ContaInvestimento(cnpj, conta, agencia, saldo, 2);
         return ci;
     }
 }

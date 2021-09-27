@@ -19,6 +19,20 @@ public class Aplicacao {
 
     static int nConta;
 
+    public int getCPF(){
+        int cpf = cpfExport;
+        return cpf;
+    }
+
+    public int getCNPJ(){
+        int cnpj = cnpjExport;
+        return cnpj;
+    }
+
+    public static int getnConta() {
+        return nConta;
+    }
+
     public static void main(String[] args) {
 
         int key = 0;
@@ -56,35 +70,24 @@ public class Aplicacao {
         PJ[9] = new PessoaJuridica(321457859, "Carrefour", 424285185, "Rua Maria 10");
         contPJ = 10;
 
-        //Dados conta poupança
+        //Dados conta
 
-        ContaPoupanca[] CP = new ContaPoupanca[TAM];
-        CP[0] = new ContaPoupanca(123578718, 2470, 13, new BigDecimal(10000));
-        CP[1] = new ContaPoupanca(145788854, 2471, 12, new BigDecimal(90000));
-        CP[2] = new ContaPoupanca(125478953, 2472, 13, new BigDecimal(3000));
-        CP[3] = new ContaPoupanca(545599874, 2473, 10, new BigDecimal(1000));
-        CP[4] = new ContaPoupanca(123654258, 2474, 11, new BigDecimal(100));
-        nConta = 2475;
-        int contCP = 5;
-
-        //Dados conta investimento
-
-        ContaInvestimento[] CI = new ContaInvestimento[TAM];
-        CI[0] = new ContaInvestimento(598751569, 2340, 13, new BigDecimal(50000));
-        CI[1] = new ContaInvestimento(123654258, 2341, 10, new BigDecimal(500000));
-        CI[2] = new ContaInvestimento(145788854, 2342, 11, new BigDecimal(10000));
-        int contCI = 3;
-
-        //Dados conta corrente
-
-        ContaCorrente[] CC = new ContaCorrente[TAM];
-        CC[0] = new ContaCorrente(125478953, 2210, 11, new BigDecimal(5000));
-        CC[1] = new ContaCorrente(525747752, 2211, 10, new BigDecimal(7000));
-        CC[2] = new ContaCorrente(321457845, 2212, 13, new BigDecimal(1500));
-        CC[3] = new ContaCorrente(525747752, 2213, 11, new BigDecimal(500));
-        CC[4] = new ContaCorrente(365784871, 2214, 12, new BigDecimal(0));
-        CC[5] = new ContaCorrente(589754815, 2215, 10, new BigDecimal(90000));
-        int contCC = 6;
+        Conta[] contas = new Conta[TAM];
+        contas[0] = new ContaPoupanca(123578718, 2470, 13, new BigDecimal(10000), 1);
+        contas[1] = new ContaPoupanca(145788854, 2471, 12, new BigDecimal(90000), 1);
+        contas[2] = new ContaPoupanca(125478953, 2472, 13, new BigDecimal(3000), 1);
+        contas[3] = new ContaPoupanca(545599874, 2473, 10, new BigDecimal(1000), 1);
+        contas[4] = new ContaPoupanca(123654258, 2474, 11, new BigDecimal(100), 1);
+        contas[5] = new ContaInvestimento(598751569, 2340, 13, new BigDecimal(50000), 2);
+        contas[6] = new ContaInvestimento(123654258, 2341, 10, new BigDecimal(500000), 2);
+        contas[7] = new ContaInvestimento(145788854, 2342, 11, new BigDecimal(10000), 2);
+        contas[8] = new ContaCorrente(125478953, 2210, 11, new BigDecimal(5000), 0);
+        contas[9] = new ContaCorrente(525747752, 2211, 10, new BigDecimal(7000), 0);
+        contas[10] = new ContaCorrente(321457845, 2212, 13, new BigDecimal(1500), 0);
+        contas[11] = new ContaCorrente(525747752, 2213, 11, new BigDecimal(500), 0);
+        contas[12] = new ContaCorrente(365784871, 2214, 12, new BigDecimal(0), 0);
+        contas[13] = new ContaCorrente(589754815, 2215, 10, new BigDecimal(90000), 0);
+        int contConta = 13;
 
 
 
@@ -127,22 +130,22 @@ public class Aplicacao {
                         if(tipo == 1){
                             //Abrir conta Poupança para Pessoa física
                             ContaPoupanca cp = new ContaPoupanca();
-                            CP[contCP] = cp.CadastroCp();
-                            contCP++;
+                            contas[contConta] = cp.CadastroCp();
+                            contConta++;
                             nConta++;
 
                         }else if(tipo == 2){
                             //Abrir conta corrente para pessoa física
                             ContaCorrente cc = new ContaCorrente();
-                            CC[contCC] = cc.CadastroCC();
-                            contCC++;
+                            contas[contConta] = cc.CadastroCC();
+                            contConta++;
                             nConta++;
 
                         }else if(tipo == 3){
                             //Abrir conta investimento para pessoa física
                             ContaInvestimento ci = new ContaInvestimento();
-                            CI[contCI] = ci.cadastroCi();
-                            contCI++;
+                            contas[contConta] = ci.cadastroCi();
+                            contConta++;
                             nConta++;
 
                         }else{
@@ -164,15 +167,15 @@ public class Aplicacao {
                         if(tipo == 1){
                             //Abrir conta corrente para pessoa jurídica
                             ContaCorrente cc = new ContaCorrente();
-                            CC[contCC] = cc.CadastroCCJuridico();
-                            contCC++;
+                            contas[contConta] = cc.CadastroCCJuridico();
+                            contConta++;
                             nConta++;
 
                         }else if(tipo == 2){
                             //Abrir conta investimento para pessoa jurídica
                             ContaInvestimento ci = new ContaInvestimento();
-                            CI[contCI] = ci.CadastroCiJuridico();
-                            contCI++;
+                            contas[contConta] = ci.CadastroCiJuridico();
+                            contConta++;
                             nConta++;
 
                         }else{
@@ -201,12 +204,16 @@ public class Aplicacao {
                     System.out.println("Você escolheu depositar");
                     System.out.println("\nQual o número da conta? R:");
                     numConta = sc.nextInt();
-                    System.out.println("Qual a agência? R:");
-                    numAgencia = sc.nextInt();
-                    //Validar conta?
                     System.out.println("Qual o valor para depositar?");
                     valor = sc.nextBigDecimal();
-                    //Deveríamos usar bigDecimal
+
+
+
+
+
+
+
+
 
                     //Chamar o método para depositar este valor na conta retornando uma mensagem
                     break;
@@ -271,17 +278,5 @@ public class Aplicacao {
 
     }
 
-    public int getCPF(){
-        int cpf = cpfExport;
-        return cpf;
-    }
 
-    public int getCNPJ(){
-        int cnpj = cnpjExport;
-        return cnpj;
-    }
-
-    public static int getnConta() {
-        return nConta;
-    }
 }

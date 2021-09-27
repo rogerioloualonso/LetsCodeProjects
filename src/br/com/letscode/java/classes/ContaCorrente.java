@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class ContaCorrente extends Conta{
 
     private BigDecimal saldo;
-    double taxa = 0.005;
+    private double taxa = 0.005;
 
-    public ContaCorrente(int certidao,int numConta, int numAgencia, BigDecimal valor) {
-        super(numConta, numAgencia, certidao);
+    public ContaCorrente(int certidao,int numConta, int numAgencia, BigDecimal valor, int tipo) {
+        super(numConta, numAgencia, certidao,tipo);
         this.saldo = valor;
     }
 
@@ -32,7 +32,10 @@ public class ContaCorrente extends Conta{
         return "ContaCorrente{" +
                 "numConta=" + numConta +
                 ", numAgencia=" + numAgencia +
+                ", certidao=" + certidao +
+                ", tipo=" + tipo +
                 ", saldo=" + saldo +
+                ", taxa=" + taxa +
                 '}';
     }
 
@@ -82,7 +85,7 @@ public class ContaCorrente extends Conta{
         int conta = dados.getnConta();
         int agencia = 12;
         BigDecimal saldo = BigDecimal.valueOf(0);
-        ContaCorrente cc = new ContaCorrente(cpf, conta, agencia, saldo);
+        ContaCorrente cc = new ContaCorrente(cpf, conta, agencia, saldo, 1);
         return cc;
     }
 
@@ -93,8 +96,14 @@ public class ContaCorrente extends Conta{
         int conta = dados.getnConta();
         int agencia = 12;
         BigDecimal saldo = BigDecimal.valueOf(0);
-        ContaCorrente cc = new ContaCorrente(cnpj, conta, agencia, saldo);
+        ContaCorrente cc = new ContaCorrente(cnpj, conta, agencia, saldo, 1);
         return cc;
+    }
+
+    public void depositar(ContaCorrente conta, BigDecimal valor){
+
+
+
     }
 
 }
