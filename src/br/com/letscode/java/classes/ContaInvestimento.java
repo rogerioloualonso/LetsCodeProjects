@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ContaInvestimento extends Conta{
 
-    public ContaInvestimento(int certidao, int numConta, int numAgencia, BigDecimal saldo, int tipo, int ref) {
+    public ContaInvestimento(int numConta, int numAgencia, int certidao,  BigDecimal saldo, int tipo, int ref) {
         super(numConta, numAgencia, certidao, saldo, tipo, ref);
     }
 

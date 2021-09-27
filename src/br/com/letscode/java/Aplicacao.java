@@ -66,7 +66,6 @@ public class Aplicacao {
         pessoas[8] = new PessoaFisica(125478953, "Jean", 82587845, "Rua Zé 9");
         pessoas[9] = new PessoaFisica(145788854, "Antonio", 15947845, "Rua Zé 10");
         pessoas[10] = new PessoaJuridica(558488955, "Wpp", 75755185, "Rua Maria 1");
-        pessoas[11] = new PessoaJuridica(174784545, "Linkedin", 58749185, "Rua Maria 2");
         pessoas[12] = new PessoaJuridica(264785455, "Facebook", 15453055, "Rua Maria 3");
         pessoas[13] = new PessoaJuridica(124785557, "Twitter", 55252185, "Rua Maria 4");
         pessoas[14] = new PessoaJuridica(525747752, "TikTok", 25426185, "Rua Maria 5");
@@ -81,19 +80,19 @@ public class Aplicacao {
 
         Conta[] contas = new Conta[TAM];
         contas[0] = new ContaPoupanca(2470, 10, 123578718, new BigDecimal(10000), 1, 1);
-        contas[1] = new ContaPoupanca(2470, 11, 145788854, new BigDecimal(90000), 1, 1);
-        contas[2] = new ContaPoupanca(2470, 10, 125478953, new BigDecimal(3000), 1, 1);
-        contas[3] = new ContaPoupanca(2470, 12, 545599874, new BigDecimal(1000), 1, 1);
-        contas[4] = new ContaPoupanca(2470, 13, 123654258, new BigDecimal(100), 1, 1);
-        contas[5] = new ContaInvestimento(24709, 13, 598751569, new BigDecimal(50000), 2, 1);
-        contas[6] = new ContaInvestimento(2470, 12, 123654258, new BigDecimal(500000), 2, 1);
-        contas[7] = new ContaInvestimento(2470, 12, 145788854, new BigDecimal(10000), 2, 1);
-        contas[8] = new ContaCorrente(2470, 10, 125478953, new BigDecimal(5000), 0, 1);
-        contas[9] = new ContaCorrente(2470, 11, 525747752, new BigDecimal(7000), 0, 1);
-        contas[10] = new ContaCorrente(2470, 10, 321457845, new BigDecimal(1500), 0, 1);
-        contas[11] = new ContaCorrente(2470, 10, 525747752, new BigDecimal(500), 0, 1);
-        contas[12] = new ContaCorrente(2470, 11, 365784871, new BigDecimal(0), 0, 1);
-        contas[13] = new ContaCorrente(2470, 12, 589754815, new BigDecimal(90000), 0, 1);
+        contas[1] = new ContaPoupanca(2470, 11, 545599874, new BigDecimal(90000), 1, 1);
+        contas[2] = new ContaPoupanca(2470, 10, 123654258, new BigDecimal(3000), 1, 1);
+        contas[3] = new ContaPoupanca(2470, 12, 589754815, new BigDecimal(1000), 1, 1);
+        contas[4] = new ContaPoupanca(2470, 13, 125478452, new BigDecimal(100), 1, 1);
+        contas[5] = new ContaInvestimento(24709, 13, 125478452, new BigDecimal(50000), 2, 1);
+        contas[6] = new ContaInvestimento(2470, 12, 321457859, new BigDecimal(500000), 2, 1);
+        contas[7] = new ContaInvestimento(2470, 12, 124578845, new BigDecimal(10000), 2, 1);
+        contas[8] = new ContaCorrente(2470, 10, 124578845, new BigDecimal(5000), 0, 1);
+        contas[9] = new ContaCorrente(2470, 11, 321457859, new BigDecimal(7000), 0, 1);
+        contas[10] = new ContaCorrente(2470, 10, 125478452, new BigDecimal(1500), 0, 1);
+        contas[11] = new ContaCorrente(2470, 10, 365784871, new BigDecimal(500), 0, 1);
+        contas[12] = new ContaCorrente(2470, 11, 124785557, new BigDecimal(0), 0, 1);
+        contas[13] = new ContaCorrente(2470, 12, 558488955, new BigDecimal(90000), 0, 1);
         int contConta = 14;
 
 
@@ -219,7 +218,7 @@ public class Aplicacao {
                             ((ContaInvestimento)contas[indice]).sacarCI(((ContaInvestimento)contas[indice]), valor, 2);
                         }
                     }
-                    
+
                     break;
 
                 case 3:
@@ -249,19 +248,18 @@ public class Aplicacao {
                     System.out.println("Você escolheu transferir");
                     System.out.println("\nQual o número da sua conta? R:");
                     numConta = sc.nextInt();
-                    System.out.println("Qual a sua agência? R:");
-                    numAgencia = sc.nextInt();
-                    //Validar conta?
                     System.out.println("\nQual o número da conta de destino? R:");
                     int numContaDestino = sc.nextInt();
-                    System.out.println("Qual a agência da conta de destino? R:");
-                    int numAgenciaDestino = sc.nextInt();
-                    //Validar conta?
                     System.out.println("Qual o valor para depositar?");
                     valor = sc.nextBigDecimal();
-                    //Deveríamos usar bigDecimal
 
-                    //Chamar o método para transferir este valor retornando uma mensagem
+                    int indiceSacar = acharConta(numConta, contas, contConta);
+                    int indiceDepositar = acharConta(numContaDestino, contas, contConta);
+                    int tipoContaSacar = contas[indiceSacar].getRef();
+                    int tipoContaDepositar = contas[indiceDepositar].getRef();
+
+                    Conta.transferir(contas[indiceSacar], contas[indiceDepositar], valor);
+
                     break;
 
                 case 5:

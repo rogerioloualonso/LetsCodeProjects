@@ -118,5 +118,36 @@ public class Conta {
         System.out.println("Seu saldoa atual é = "+dados.getSaldoExport());
     }
 
+    public static void transferir(Conta contaSacar, Conta contaDepositar, BigDecimal valor){
+
+        if(contaSacar.getRef() == 1){
+            if(contaSacar.getTipo() == 0){
+                ((ContaCorrente)contaSacar).sacarCC(((ContaCorrente)contaSacar), valor, 1);
+                ((ContaCorrente)contaDepositar).depositarCC(((ContaCorrente) contaDepositar),
+                        ((ContaCorrente)contaDepositar).getSaldo());
+            }else if(contaSacar.getTipo() == 1){
+                ((ContaPoupanca)contaSacar).sacarCP(((ContaPoupanca)contaSacar), valor, 1);
+                ((ContaPoupanca)contaDepositar).depositarCP(((ContaPoupanca) contaDepositar),
+                        ((ContaPoupanca)contaDepositar).getSaldo());
+            }else if(contaSacar.getTipo() == 2){
+                ((ContaInvestimento)contaSacar).sacarCI(((ContaInvestimento)contaSacar), valor, 1);
+                ((ContaInvestimento)contaDepositar).depositarCI(((ContaInvestimento) contaDepositar),
+                        ((ContaInvestimento)contaDepositar).getSaldo());
+            }
+
+        }else if(contaSacar.getRef() == 2){
+            if(contaSacar.getTipo() == 0){
+                ((ContaCorrente)contaSacar).sacarCC(((ContaCorrente)contaSacar), valor, 2);
+                ((ContaCorrente)contaDepositar).depositarCC(((ContaCorrente) contaDepositar),
+                        ((ContaCorrente)contaDepositar).getSaldo());
+            }else if(contaSacar.getTipo() == 2){
+                ((ContaInvestimento)contaSacar).sacarCI(((ContaInvestimento)contaSacar), valor, 2);
+                ((ContaInvestimento)contaDepositar).depositarCI(((ContaInvestimento) contaDepositar),
+                        ((ContaInvestimento)contaDepositar).getSaldo());
+            }
+        }
+
+    }
+
 
 }
