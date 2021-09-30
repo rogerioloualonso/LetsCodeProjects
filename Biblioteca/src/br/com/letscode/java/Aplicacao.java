@@ -7,6 +7,6 @@ public class Aplicacao {
     public static void main(String[] args) {
         Emprestimo emprestimo = new Emprestimo();
         emprestimo = emprestimo.gerarEmprestimo();
-
+        System.out.println(emprestimo.toString());
     }
 }

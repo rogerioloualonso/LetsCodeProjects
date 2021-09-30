@@ -29,6 +29,12 @@ public abstract class ClienteDefault implements Cliente{
     }
 
     @Override
+    public Cliente cadastroCliente(Cliente cliente) {
+
+        return cliente;
+    }
+
+    @Override
     public boolean checarExistenciaEmprestimo(boolean existeEmprestimo) {
         if ((LocalDate.now()).isAfter(this.dataDevolucao)){
 

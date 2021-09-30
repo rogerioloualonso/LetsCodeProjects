@@ -40,7 +40,7 @@ public class Emprestimo {
         }
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
-        Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao);
+        Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao);
         return emprestimo;
     }
 
