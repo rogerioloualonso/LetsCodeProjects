@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LetsBank.iml" filepath="$PROJECT_DIR$/LetsBank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MavenLetsbank/MavenLetsbank.iml" filepath="$PROJECT_DIR$/MavenLetsbank/MavenLetsbank.iml" />
     </modules>
   </component>
 </project>
