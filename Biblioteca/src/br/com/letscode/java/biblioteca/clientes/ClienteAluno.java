@@ -4,20 +4,12 @@ import java.time.LocalDate;
 
 public class ClienteAluno extends ClienteDefault{
 
-    final int tempoEntrega = 10;
+    public ClienteAluno(){
+        super();
+    }
 
     public ClienteAluno(String nome, String email, int matricula, TipoCliente tipoCliente) {
         super(nome, email, matricula, tipoCliente);
-    }
-
-    @Override
-    public LocalDate emprestimo(LocalDate dataEmprestimo) {
-        return super.emprestimo(dataEmprestimo);
-    }
-
-    @Override
-    public LocalDate gerarDataDevolucao(LocalDate dataDevolucao) {
-        return super.gerarDataDevolucao(dataDevolucao);
     }
 
     @Override

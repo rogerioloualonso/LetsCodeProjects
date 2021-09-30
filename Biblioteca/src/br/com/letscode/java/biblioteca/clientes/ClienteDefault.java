@@ -3,20 +3,23 @@ package br.com.letscode.java.biblioteca.clientes;
 import br.com.letscode.java.biblioteca.livro.Emprestimo;
 
 import java.time.temporal.ChronoUnit;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class ClienteDefault implements Cliente{
 
-    protected final String nome;
+    protected String nome;
     protected String email;
     protected int matricula;
-    protected final TipoCliente tipoCliente;
+    protected TipoCliente tipoCliente;
     protected LocalDate dataEmprestimo;
     protected LocalDate dataDevolucao;
     private ArrayList<Emprestimo> emprestimos = new ArrayList<>();
     protected int tempoEntrega;
+
+    public ClienteDefault(){
+
+    }
 
     public ClienteDefault(String nome, String email, int matricula, TipoCliente tipoCliente) {
         this.nome = nome;

@@ -13,37 +13,47 @@ public class Emprestimo {
 
     protected LocalDate dataEmprestimo;
     protected LocalDate dataDevolucao;
-
+    protected Cliente cliente;
 
     public Emprestimo(){
 
     }
 
-    public Emprestimo(Cliente cliente, LocalDate dataEmprestimo, LocalDate dataDevolucao){
-
-        dataEmprestimo = LocalDate.now();
-        dataDevolucao = gerarDataDevolucao();
+    public Emprestimo(Cliente cliente){
+        if (cliente instanceof ClienteAluno){
+            this.cliente = new ClienteAluno();
+        } else {
+            this.cliente = new ClienteProfessor();
+        }
+        this.dataEmprestimo = LocalDate.now();
+        this.dataDevolucao = gerarDataDevolucao();
     }
 
     public Emprestimo gerarEmprestimo(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite se o empréstimo pertence a um professor ou a um aluno: ");
         String tpCliente = sc.nextLine();
-        Cliente cliente = null;
-        if (tpCliente.toLowerCase() == "aluno") {
-            cliente = new ClienteAluno("joao", "jao123@gmail.com", 12345678, TipoCliente.CLIENTE_ALUNO);
-        } else if (tpCliente.toLowerCase() == "professor") {
-            cliente = new ClienteProfessor("kleber", "klb123@gmail.com", 87654321, TipoCliente.CLIENTE_PROFESSOR);
+        if (tpCliente.equalsIgnoreCase("aluno")) {
+            this.cliente = new ClienteAluno("joao", "jao123@gmail.com", 12345678, TipoCliente.CLIENTE_ALUNO);
+        } else if (tpCliente.equalsIgnoreCase("professor")) {
+            this.cliente = new ClienteProfessor("kleber", "klb123@gmail.com", 87654321, TipoCliente.CLIENTE_PROFESSOR);
         }
-        Emprestimo emprestimo = new Emprestimo(cliente, LocalDate.now(), gerarDataDevolucao());
+        LocalDate devolucao = gerarDataDevolucao();
+        Emprestimo emprestimo = new Emprestimo(cliente);
         return emprestimo;
     }
 
 
     public LocalDate gerarDataDevolucao() {
         int diaSomados = 0;
+        int tempoEntrega;
+        if (cliente instanceof ClienteAluno){
+            tempoEntrega = 10;
+        } else {
+            tempoEntrega = 20;
+        }
         dataDevolucao = dataEmprestimo;
-        while (diaSomados < this.tempoEntrega){
+        while (diaSomados < tempoEntrega){
             if (this.dataEmprestimo.plusDays(1).getDayOfWeek() != DayOfWeek.SATURDAY || this.dataEmprestimo.plusDays(1).getDayOfWeek() != DayOfWeek.SUNDAY){
                 dataDevolucao = dataDevolucao.plusDays(1);
                 diaSomados++;
