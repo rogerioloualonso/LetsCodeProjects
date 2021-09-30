@@ -20,11 +20,7 @@ public class Emprestimo {
     }
 
     public Emprestimo(Cliente cliente, LocalDate dataEmprestimo, LocalDate dataDevolucao){
-        if (cliente instanceof ClienteAluno){
-            this.cliente = new ClienteAluno();
-        } else {
-            this.cliente = new ClienteProfessor();
-        }
+        this.cliente = cliente;
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
     }
@@ -55,6 +51,30 @@ public class Emprestimo {
             }
         }
         return dataDevolucao;
+    }
+
+    public LocalDate getDataEmprestimo() {
+        return dataEmprestimo;
+    }
+
+    public void setDataEmprestimo(LocalDate dataEmprestimo) {
+        this.dataEmprestimo = dataEmprestimo;
+    }
+
+    public LocalDate getDataDevolucao() {
+        return dataDevolucao;
+    }
+
+    public void setDataDevolucao(LocalDate dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override

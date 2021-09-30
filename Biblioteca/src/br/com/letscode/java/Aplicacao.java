@@ -1,5 +1,6 @@
 package br.com.letscode.java;
 
+import br.com.letscode.java.biblioteca.clientes.Cliente;
 import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
 import br.com.letscode.java.biblioteca.clientes.ClienteProfessor;
 import br.com.letscode.java.biblioteca.clientes.TipoCliente;
@@ -13,12 +14,14 @@ public class Aplicacao {
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite se o empréstimo pertence a um professor ou a um aluno: ");
         String tpCliente = sc.nextLine();
+        Cliente cliente = null;
         if (tpCliente.equalsIgnoreCase("aluno")) {
-            ClienteAluno cliente = new ClienteAluno("joao", "jao123@gmail.com", 12345678, TipoCliente.CLIENTE_ALUNO);
+            cliente = new ClienteAluno("joao", "jao123@gmail.com", 12345678, TipoCliente.CLIENTE_ALUNO);
         } else if (tpCliente.equalsIgnoreCase("professor")) {
-             ClienteProfessor cliente = new ClienteProfessor("kleber", "klb123@gmail.com", 87654321, TipoCliente.CLIENTE_PROFESSOR);
+             cliente = new ClienteProfessor("kleber", "klb123@gmail.com", 87654321, TipoCliente.CLIENTE_PROFESSOR);
         }
         Emprestimo emprestimo = new Emprestimo();
+        emprestimo.setCliente(cliente);
         emprestimo = emprestimo.gerarEmprestimo();
         System.out.println(emprestimo.toString());
     }
