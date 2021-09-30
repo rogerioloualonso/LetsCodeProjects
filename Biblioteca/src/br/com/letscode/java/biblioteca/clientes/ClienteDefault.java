@@ -26,25 +26,6 @@ public abstract class ClienteDefault implements Cliente{
     }
 
     @Override
-    public LocalDate emprestimo(LocalDate dataEmprestimo) {
-        this.dataEmprestimo = LocalDate.now();
-        return dataEmprestimo;
-    }
-
-    @Override
-    public LocalDate gerarDataDevolucao(LocalDate dataDevolucao) {
-        int diaSomados = 0;
-        dataDevolucao = dataEmprestimo;
-        while (diaSomados < this.tempoEntrega){
-            if (this.dataEmprestimo.plusDays(1).getDayOfWeek() != DayOfWeek.SATURDAY || this.dataEmprestimo.plusDays(1).getDayOfWeek() != DayOfWeek.SUNDAY){
-                dataDevolucao = dataDevolucao.plusDays(1);
-                diaSomados++;
-            }
-        }
-        return dataDevolucao;
-    }
-
-    @Override
     public boolean checarExistenciaEmprestimo(boolean existeEmprestimo) {
         if ((LocalDate.now()).isAfter(this.dataDevolucao)){
 

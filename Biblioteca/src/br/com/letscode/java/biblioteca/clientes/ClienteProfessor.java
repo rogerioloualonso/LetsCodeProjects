@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class ClienteProfessor extends ClienteDefault{
 
-    int tempoEntrega = 20;
+    final int tempoEntrega = 20;
 
     public ClienteProfessor(String nome, String email, int matricula, TipoCliente tipoCliente) {
         super(nome, email, matricula, tipoCliente);
