@@ -4,4 +4,5 @@ public enum TipoCliente {
 
     CLIENTE_ALUNO,
     CLIENTE_PROFESSOR
+
 }
