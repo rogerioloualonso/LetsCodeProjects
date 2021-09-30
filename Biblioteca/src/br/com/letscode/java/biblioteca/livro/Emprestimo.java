@@ -19,7 +19,7 @@ public class Emprestimo {
 
     }
 
-    public Emprestimo(Cliente cliente){
+    public Emprestimo(Cliente cliente, LocalDate dataEmprestimo, LocalDate dataDevolucao){
         if (cliente instanceof ClienteAluno){
             this.cliente = new ClienteAluno();
         } else {
@@ -38,8 +38,9 @@ public class Emprestimo {
         } else if (tpCliente.equalsIgnoreCase("professor")) {
             this.cliente = new ClienteProfessor("kleber", "klb123@gmail.com", 87654321, TipoCliente.CLIENTE_PROFESSOR);
         }
-        LocalDate devolucao = gerarDataDevolucao();
-        Emprestimo emprestimo = new Emprestimo(cliente);
+        this.dataEmprestimo = LocalDate.now();
+        this.dataDevolucao = gerarDataDevolucao();
+        Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao);
         return emprestimo;
     }
 
