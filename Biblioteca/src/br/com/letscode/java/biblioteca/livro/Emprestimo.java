@@ -63,4 +63,12 @@ public class Emprestimo {
         return dataDevolucao;
     }
 
+    @Override
+    public String toString() {
+        return "Emprestimo{" +
+                "dataEmprestimo=" + dataEmprestimo +
+                ", dataDevolucao=" + dataDevolucao +
+                ", cliente=" + cliente +
+                '}';
+    }
 }

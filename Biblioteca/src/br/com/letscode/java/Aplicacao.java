@@ -6,6 +6,7 @@ public class Aplicacao {
 
     public static void main(String[] args) {
         Emprestimo emprestimo = new Emprestimo();
-        emprestimo.gerarEmprestimo();
+        emprestimo = emprestimo.gerarEmprestimo();
+
     }
 }
