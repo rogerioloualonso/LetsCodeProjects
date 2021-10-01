@@ -25,8 +25,7 @@ public class Aplicacao {
         Emprestimo emprestimo = new Emprestimo();
         emprestimo.gerarEmprestimo(aluno, livro);
         System.out.println(emprestimo.toString());
-        boolean check = emprestimo.checarExistenciaEmprestimo();
-        System.out.println(check);
+
         try {
             emprestimo.gerarEmprestimo(aluno, livro);
             System.out.println(emprestimo.toString());
@@ -34,5 +33,11 @@ public class Aplicacao {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+
+        /*
+        boolean check = emprestimo.checarExistenciaEmprestimo();
+        System.out.println(check);
+        *///Isso deve ser usado em um método
+
     }
 }
