@@ -7,7 +7,6 @@ import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Emprestimo {
@@ -16,6 +15,7 @@ public class Emprestimo {
     protected LocalDate dataDevolucao;
     protected Cliente cliente;
     protected Livro livro;
+    protected ArrayList<Emprestimo> emprestimos = new ArrayList<>();
 
     public Emprestimo(){
 
@@ -43,6 +43,7 @@ public class Emprestimo {
         }
         Livro livro = listaLivros.get(indice);
         Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
+        emprestimos.add(emprestimo);
         return emprestimo;
     }
 
