@@ -5,10 +5,11 @@ import java.time.LocalDate;
 public class ClienteAluno extends ClienteDefault{
 
     public ClienteAluno(){
+
     }
 
     public ClienteAluno(String nome, String email, int matricula, TipoCliente tipoCliente) {
-        //super(nome, email, matricula, tipoCliente);
+        super(nome, email, matricula, tipoCliente);
     }
 
     @Override
@@ -20,6 +21,7 @@ public class ClienteAluno extends ClienteDefault{
     public LocalDate gerarPenalidade(LocalDate dataPenalidade) {
         return super.gerarPenalidade(dataPenalidade);
     }
+
 
     @Override
     public String toString() {

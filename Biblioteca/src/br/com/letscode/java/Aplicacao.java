@@ -1,12 +1,9 @@
 package br.com.letscode.java;
 
 import br.com.letscode.java.biblioteca.clientes.*;
-import br.com.letscode.java.biblioteca.livro.Emprestimo;
-import br.com.letscode.java.biblioteca.livro.Livro;
+import br.com.letscode.java.biblioteca.livro.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Aplicacao {
 
@@ -20,6 +17,8 @@ public class Aplicacao {
         Cliente professor = new ClienteProfessor();
         professor = new ClienteProfessor("kleber", "klb123@gmail.com", 87654321, TipoCliente.CLIENTE_PROFESSOR);
 
+        //Criar biblioteca e adicionar livro
+
         //Criar livro
         Livro livro = new Livro(78484, "Pequeno Principe", "Antoine de Sans", "Agir");
 
@@ -29,10 +28,6 @@ public class Aplicacao {
         boolean check = emprestimo.checarExistenciaEmprestimo();
         System.out.println(check);
         try {
-            emprestimo.gerarEmprestimo(aluno, livro);
-            System.out.println(emprestimo.toString());
-            emprestimo.gerarEmprestimo(aluno, livro);
-            System.out.println(emprestimo.toString());
             emprestimo.gerarEmprestimo(aluno, livro);
             System.out.println(emprestimo.toString());
             //Isso não pode acontecer, tem que dar erro
