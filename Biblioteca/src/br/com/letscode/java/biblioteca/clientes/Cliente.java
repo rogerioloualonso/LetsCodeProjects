@@ -8,5 +8,4 @@ public interface Cliente {
 
     LocalDate gerarPenalidade(LocalDate dataSuspensao);
 
-
 }

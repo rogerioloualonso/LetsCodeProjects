@@ -10,7 +10,8 @@ public class Aplicacao {
     public static void main(String[] args) {
 
         //Criar aluno
-        Cliente aluno = new ClienteAluno();
+        ClienteDefault aluno = new ClienteAluno();
+        aluno.setNome("cleiton");
         aluno = new ClienteAluno("joao", "jao123@gmail.com", 12345678, TipoCliente.CLIENTE_ALUNO);
 
         //Criar professor

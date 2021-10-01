@@ -99,4 +99,5 @@ public abstract class ClienteDefault implements Cliente{
     public void setDataDevolucao(LocalDate dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
+
 }
