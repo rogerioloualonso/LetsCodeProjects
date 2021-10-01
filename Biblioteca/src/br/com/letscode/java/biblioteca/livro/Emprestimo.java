@@ -14,10 +14,8 @@ public class Emprestimo {
     protected LocalDate dataDevolucao;
     protected Cliente cliente;
     protected Livro livro;
-    protected ArrayList<Emprestimo> emprestimos = new ArrayList<>();
 
     public Emprestimo(){
-
     }
 
     public Emprestimo(Cliente cliente, LocalDate dataEmprestimo, LocalDate dataDevolucao, Livro livro){
@@ -27,7 +25,7 @@ public class Emprestimo {
         this.livro = livro;
     }
 
-    public Emprestimo gerarEmprestimo(){
+    public void gerarEmprestimo(){
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
         Aplicacao aplicacao = new Aplicacao();
@@ -40,12 +38,11 @@ public class Emprestimo {
             }
         }
         Livro livro = listaLivros.get(indice);
+        ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
         Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
         emprestimos.add(emprestimo);
-        return emprestimo;
+
     }
-
-
 
     public LocalDate gerarDataDevolucao() {
         int diaSomados = 0;
@@ -66,26 +63,20 @@ public class Emprestimo {
     }
 
     public boolean checarExistenciaEmprestimo() {
-        int checarCliente = 12345678;
+        int checarCliente = 0;
         int indice = 0;
-        Aplicacao dados = new Aplicacao();
-        ArrayList<Cliente> listaClientes = dados.getListaClientes();
-        for (int i = 0; i < (listaClientes.size()); i++) {
-            if ((listaClientes.get(i).getMatricula()) == checarCliente) {
+        Aplicacao aplicacao = new Aplicacao();
+        ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
+        for (int i = 0; i < (emprestimos.size()); i++) {
+            if ((emprestimos.get(i).getCliente().getMatricula()) == checarCliente) {
                 indice = i;
             }
         }
-        //emprestimos = getEmprestimos();
-        //for (int i = 0; i < (emprestimos.size()); i++) {
-        //    if ((emprestimos.get(i).getCliente().getMatricula()) == checarCliente) {
-        //        indice = i;
-        //    }
-        //}
-        //System.out.println((emprestimos.get(indice).getCliente()).toString());
-        System.out.println(emprestimos.get(indice).toString());
-        //if ((LocalDate.now()).isAfter(this.dataDevolucao)){
-        //}
-        return true;
+        if (emprestimos.get(indice) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public LocalDate getDataEmprestimo() {
@@ -118,10 +109,6 @@ public class Emprestimo {
 
     public void setLivro(Livro livro) {
         this.livro = livro;
-    }
-
-    public ArrayList<Emprestimo> getEmprestimos() {
-        return emprestimos;
     }
 
     @Override

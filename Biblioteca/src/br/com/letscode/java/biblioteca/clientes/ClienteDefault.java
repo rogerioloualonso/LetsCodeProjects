@@ -1,13 +1,7 @@
 package br.com.letscode.java.biblioteca.clientes;
 
-import br.com.letscode.java.Aplicacao;
-import br.com.letscode.java.biblioteca.livro.Emprestimo;
-import br.com.letscode.java.biblioteca.livro.Livro;
-
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
-import java.util.ArrayList;
-
 
 public abstract class ClienteDefault implements Cliente{
 
