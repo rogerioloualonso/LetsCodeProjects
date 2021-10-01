@@ -4,13 +4,13 @@ public class Livro {
     private int isbn;
     private String titulo;
     private String autor;
-    private String editor;
+    private String editora;
 
     public Livro( int isbn, String titulo, String autor, String editor){
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
-        this.editor = editor;
+        this.editora = editor;
     }
 
     public int getIsbn() {
@@ -37,17 +37,17 @@ public class Livro {
         this.autor = autor;
     }
 
-    public String getEditor() {
-        return editor;
+    public String getEditora() {
+        return editora;
     }
 
-    public void setEditor(String editor) {
-        this.editor = editor;
+    public void setEditora(String editor) {
+        this.editora = editor;
     }
 
     public  String toString(){
         return "Livro: "+" isbn= "+this.isbn+"; titulo= "
-                +this.titulo+"; autor= "+this.autor+"; editor= "
-                +this.editor+".";
+                +this.titulo+"; autor= "+this.autor+"; editora= "
+                +this.editora+".";
     }
 }

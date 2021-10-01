@@ -25,11 +25,12 @@ public class Emprestimo {
         this.livro = livro;
     }
 
-    public void gerarEmprestimo(){
+    public void gerarEmprestimo(Cliente cliente, Livro livro){
+        setCliente(cliente);
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
         Aplicacao aplicacao = new Aplicacao();
-        ArrayList<Livro> listaLivros = aplicacao.getListaLivros();
+        /*ArrayList<Livro> listaLivros = aplicacao.getListaLivros();
         int indice = 0;
         String nomeLivro = "God of War";
         for (int i = 0; i < (listaLivros.size()); i++) {
@@ -38,9 +39,9 @@ public class Emprestimo {
             }
         }
         Livro livro = listaLivros.get(indice);
-        ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
+        ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();*/
         Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
-        emprestimos.add(emprestimo);
+        //emprestimos.add(emprestimo);
 
     }
 
@@ -66,17 +67,18 @@ public class Emprestimo {
         int checarCliente = 12345678;
         int indice = 0;
         Aplicacao aplicacao = new Aplicacao();
-        ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
+        /*ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
         for (int i = 0; i < (emprestimos.size()); i++) {
             if ((emprestimos.get(i).getCliente().getMatricula()) == checarCliente) {
                 indice = i;
-            }
+            }//Consertar o getMatricula
         }
         if (emprestimos.get(indice).getLivro() != null) {
             return true;
         } else {
             return false;
-        }
+        }*/
+        return true;
     }
 
     public LocalDate getDataEmprestimo() {
