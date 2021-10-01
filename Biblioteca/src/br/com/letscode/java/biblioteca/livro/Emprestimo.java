@@ -63,7 +63,7 @@ public class Emprestimo {
     }
 
     public boolean checarExistenciaEmprestimo() {
-        int checarCliente = 0;
+        int checarCliente = 12345678;
         int indice = 0;
         Aplicacao aplicacao = new Aplicacao();
         ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
@@ -72,7 +72,7 @@ public class Emprestimo {
                 indice = i;
             }
         }
-        if (emprestimos.get(indice) != null) {
+        if (emprestimos.get(indice).getLivro() != null) {
             return true;
         } else {
             return false;
