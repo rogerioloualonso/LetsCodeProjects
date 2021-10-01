@@ -24,11 +24,18 @@ public class Emprestimo {
         this.livro = livro;
     }
 
-    public void gerarEmprestimo(Cliente cliente, Livro livro){
-        setCliente(cliente);
-        this.dataEmprestimo = LocalDate.now();
-        this.dataDevolucao = gerarDataDevolucao();
-
+    public void gerarEmprestimo(Cliente cliente, Livro livro) throws EmprestimoSimultaneoExcedidoException{
+        boolean check =checarExistenciaEmprestimo();
+        if (check == false) {
+            setCliente(cliente);
+            this.dataEmprestimo = LocalDate.now();
+            this.dataDevolucao = gerarDataDevolucao();
+            emprestimos = Aplicacao.getEmprestimos();
+            Emprestimo emprestimo = new Emprestimo(cliente, livro);
+            emprestimos.add(emprestimo);
+        } else {
+            throw new EmprestimoSimultaneoExcedidoException();
+        }
     }
 
     public LocalDate gerarDataDevolucao() {
