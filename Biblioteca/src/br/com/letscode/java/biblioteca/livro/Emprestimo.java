@@ -37,7 +37,7 @@ public class Emprestimo {
     }
 
     public LocalDate gerarDataDevolucao() {
-        int diaSomados = 0;
+        int diasSomados = 0;
         int tempoEntrega;
         if (cliente instanceof ClienteAluno){
             tempoEntrega = 10;
@@ -45,12 +45,12 @@ public class Emprestimo {
             tempoEntrega = 20;
         }
         dataDevolucao = dataEmprestimo;
-        while (diaSomados < tempoEntrega){
-            this.dataEmprestimo.plusDays(1);
-            if (this.dataEmprestimo.getDayOfWeek() != DayOfWeek.SATURDAY || this.dataEmprestimo.getDayOfWeek() != DayOfWeek.SUNDAY){
-                if(verificarFeriado(this.dataEmprestimo)) {
+        while (diasSomados < tempoEntrega){
+            dataEmprestimo.plusDays(1);
+            if (dataEmprestimo.getDayOfWeek() != DayOfWeek.SATURDAY && dataEmprestimo.getDayOfWeek() != DayOfWeek.SUNDAY){
+                if(verificarFeriado(dataEmprestimo)) {
                     dataDevolucao = dataDevolucao.plusDays(1);
-                    diaSomados++;
+                    diasSomados++;
                 }
             }
         }
