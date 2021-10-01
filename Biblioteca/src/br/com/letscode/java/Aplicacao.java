@@ -10,15 +10,8 @@ import java.util.ArrayList;
 
 public class Aplicacao {
 
-    public static ArrayList<Emprestimo> emprestimos;
-
-    public static ArrayList<Emprestimo> getEmprestimos() {
-        return emprestimos;
-    }
 
     public static void main(String[] args) throws EmprestimoSimultaneoExcedidoException {
-
-         emprestimos = new ArrayList<>();
 
         //Criar aluno
         ClienteDefault aluno = new ClienteAluno();
@@ -36,12 +29,8 @@ public class Aplicacao {
 
 
         Emprestimo emprestimo = new Emprestimo();
-        // A saída de Aluno está null
-        Biblioteca.emprestar(emprestimo, aluno, livro);
-        System.out.println(emprestimo.toString());
 
-        Biblioteca.emprestar(emprestimo, professor, livro);
-        //emprestimo.gerarEmprestimo(aluno, livro);
+        emprestimo.gerarEmprestimo(aluno, livro);
         System.out.println(emprestimo.toString());
 
         try {

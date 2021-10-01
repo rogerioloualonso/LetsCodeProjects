@@ -1,16 +1,11 @@
 package br.com.letscode.java.biblioteca.livro;
 
-import br.com.letscode.java.Aplicacao;
 import br.com.letscode.java.biblioteca.EmprestimoSimultaneoExcedidoException;
 import br.com.letscode.java.biblioteca.clientes.Cliente;
 import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-
-
-import static br.com.letscode.java.Aplicacao.emprestimos;
-
 
 public class Emprestimo {
 
@@ -35,9 +30,6 @@ public class Emprestimo {
             setCliente(cliente);
             this.dataEmprestimo = LocalDate.now();
             this.dataDevolucao = gerarDataDevolucao();
-            emprestimos = Aplicacao.getEmprestimos();
-            Emprestimo emprestimo = new Emprestimo(cliente, livro);
-            emprestimos.add(emprestimo);
         } else {
             throw new EmprestimoSimultaneoExcedidoException();
         }
@@ -53,30 +45,31 @@ public class Emprestimo {
         }
         dataDevolucao = dataEmprestimo;
         while (diaSomados < tempoEntrega){
-            if (this.dataEmprestimo.plusDays(1).getDayOfWeek() != DayOfWeek.SATURDAY || this.dataEmprestimo.plusDays(1).getDayOfWeek() != DayOfWeek.SUNDAY){
-                dataDevolucao = dataDevolucao.plusDays(1);
-                diaSomados++;
+            this.dataEmprestimo.plusDays(1);
+            if (this.dataEmprestimo.getDayOfWeek() != DayOfWeek.SATURDAY || this.dataEmprestimo.getDayOfWeek() != DayOfWeek.SUNDAY){
+                if(verificarFeriado(this.dataEmprestimo)) {
+                    dataDevolucao = dataDevolucao.plusDays(1);
+                    diaSomados++;
+                }
             }
         }
         return dataDevolucao;
     }
 
+    public boolean verificarFeriado(LocalDate data){
+        //Feriados nacionais
+
+        //Listar feriados e verificar se a data bate
+        //se sim, retorna false
+
+        return true;
+    }
+
     public boolean checarExistenciaEmprestimo() {
         int checarCliente = 12345678;
         int indice = 0;
-        /*Aplicacao aplicacao = new Aplicacao();
-        ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
-        for (int i = 0; i < (emprestimos.size()); i++) {
-            if ((emprestimos.get(i).getCliente().getMatricula()) == checarCliente) {
-                indice = i;
-            }//Consertar o getMatricula
-        }*/
-        if (emprestimos.get(indice).getLivro() != null) {
-            return true;
-        } else {
-            return false;
-        }
-        //return true;
+
+        return true;
     }
 
     public LocalDate getDataEmprestimo() {
