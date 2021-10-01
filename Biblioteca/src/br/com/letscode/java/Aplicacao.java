@@ -25,8 +25,6 @@ public class Aplicacao {
         //Criar biblioteca e adicionar livro
         Biblioteca biblioteca = new Biblioteca ();
      
-        
-        
 
         //Criar livro
         Livro livro = new Livro(78484, "Pequeno Principe", "Antoine de Sans", "Agir", true);

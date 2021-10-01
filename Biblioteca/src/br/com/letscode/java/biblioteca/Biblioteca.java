@@ -10,12 +10,17 @@ public class Biblioteca {
 
     private static ArrayList<Livro> listaLivro = new ArrayList<>();
 
-
     public static ArrayList<Livro> getlistaLivro() {
         return listaLivro;
     }
 
     public static void setLivro(ArrayList<Livro> livro) {
         Biblioteca.listaLivro = livro;
+    }
+    static public void devolver (Livro livro){
+        for (Livro l : listaLivro) {
+            listaLivro.add(livro);
+            //System.out.println("Livro Devolvido");
+        }
     }
 }
