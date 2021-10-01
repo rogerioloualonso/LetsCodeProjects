@@ -12,19 +12,15 @@ import java.util.Scanner;
 
 public class Aplicacao {
 
-    private ArrayList<Livro> listaLivros;
+     private static ArrayList<Livro> listaLivros;
 
     public ArrayList<Livro> getListaLivros() {
         return listaLivros;
     }
 
-    public void setListaLivros(ArrayList<Livro> listaLivros) {
-        this.listaLivros = listaLivros;
-    }
-
     public static void main(String[] args) {
         
-        ArrayList<Livro> listaLivros = new ArrayList<>();
+        listaLivros = new ArrayList<>();
 
         Livro dub = new Livro(15566, "Diário de um banana", "Jeff Kinney", "V&R");
         Livro pj = new Livro(14477, "Percy Jackson", "Rick Riordan", "Intrínseca");

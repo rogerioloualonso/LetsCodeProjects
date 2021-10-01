@@ -7,6 +7,7 @@ import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Emprestimo {
@@ -29,15 +30,14 @@ public class Emprestimo {
 
     public Emprestimo gerarEmprestimo(){
         Scanner sc = new Scanner(System.in);
-        cliente = cliente;
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
-        String nomeLivro = "God of War";
         Aplicacao aplicacao = new Aplicacao();
         ArrayList<Livro> listaLivros = aplicacao.getListaLivros();
         int indice = 0;
-        for (int i = 0; i < listaLivros.size(); i++) {
-            if (listaLivros.get(i).getTitulo() == nomeLivro) {
+        String nomeLivro = "God of War";
+        for (int i = 0; i < (listaLivros.size()); i++) {
+            if ((listaLivros.get(i).getTitulo()) == nomeLivro) {
                 indice = i;
             }
         }
