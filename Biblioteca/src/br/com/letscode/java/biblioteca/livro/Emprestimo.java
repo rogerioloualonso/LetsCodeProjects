@@ -26,10 +26,11 @@ public class Emprestimo {
     }
 
     public void gerarEmprestimo(Cliente cliente, Livro livro){
-        setCliente(cliente);
-        this.dataEmprestimo = LocalDate.now();
-        this.dataDevolucao = gerarDataDevolucao();
-        Aplicacao aplicacao = new Aplicacao();
+        if(livro.isDisponivel()) {
+            setCliente(cliente);
+            this.dataEmprestimo = LocalDate.now();
+            this.dataDevolucao = gerarDataDevolucao();
+            Aplicacao aplicacao = new Aplicacao();
         /*ArrayList<Livro> listaLivros = aplicacao.getListaLivros();
         int indice = 0;
         String nomeLivro = "God of War";
@@ -40,9 +41,11 @@ public class Emprestimo {
         }
         Livro livro = listaLivros.get(indice);
         ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();*/
-        Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
-        //emprestimos.add(emprestimo);
-
+            Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
+            //emprestimos.add(emprestimo);
+        }else {
+            System.out.println("Livro Indisponível");
+        }
     }
 
     public LocalDate gerarDataDevolucao() {

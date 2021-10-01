@@ -1,12 +1,12 @@
 package br.com.letscode.java;
 
-import br.com.letscode.java.biblioteca.clientes.*;
+import br.com.letscode.java.biblioteca.Biblioteca;
+import br.com.letscode.java.biblioteca.clientes.Cliente;
+import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
+import br.com.letscode.java.biblioteca.clientes.ClienteProfessor;
+import br.com.letscode.java.biblioteca.clientes.TipoCliente;
 import br.com.letscode.java.biblioteca.livro.Emprestimo;
 import br.com.letscode.java.biblioteca.livro.Livro;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Aplicacao {
 
@@ -21,10 +21,15 @@ public class Aplicacao {
         professor = new ClienteProfessor("kleber", "klb123@gmail.com", 87654321, TipoCliente.CLIENTE_PROFESSOR);
 
         //Criar livro
-        Livro livro = new Livro(78484, "Pequeno Principe", "Antoine de Sans", "Agir");
+        Livro livro = new Livro(78484, "Pequeno Principe", "Antoine de Sans", "Agir", true);
+
 
         Emprestimo emprestimo = new Emprestimo();
-        emprestimo.gerarEmprestimo(aluno, livro);
+        // A saída de Aluno está null
+        Biblioteca.emprestar(emprestimo, aluno, livro);
+        System.out.println(emprestimo.toString());
+        Biblioteca.emprestar(emprestimo, professor, livro);
+        //emprestimo.gerarEmprestimo(aluno, livro);
         System.out.println(emprestimo.toString());
         boolean check = emprestimo.checarExistenciaEmprestimo();
         System.out.println(check);

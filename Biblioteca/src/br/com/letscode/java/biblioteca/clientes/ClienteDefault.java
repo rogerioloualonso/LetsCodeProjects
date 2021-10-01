@@ -11,6 +11,16 @@ public abstract class ClienteDefault implements Cliente{
     protected TipoCliente tipoCliente;
     protected LocalDate dataDevolucao;
 
+    public ClienteDefault() {
+    }
+
+    public ClienteDefault(String nome, String email, int matricula, TipoCliente tipoCliente) {
+        this.nome = nome;
+        this.email = email;
+        this.matricula = matricula;
+        this.tipoCliente = tipoCliente;
+    }
+
 
     @Override
     public String consultaPenalidade(String status) {
