@@ -2,6 +2,7 @@ package br.com.letscode.java;
 
 import br.com.letscode.java.biblioteca.clientes.*;
 import br.com.letscode.java.biblioteca.livro.*;
+import br.com.letscode.java.biblioteca.Biblioteca;
 
 import java.time.LocalDate;
 
@@ -21,10 +22,15 @@ public class Aplicacao {
         //Criar biblioteca e adicionar livro
 
         //Criar livro
-        Livro livro = new Livro(78484, "Pequeno Principe", "Antoine de Sans", "Agir");
+        Livro livro = new Livro(78484, "Pequeno Principe", "Antoine de Sans", "Agir", true);
+
 
         Emprestimo emprestimo = new Emprestimo();
-        emprestimo.gerarEmprestimo(aluno, livro);
+        // A saída de Aluno está null
+        Biblioteca.emprestar(emprestimo, aluno, livro);
+        System.out.println(emprestimo.toString());
+        Biblioteca.emprestar(emprestimo, professor, livro);
+        //emprestimo.gerarEmprestimo(aluno, livro);
         System.out.println(emprestimo.toString());
 
         try {

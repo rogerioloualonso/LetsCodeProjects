@@ -25,9 +25,18 @@ public class Emprestimo {
     }
 
     public void gerarEmprestimo(Cliente cliente, Livro livro){
+
         setCliente(cliente);
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
+
+        if(livro.isDisponivel()) {
+            setCliente(cliente);
+            this.dataEmprestimo = LocalDate.now();
+            this.dataDevolucao = gerarDataDevolucao();
+        }else {
+            System.out.println("Livro Indisponível");
+        }
 
     }
 
