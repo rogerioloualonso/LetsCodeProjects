@@ -1,13 +1,23 @@
 package br.com.letscode.java;
 
+import br.com.letscode.java.biblioteca.EmprestimoSimultaneoExcedidoException;
 import br.com.letscode.java.biblioteca.clientes.*;
 import br.com.letscode.java.biblioteca.livro.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Aplicacao {
 
-    public static void main(String[] args) {
+    public static ArrayList<Emprestimo> emprestimos;
+
+    public static ArrayList<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+
+    public static void main(String[] args) throws EmprestimoSimultaneoExcedidoException {
+
+         emprestimos = new ArrayList<>();
 
         //Criar aluno
         Cliente aluno = new ClienteAluno();
@@ -25,8 +35,7 @@ public class Aplicacao {
         Emprestimo emprestimo = new Emprestimo();
         emprestimo.gerarEmprestimo(aluno, livro);
         System.out.println(emprestimo.toString());
-        boolean check = emprestimo.checarExistenciaEmprestimo();
-        System.out.println(check);
+
         try {
             emprestimo.gerarEmprestimo(aluno, livro);
             System.out.println(emprestimo.toString());
@@ -34,5 +43,11 @@ public class Aplicacao {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+
+        /*
+        boolean check = emprestimo.checarExistenciaEmprestimo();
+        System.out.println(check);
+        *///Isso deve ser usado em um método
+
     }
 }

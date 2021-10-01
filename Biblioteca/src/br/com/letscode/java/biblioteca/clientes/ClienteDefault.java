@@ -10,6 +10,7 @@ public abstract class ClienteDefault implements Cliente{
     protected int matricula;
     protected TipoCliente tipoCliente;
     protected LocalDate dataDevolucao;
+    protected int limiteEmprestimo;
 
     public ClienteDefault() {
     }

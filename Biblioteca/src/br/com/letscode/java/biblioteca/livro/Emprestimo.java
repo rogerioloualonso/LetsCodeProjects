@@ -1,12 +1,14 @@
 package br.com.letscode.java.biblioteca.livro;
 
 import br.com.letscode.java.Aplicacao;
+import br.com.letscode.java.biblioteca.EmprestimoSimultaneoExcedidoException;
 import br.com.letscode.java.biblioteca.clientes.Cliente;
 import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
+
+import static br.com.letscode.java.Aplicacao.emprestimos;
 
 public class Emprestimo {
 
@@ -18,31 +20,25 @@ public class Emprestimo {
     public Emprestimo(){
     }
 
-    public Emprestimo(Cliente cliente, LocalDate dataEmprestimo, LocalDate dataDevolucao, Livro livro){
+    public Emprestimo(Cliente cliente, Livro livro){
         this.cliente = cliente;
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
         this.livro = livro;
     }
 
-    public void gerarEmprestimo(Cliente cliente, Livro livro){
-        setCliente(cliente);
-        this.dataEmprestimo = LocalDate.now();
-        this.dataDevolucao = gerarDataDevolucao();
-        Aplicacao aplicacao = new Aplicacao();
-        /*ArrayList<Livro> listaLivros = aplicacao.getListaLivros();
-        int indice = 0;
-        String nomeLivro = "God of War";
-        for (int i = 0; i < (listaLivros.size()); i++) {
-            if ((listaLivros.get(i).getTitulo()) == nomeLivro) {
-                indice = i;
-            }
+    public void gerarEmprestimo(Cliente cliente, Livro livro) throws EmprestimoSimultaneoExcedidoException{
+        boolean check =checarExistenciaEmprestimo();
+        if (check == false) {
+            setCliente(cliente);
+            this.dataEmprestimo = LocalDate.now();
+            this.dataDevolucao = gerarDataDevolucao();
+            emprestimos = Aplicacao.getEmprestimos();
+            Emprestimo emprestimo = new Emprestimo(cliente, livro);
+            emprestimos.add(emprestimo);
+        } else {
+            throw new EmprestimoSimultaneoExcedidoException();
         }
-        Livro livro = listaLivros.get(indice);
-        ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();*/
-        Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
-        //emprestimos.add(emprestimo);
-
     }
 
     public LocalDate gerarDataDevolucao() {
@@ -67,7 +63,7 @@ public class Emprestimo {
         int checarCliente = 12345678;
         int indice = 0;
         Aplicacao aplicacao = new Aplicacao();
-        /*ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
+        ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
         for (int i = 0; i < (emprestimos.size()); i++) {
             if ((emprestimos.get(i).getCliente().getMatricula()) == checarCliente) {
                 indice = i;
@@ -77,7 +73,7 @@ public class Emprestimo {
             return true;
         } else {
             return false;
-        }*/
+        }
         return true;
     }
 
