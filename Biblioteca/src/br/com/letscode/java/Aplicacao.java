@@ -13,14 +13,24 @@ import java.util.Scanner;
 public class Aplicacao {
 
      private static ArrayList<Livro> listaLivros;
+     private static ArrayList<Cliente> listaClientes;
 
     public ArrayList<Livro> getListaLivros() {
         return listaLivros;
     }
 
+    public ArrayList<Cliente> getListaClientes() {
+        return listaClientes;
+    }
+
     public static void main(String[] args) {
+
+        Emprestimo emprestimo = new Emprestimo();
+        boolean check = emprestimo.checarExistenciaEmprestimo();
+        System.out.println(check);
         
         listaLivros = new ArrayList<>();
+        listaClientes = new ArrayList<>();
 
         Livro dub = new Livro(15566, "Diário de um banana", "Jeff Kinney", "V&R");
         Livro pj = new Livro(14477, "Percy Jackson", "Rick Riordan", "Intrínseca");
@@ -40,10 +50,12 @@ public class Aplicacao {
         Cliente cliente = null;
         if (tpCliente.equalsIgnoreCase("aluno")) {
             cliente = new ClienteAluno("joao", "jao123@gmail.com", 12345678, TipoCliente.CLIENTE_ALUNO);
+            listaClientes.add(cliente);
         } else if (tpCliente.equalsIgnoreCase("professor")) {
              cliente = new ClienteProfessor("kleber", "klb123@gmail.com", 87654321, TipoCliente.CLIENTE_PROFESSOR);
+            listaClientes.add(cliente);
         }
-        Emprestimo emprestimo = new Emprestimo();
+        //Emprestimo emprestimo = new Emprestimo();
         emprestimo.setCliente(cliente);
         emprestimo = emprestimo.gerarEmprestimo();
         System.out.println(emprestimo.toString());

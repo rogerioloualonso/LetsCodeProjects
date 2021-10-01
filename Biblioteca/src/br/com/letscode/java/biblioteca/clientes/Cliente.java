@@ -4,12 +4,14 @@ import java.time.LocalDate;
 
 public interface Cliente {
 
-    Cliente cadastroCliente(Cliente cliente);
-
-    boolean checarExistenciaEmprestimo(boolean existeEmprestimo);
+    int matricula = 0;
 
     String consultaPenalidade(String status);
 
     LocalDate gerarPenalidade(LocalDate dataSuspensao);
+
+    public default int getMatricula() {
+        return matricula;
+    }
 
 }

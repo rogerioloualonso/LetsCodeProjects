@@ -1,6 +1,9 @@
 package br.com.letscode.java.biblioteca.clientes;
 
+import br.com.letscode.java.Aplicacao;
 import br.com.letscode.java.biblioteca.livro.Emprestimo;
+import br.com.letscode.java.biblioteca.livro.Livro;
+
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,9 +15,7 @@ public abstract class ClienteDefault implements Cliente{
     protected String email;
     protected int matricula;
     protected TipoCliente tipoCliente;
-    protected LocalDate dataEmprestimo;
     protected LocalDate dataDevolucao;
-    protected int tempoEntrega;
 
     public ClienteDefault(){
 
@@ -25,20 +26,6 @@ public abstract class ClienteDefault implements Cliente{
         this.email = email;
         this.matricula = matricula;
         this.tipoCliente = tipoCliente;
-    }
-
-    @Override
-    public Cliente cadastroCliente(Cliente cliente) {
-
-        return cliente;
-    }
-
-    @Override
-    public boolean checarExistenciaEmprestimo(boolean existeEmprestimo) {
-        if ((LocalDate.now()).isAfter(this.dataDevolucao)){
-
-        }
-        return existeEmprestimo;
     }
 
     @Override

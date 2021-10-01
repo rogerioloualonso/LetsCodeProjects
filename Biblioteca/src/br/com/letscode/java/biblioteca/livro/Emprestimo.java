@@ -7,7 +7,6 @@ import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Emprestimo {
 
@@ -29,7 +28,6 @@ public class Emprestimo {
     }
 
     public Emprestimo gerarEmprestimo(){
-        Scanner sc = new Scanner(System.in);
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
         Aplicacao aplicacao = new Aplicacao();
@@ -67,6 +65,29 @@ public class Emprestimo {
         return dataDevolucao;
     }
 
+    public boolean checarExistenciaEmprestimo() {
+        int checarCliente = 12345678;
+        int indice = 0;
+        Aplicacao dados = new Aplicacao();
+        ArrayList<Cliente> listaClientes = dados.getListaClientes();
+        for (int i = 0; i < (listaClientes.size()); i++) {
+            if ((listaClientes.get(i).getMatricula()) == checarCliente) {
+                indice = i;
+            }
+        }
+        //emprestimos = getEmprestimos();
+        //for (int i = 0; i < (emprestimos.size()); i++) {
+        //    if ((emprestimos.get(i).getCliente().getMatricula()) == checarCliente) {
+        //        indice = i;
+        //    }
+        //}
+        //System.out.println((emprestimos.get(indice).getCliente()).toString());
+        System.out.println(emprestimos.get(indice).toString());
+        //if ((LocalDate.now()).isAfter(this.dataDevolucao)){
+        //}
+        return true;
+    }
+
     public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
     }
@@ -97,6 +118,10 @@ public class Emprestimo {
 
     public void setLivro(Livro livro) {
         this.livro = livro;
+    }
+
+    public ArrayList<Emprestimo> getEmprestimos() {
+        return emprestimos;
     }
 
     @Override

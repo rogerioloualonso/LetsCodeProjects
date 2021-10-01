@@ -13,11 +13,6 @@ public class ClienteProfessor extends ClienteDefault{
     }
 
     @Override
-    public boolean checarExistenciaEmprestimo(boolean existeEmprestimo) {
-        return super.checarExistenciaEmprestimo(existeEmprestimo);
-    }
-
-    @Override
     public String consultaPenalidade(String status) {
         return super.consultaPenalidade(status);
     }
