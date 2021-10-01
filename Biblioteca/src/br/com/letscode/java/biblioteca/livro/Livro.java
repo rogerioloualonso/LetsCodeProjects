@@ -5,12 +5,14 @@ public class Livro {
     private String titulo;
     private String autor;
     private String editora;
+    private boolean disponivel;
 
-    public Livro( int isbn, String titulo, String autor, String editor){
+    public Livro( int isbn, String titulo, String autor, String editor, boolean disponivel){
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editor;
+        this.disponivel = disponivel;
     }
 
     public int getIsbn() {
@@ -43,6 +45,14 @@ public class Livro {
 
     public void setEditora(String editor) {
         this.editora = editor;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
     public  String toString(){
