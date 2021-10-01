@@ -1,14 +1,24 @@
 package br.com.letscode.java;
 
+import br.com.letscode.java.biblioteca.EmprestimoSimultaneoExcedidoException;
 import br.com.letscode.java.biblioteca.clientes.*;
 import br.com.letscode.java.biblioteca.livro.*;
 import br.com.letscode.java.biblioteca.Biblioteca;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Aplicacao {
 
-    public static void main(String[] args) {
+    public static ArrayList<Emprestimo> emprestimos;
+
+    public static ArrayList<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+
+    public static void main(String[] args) throws EmprestimoSimultaneoExcedidoException {
+
+         emprestimos = new ArrayList<>();
 
         //Criar aluno
         ClienteDefault aluno = new ClienteAluno();
@@ -29,6 +39,7 @@ public class Aplicacao {
         // A saída de Aluno está null
         Biblioteca.emprestar(emprestimo, aluno, livro);
         System.out.println(emprestimo.toString());
+
         Biblioteca.emprestar(emprestimo, professor, livro);
         //emprestimo.gerarEmprestimo(aluno, livro);
         System.out.println(emprestimo.toString());
