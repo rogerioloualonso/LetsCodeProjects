@@ -4,6 +4,10 @@ import java.time.LocalDate;
 
 public class ClienteAluno extends ClienteDefault{
 
+    public int[] emprestimos = new int[3];
+    public int limite = 0;
+
+
     public ClienteAluno(){
 
     }

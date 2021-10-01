@@ -18,15 +18,4 @@ public class Biblioteca {
     public static void setLivro(ArrayList<Livro> livro) {
         Biblioteca.listaLivro = livro;
     }
-
-    static public void emprestar (Emprestimo emprestimo, Cliente cliente, Livro livro) {
-        emprestimo.gerarEmprestimo(cliente, livro);
-    }
-    static public void devolver (Livro livro){
-        for (Livro l : listaLivro) {
-            listaLivro.add(livro);
-            System.out.println("Livro Devolvido");
-        }
-    }
-
 }
