@@ -12,6 +12,16 @@ import java.util.Scanner;
 
 public class Aplicacao {
 
+    private ArrayList<Livro> listaLivros;
+
+    public ArrayList<Livro> getListaLivros() {
+        return listaLivros;
+    }
+
+    public void setListaLivros(ArrayList<Livro> listaLivros) {
+        this.listaLivros = listaLivros;
+    }
+
     public static void main(String[] args) {
         
         ArrayList<Livro> listaLivros = new ArrayList<>();
