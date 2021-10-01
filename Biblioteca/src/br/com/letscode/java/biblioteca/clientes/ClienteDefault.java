@@ -11,6 +11,15 @@ public abstract class ClienteDefault implements Cliente{
     protected TipoCliente tipoCliente;
     protected LocalDate dataDevolucao;
 
+    public ClienteDefault() {
+    }
+
+    public ClienteDefault(String nome, String email, int matricula, TipoCliente tipoCliente) {
+        this.nome = nome;
+        this.email = email;
+        this.matricula = matricula;
+        this.tipoCliente = tipoCliente;
+    }
 
     @Override
     public String consultaPenalidade(String status) {
@@ -62,19 +71,32 @@ public abstract class ClienteDefault implements Cliente{
         return matricula;
     }
 
-    protected void setMatricula(int matricula) {
+    public TipoCliente getTipoCliente() {
+        return tipoCliente;
+    }
+
+    public LocalDate getDataDevolucao() {
+        return dataDevolucao;
+    }
+
+    public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
 
-    protected void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    protected void setNome(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    protected void setTipoCliente(TipoCliente tipoCliente) {
+    public void setTipoCliente(TipoCliente tipoCliente) {
         this.tipoCliente = tipoCliente;
     }
+
+    public void setDataDevolucao(LocalDate dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
+    }
+
 }
