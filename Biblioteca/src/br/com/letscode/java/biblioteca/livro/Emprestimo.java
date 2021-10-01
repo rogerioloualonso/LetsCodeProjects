@@ -8,7 +8,9 @@ import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+
 import static br.com.letscode.java.Aplicacao.emprestimos;
+
 
 public class Emprestimo {
 
@@ -27,6 +29,7 @@ public class Emprestimo {
         this.livro = livro;
     }
 
+
     public void gerarEmprestimo(Cliente cliente, Livro livro) throws EmprestimoSimultaneoExcedidoException{
         boolean check =checarExistenciaEmprestimo();
         if (check == false) {
@@ -39,6 +42,21 @@ public class Emprestimo {
         } else {
             throw new EmprestimoSimultaneoExcedidoException();
         }
+
+    public void gerarEmprestimo(Cliente cliente, Livro livro){
+
+        setCliente(cliente);
+        this.dataEmprestimo = LocalDate.now();
+        this.dataDevolucao = gerarDataDevolucao();
+
+        if(livro.isDisponivel()) {
+            setCliente(cliente);
+            this.dataEmprestimo = LocalDate.now();
+            this.dataDevolucao = gerarDataDevolucao();
+        }else {
+            System.out.println("Livro Indisponível");
+        }
+
     }
 
     public LocalDate gerarDataDevolucao() {
