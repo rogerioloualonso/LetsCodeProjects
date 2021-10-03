@@ -1,10 +1,14 @@
 package br.com.letscode.java.biblioteca.clientes;
 
+import br.com.letscode.java.biblioteca.livro.Emprestimo;
+
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public abstract class ClienteDefault implements Cliente{
 
+    private ArrayList<Emprestimo> emprestimos = new ArrayList<>();
     protected String nome;
     protected String email;
     protected int matricula;
@@ -22,14 +26,18 @@ public abstract class ClienteDefault implements Cliente{
     }
 
     @Override
-    public String consultaPenalidade(String status) {
-        if ((LocalDate.now()).isAfter(this.dataDevolucao)){
-            long penalidade = ChronoUnit.DAYS.between(LocalDate.now(), this.dataDevolucao);
-            status = ("Empréstimo atrasado, poderá fazer outro empréstimo daqui a " + penalidade + " dias.");
-            return status;
+    public boolean consultaPenalidade(ClienteDefault cliente) {
+        int numOcorrencias = 0;
+        for (int i = 0; i < cliente.getEmprestimos().size(); i++) {
+            if ((LocalDate.now()).isAfter(cliente.getEmprestimos().get(i).getDataDevolucao())) {
+                //long penalidade = ChronoUnit.DAYS.between(LocalDate.now(), this.dataDevolucao); //caso precise da quantidade de dias de penalidade
+                numOcorrencias++;
+            }
+        }
+        if (numOcorrencias > 0) {
+            return true;
         } else {
-            status = "Não há empréstimos atrasados.";
-            return status;
+            return false;
         }
     }
 
@@ -57,6 +65,22 @@ public abstract class ClienteDefault implements Cliente{
                 ", matricula=" + matricula +
                 ", tipoCliente=" + tipoCliente +
                 '}';
+    }
+
+    public ArrayList<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+
+    public void setEmprestimos(ArrayList<Emprestimo> emprestimos) {
+        this.emprestimos = emprestimos;
+    }
+
+    public LocalDate getDataDevolucao() {
+        return dataDevolucao;
+    }
+
+    public void setDataDevolucao(LocalDate dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
     }
 
     public String getNome() {
@@ -95,8 +119,7 @@ public abstract class ClienteDefault implements Cliente{
         this.tipoCliente = tipoCliente;
     }
 
-    public void setDataDevolucao(LocalDate dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public TipoCliente getTipoCliente() {
+        return tipoCliente;
     }
-
 }

@@ -1,12 +1,13 @@
 package br.com.letscode.java.biblioteca.clientes;
 
+import br.com.letscode.java.biblioteca.livro.Emprestimo;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ClienteAluno extends ClienteDefault{
 
-    public int[] emprestimos = new int[3];
-    public int limite = 0;
-
+    int limite = 3;
 
     public ClienteAluno(){
 
@@ -17,8 +18,8 @@ public class ClienteAluno extends ClienteDefault{
     }
 
     @Override
-    public String consultaPenalidade(String status) {
-        return super.consultaPenalidade(status);
+    public boolean consultaPenalidade(ClienteDefault cliente) {
+        return super.consultaPenalidade(cliente);
     }
 
     @Override
@@ -30,6 +31,24 @@ public class ClienteAluno extends ClienteDefault{
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    @Override
+    public ArrayList<Emprestimo> getEmprestimos() {
+        return super.getEmprestimos();
+    }
+
+    @Override
+    public void setEmprestimos(ArrayList<Emprestimo> emprestimos) {
+        super.setEmprestimos(emprestimos);
+    }
+
+    public int getLimite() {
+        return limite;
+    }
+
+    public void setLimite(int limite) {
+        this.limite = limite;
     }
 
     @Override
