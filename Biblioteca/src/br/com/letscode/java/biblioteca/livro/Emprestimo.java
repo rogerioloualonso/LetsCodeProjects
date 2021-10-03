@@ -36,7 +36,7 @@ public class Emprestimo {
                 Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
                 cliente.getEmprestimos().add(emprestimo);
             } else {
-                System.out.println("O livro " + livro.getTitulo() + " está indisponível");//puxar exception
+                System.err.println("O livro " + livro.getTitulo() + " está indisponível");//puxar exception
             }
         } else {
             System.out.println("Esta pessoa não pode fazer empréstimo");//puxar exception
