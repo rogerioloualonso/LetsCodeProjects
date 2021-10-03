@@ -27,14 +27,12 @@ public abstract class ClienteDefault implements Cliente{
 
 
     @Override
-    public String consultaPenalidade(String status) {
+    public boolean consultaPenalidade(ClienteDefault cliente) {
         if ((LocalDate.now()).isAfter(this.dataDevolucao)){
             long penalidade = ChronoUnit.DAYS.between(LocalDate.now(), this.dataDevolucao);
-            status = ("Empréstimo atrasado, poderá fazer outro empréstimo daqui a " + penalidade + " dias.");
-            return status;
+            return true;
         } else {
-            status = "Não há empréstimos atrasados.";
-            return status;
+            return false;
         }
     }
 

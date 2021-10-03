@@ -1,6 +1,6 @@
 package br.com.letscode.java.biblioteca;
 
-import br.com.letscode.java.biblioteca.clientes.Cliente;
+import br.com.letscode.java.biblioteca.clientes.ClienteDefault;
 import br.com.letscode.java.biblioteca.livro.Emprestimo;
 import br.com.letscode.java.biblioteca.livro.Livro;
 
@@ -19,11 +19,11 @@ public class Biblioteca {
         Biblioteca.listaLivro = livro;
     }
 
-    static public void emprestar (Emprestimo emprestimo, Cliente cliente, Livro livro) {
+    static public void emprestar (Emprestimo emprestimo, ClienteDefault cliente, Livro livro) {
         emprestimo.gerarEmprestimo(cliente, livro);
     }
 
-    static public void devolver (Cliente cliente, Livro livro){
+    static public void devolver (ClienteDefault cliente, Livro livro){
         for (Livro l : listaLivro) {
             listaLivro.add(livro);
             livro.setDisponivel(true);

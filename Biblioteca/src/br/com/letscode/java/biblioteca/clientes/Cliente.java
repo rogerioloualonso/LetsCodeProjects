@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public interface Cliente {
 
-    String consultaPenalidade(String status);
+    boolean consultaPenalidade(ClienteDefault cliente);
 
     LocalDate gerarPenalidade(LocalDate dataSuspensao);
 

@@ -81,13 +81,13 @@ public class Emprestimo {
     }
 
     public boolean validarEmprestimo(ClienteDefault cliente){
-        if (cliente.getTipoCliente() == CLIENTE_ALUNO){
-            if (Emprestimo.size()==3 || consultaPenalidade()=false){
+        if (cliente.getTipoCliente() == TipoCliente.CLIENTE_ALUNO){
+            if ((cliente.getEmprestimos().size() == 3 || cliente.consultaPenalidade(cliente))){
                 return false;
             }
         }
         else{
-            if (Emprestimo.size()==5 || consultaPenalidade()=false){
+            if ((cliente.getEmprestimos().size() == 5 || cliente.consultaPenalidade(cliente))){
                 return false;
             }
         }
