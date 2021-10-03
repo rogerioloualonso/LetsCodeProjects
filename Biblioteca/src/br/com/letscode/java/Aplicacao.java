@@ -32,15 +32,13 @@ public class Aplicacao {
         Biblioteca.emprestar(emprestimo, professor, livroDois);
         Biblioteca.emprestar(emprestimo, aluno, livroTres); // quando restringir aqui libera
 
-        //boolean check = emprestimo.checarExistenciaEmprestimo(cliente);
-        //System.out.println(check);
         try {
             emprestimo.gerarEmprestimo(aluno, livroUm);
-            System.out.println(emprestimo.toString());
+            System.out.println(emprestimo);
             emprestimo.gerarEmprestimo(aluno, livroUm);
-            System.out.println(emprestimo.toString());
+            System.out.println(emprestimo);
             emprestimo.gerarEmprestimo(aluno, livroUm);
-            System.out.println(emprestimo.toString());
+            System.out.println(emprestimo);
             //Isso não pode acontecer, tem que dar erro
         } catch (Exception e) {
             System.err.println(e.getMessage());

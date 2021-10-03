@@ -4,7 +4,6 @@ import br.com.letscode.java.Aplicacao;
 import br.com.letscode.java.biblioteca.clientes.Cliente;
 import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
 import br.com.letscode.java.biblioteca.clientes.ClienteDefault;
-import br.com.letscode.java.biblioteca.clientes.TipoCliente;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -81,13 +80,13 @@ public class Emprestimo {
     }
 
     public boolean validarEmprestimo(ClienteDefault cliente){
-        if (cliente.getTipoCliente() == CLIENTE_ALUNO){
-            if (Emprestimo.size()==3 || consultaPenalidade()=false){
+        if (cliente instanceof ClienteAluno){
+            if ((cliente.getEmprestimos().size() == 3 || cliente.consultaPenalidade(cliente))){
                 return false;
             }
         }
         else{
-            if (Emprestimo.size()==5 || consultaPenalidade()=false){
+            if ((cliente.getEmprestimos().size() == 5 || cliente.consultaPenalidade(cliente))){
                 return false;
             }
         }

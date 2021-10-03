@@ -18,8 +18,8 @@ public class ClienteProfessor extends ClienteDefault{
     }
 
     @Override
-    public String consultaPenalidade(String status) {
-        return super.consultaPenalidade(status);
+    public boolean consultaPenalidade(ClienteDefault cliente) {
+        return super.consultaPenalidade(cliente);
     }
 
     @Override
