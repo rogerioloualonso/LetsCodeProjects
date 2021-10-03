@@ -61,6 +61,7 @@ public class Emprestimo {
         return dataDevolucao;
     }
 
+    //Aguardando esclarecimento do enunciado
     /*public boolean checarExistenciaEmprestimo(ClienteDefault cliente) {
         int indice = 0;
         Aplicacao aplicacao = new Aplicacao();
@@ -83,14 +84,12 @@ public class Emprestimo {
             if ((cliente.getEmprestimos().size() == 3 || cliente.consultaPenalidade(cliente))){
                 return false;
             }
-        }
-        else{
+        } else {
             if ((cliente.getEmprestimos().size() == 5 || cliente.consultaPenalidade(cliente))){
                 return false;
             }
         }
-
-        return false;
+        return true;
     }
 
 

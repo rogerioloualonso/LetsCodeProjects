@@ -19,10 +19,6 @@ public class Biblioteca {
         Biblioteca.listaLivro = livro;
     }
 
-    static public void emprestar (Emprestimo emprestimo, ClienteDefault cliente, Livro livro) {
-        emprestimo.gerarEmprestimo(cliente, livro);
-    }
-
     static public void devolver (ClienteDefault cliente, Livro livro){
         for (Livro l : listaLivro) {
             listaLivro.add(livro);
