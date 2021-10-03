@@ -96,6 +96,21 @@ public class Emprestimo {
         return true;
     }
 
+    public validarEmprestimo(ClienteDefault cliente){
+        if (cliente.getTipoCliente() == CLIENTE_ALUNO){
+            if (Emprestimo.size()==3 || consultaPenalidade()=false){
+                return false;
+            }
+        }
+        else{
+            if (Emprestimo.size()==5 || consultaPenalidade()=false){
+                return false;
+            }
+        }
+
+    }
+
+
     public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
     }
@@ -127,6 +142,7 @@ public class Emprestimo {
     public void setLivro(Livro livro) {
         this.livro = livro;
     }
+
 
     @Override
     public String toString() {

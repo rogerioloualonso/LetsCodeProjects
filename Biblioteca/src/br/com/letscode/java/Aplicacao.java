@@ -1,10 +1,7 @@
 package br.com.letscode.java;
 
 import br.com.letscode.java.biblioteca.Biblioteca;
-import br.com.letscode.java.biblioteca.clientes.Cliente;
-import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
-import br.com.letscode.java.biblioteca.clientes.ClienteProfessor;
-import br.com.letscode.java.biblioteca.clientes.TipoCliente;
+import br.com.letscode.java.biblioteca.clientes.*;
 import br.com.letscode.java.biblioteca.livro.Emprestimo;
 import br.com.letscode.java.biblioteca.livro.Livro;
 
@@ -14,11 +11,11 @@ public class Aplicacao {
 
         //Criar aluno
         //Cliente aluno = new ClienteAluno();
-        Cliente aluno = new ClienteAluno("joao", "jao123@gmail.com", 12345678, TipoCliente.CLIENTE_ALUNO);
+        ClienteDefault aluno = new ClienteAluno("joao", "jao123@gmail.com", 12345678, TipoCliente.CLIENTE_ALUNO);
 
         //Criar professor
         //Cliente professor = new ClienteProfessor();
-        Cliente professor = new ClienteProfessor("kleber", "klb123@gmail.com", 87654321, TipoCliente.CLIENTE_PROFESSOR);
+        ClienteDefault professor = new ClienteProfessor("kleber", "klb123@gmail.com", 87654321, TipoCliente.CLIENTE_PROFESSOR);
 
         //Criar livro
         Livro livroUm = new Livro(78484, "Pequeno Principe", "Antoine de Sans", "Agir", true);
