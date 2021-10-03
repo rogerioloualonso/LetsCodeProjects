@@ -28,8 +28,14 @@ public abstract class ClienteDefault implements Cliente{
 
     @Override
     public boolean consultaPenalidade(ClienteDefault cliente) {
-        if ((LocalDate.now()).isAfter(this.dataDevolucao)){
-            long penalidade = ChronoUnit.DAYS.between(LocalDate.now(), this.dataDevolucao);
+        int numOcorrencias = 0;
+        for (int i = 0; i < cliente.getEmprestimos().size(); i++) {
+            if ((LocalDate.now()).isAfter(cliente.getEmprestimos().get(i).getDataDevolucao())) {
+                //long penalidade = ChronoUnit.DAYS.between(LocalDate.now(), this.dataDevolucao); //caso precise da quantidade de dias de penalidade
+                numOcorrencias++;
+            }
+        }
+        if (numOcorrencias > 0) {
             return true;
         } else {
             return false;

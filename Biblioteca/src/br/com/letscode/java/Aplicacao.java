@@ -24,13 +24,13 @@ public class Aplicacao {
                 "Robert Cecil Martin", "Alta Books", true);
 
         Emprestimo emprestimo = new Emprestimo();
-        Biblioteca.emprestar(emprestimo, aluno, livroUm);
-        Biblioteca.emprestar(emprestimo, professor, livroUm);
-        Biblioteca.emprestar(emprestimo, aluno, livroTres); // teste da restrição
+        emprestimo.gerarEmprestimo(aluno, livroUm);
+        emprestimo.gerarEmprestimo(professor, livroUm);
+        emprestimo.gerarEmprestimo(aluno, livroTres); // teste da restrição
         Biblioteca.devolver(aluno, livroUm);
-        Biblioteca.emprestar(emprestimo, professor, livroUm);
-        Biblioteca.emprestar(emprestimo, professor, livroDois);
-        Biblioteca.emprestar(emprestimo, aluno, livroTres); // quando restringir aqui libera
+        emprestimo.gerarEmprestimo(professor, livroUm);
+        emprestimo.gerarEmprestimo(professor, livroDois);
+        emprestimo.gerarEmprestimo(aluno, livroTres); // quando restringir aqui libera
 
         try {
             emprestimo.gerarEmprestimo(aluno, livroUm);

@@ -1,6 +1,5 @@
 package br.com.letscode.java.biblioteca.livro;
 
-import br.com.letscode.java.Aplicacao;
 import br.com.letscode.java.biblioteca.clientes.Cliente;
 import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
 import br.com.letscode.java.biblioteca.clientes.ClienteDefault;
@@ -62,7 +61,7 @@ public class Emprestimo {
         return dataDevolucao;
     }
 
-    public boolean checarExistenciaEmprestimo(ClienteDefault cliente) {
+    /*public boolean checarExistenciaEmprestimo(ClienteDefault cliente) {
         int indice = 0;
         Aplicacao aplicacao = new Aplicacao();
         /*ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
@@ -75,9 +74,9 @@ public class Emprestimo {
             return true;
         } else {
             return false;
-        }*/
+        }
         return true;
-    }
+    }*/
 
     public boolean validarEmprestimo(ClienteDefault cliente){
         if (cliente instanceof ClienteAluno){
