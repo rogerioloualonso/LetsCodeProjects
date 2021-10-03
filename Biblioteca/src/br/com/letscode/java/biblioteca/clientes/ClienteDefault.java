@@ -95,14 +95,6 @@ public abstract class ClienteDefault implements Cliente{
         return matricula;
     }
 
-    public TipoCliente getTipoCliente() {
-        return tipoCliente;
-    }
-
-    public LocalDate getDataDevolucao() {
-        return dataDevolucao;
-    }
-
     public void setMatricula(int matricula) {
         this.matricula = matricula;
     }

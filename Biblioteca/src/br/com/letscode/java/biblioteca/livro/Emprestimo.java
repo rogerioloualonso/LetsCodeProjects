@@ -6,6 +6,7 @@ import br.com.letscode.java.biblioteca.clientes.ClienteDefault;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Emprestimo {
 
@@ -14,10 +15,7 @@ public class Emprestimo {
     protected Cliente cliente;
     protected Livro livro;
 
-    public Emprestimo(){
-    }
-
-    public Emprestimo(Cliente cliente, Livro livro){
+    public Emprestimo(Cliente cliente, LocalDate dataEmprestimo, LocalDate dataDevolucao, Livro livro){
         this.cliente = cliente;
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
@@ -62,6 +60,20 @@ public class Emprestimo {
             }
         }
         return dataDevolucao;
+    }
+
+    public boolean verificarFeriado(LocalDate data){
+        //Feriados nacionais
+        String[] feriados = {"01-01", "04-02", "04-21", "05-01", "09-07", "10-12",
+                "11-02", "11-15", "12-25"};
+
+        for(int i = 0; i < 9; i++){
+            String compare = data.format(DateTimeFormatter.ofPattern("dd/MM"));
+            if(compare == feriados[i]){
+                return false;
+            }
+        }
+        return true;
     }
 
     //Aguardando esclarecimento do enunciado
