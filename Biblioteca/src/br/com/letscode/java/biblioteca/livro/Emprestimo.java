@@ -8,7 +8,6 @@ import br.com.letscode.java.biblioteca.clientes.TipoCliente;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Emprestimo {
 
@@ -28,7 +27,7 @@ public class Emprestimo {
     }
 
     public void gerarEmprestimo(ClienteDefault cliente, Livro livro){
-        if (validarEmprestimo() == true) {
+        if (validarEmprestimo(cliente)) {
             if (livro.isDisponivel()) {
                 setCliente(cliente);
                 this.dataEmprestimo = LocalDate.now();
@@ -36,23 +35,8 @@ public class Emprestimo {
                 livro.setDisponivel(false);
                 System.out.println(this.getCliente().getNome() + " realizou o emprestimo do livro " + livro.getTitulo()
                         + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
-                if (cliente.getTipoCliente() == TipoCliente.CLIENTE_ALUNO) {
-                    ClienteAluno  = new Aplicacao();
-                }
                 Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
-                cliente.getEmprestimos();
-            /*ArrayList<Livro> listaLivros = aplicacao.getListaLivros();
-            int indice = 0;
-            String nomeLivro = "God of War";
-            for (int i = 0; i < (listaLivros.size()); i++) {
-                if ((listaLivros.get(i).getTitulo()) == nomeLivro) {
-                    indice = i;
-                }
-            }
-            Livro livro = listaLivros.get(indice);
-            ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();*/
-                //Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
-                //emprestimos.add(emprestimo);
+                cliente.getEmprestimos().add(emprestimo);
             } else {
                 System.out.println("O livro " + livro.getTitulo() + " está indisponível");//puxar exception
             }
@@ -96,7 +80,7 @@ public class Emprestimo {
         return true;
     }
 
-    public validarEmprestimo(ClienteDefault cliente){
+    public boolean validarEmprestimo(ClienteDefault cliente){
         if (cliente.getTipoCliente() == CLIENTE_ALUNO){
             if (Emprestimo.size()==3 || consultaPenalidade()=false){
                 return false;
@@ -108,6 +92,7 @@ public class Emprestimo {
             }
         }
 
+        return false;
     }
 
 
