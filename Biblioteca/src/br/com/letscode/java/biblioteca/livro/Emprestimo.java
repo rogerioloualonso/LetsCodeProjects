@@ -1,8 +1,8 @@
 package br.com.letscode.java.biblioteca.livro;
 
-import br.com.letscode.java.biblioteca.EmprestimoSimultaneoExcedidoException;
 import br.com.letscode.java.biblioteca.clientes.Cliente;
 import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
+import br.com.letscode.java.biblioteca.clientes.ClienteDefault;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -15,24 +15,29 @@ public class Emprestimo {
     protected Cliente cliente;
     protected Livro livro;
 
-    public Emprestimo(){
-    }
-
-    public Emprestimo(Cliente cliente, Livro livro){
+    public Emprestimo(Cliente cliente, LocalDate dataEmprestimo, LocalDate dataDevolucao, Livro livro){
         this.cliente = cliente;
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
         this.livro = livro;
     }
 
-    public void gerarEmprestimo(Cliente cliente, Livro livro) throws EmprestimoSimultaneoExcedidoException{
-        boolean check =checarExistenciaEmprestimo();
-        if (check == false) {
-            setCliente(cliente);
-            this.dataEmprestimo = LocalDate.now();
-            this.dataDevolucao = gerarDataDevolucao();
+    public void gerarEmprestimo(ClienteDefault cliente, Livro livro){
+        if (validarEmprestimo(cliente)) {
+            if (livro.isDisponivel()) {
+                setCliente(cliente);
+                this.dataEmprestimo = LocalDate.now();
+                this.dataDevolucao = gerarDataDevolucao();
+                livro.setDisponivel(false);
+                System.out.println(this.getCliente().getNome() + " realizou o emprestimo do livro " + livro.getTitulo()
+                        + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
+                Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
+                cliente.getEmprestimos().add(emprestimo);
+            } else {
+                System.out.println("O livro " + livro.getTitulo() + " está indisponível");//puxar exception
+            }
         } else {
-            throw new EmprestimoSimultaneoExcedidoException();
+            System.out.println("Esta pessoa não pode fazer empréstimo");//puxar exception
         }
     }
 
@@ -71,12 +76,37 @@ public class Emprestimo {
         return true;
     }
 
-    public boolean checarExistenciaEmprestimo() {
-        int checarCliente = 12345678;
+    //Aguardando esclarecimento do enunciado
+    /*public boolean checarExistenciaEmprestimo(ClienteDefault cliente) {
         int indice = 0;
+        Aplicacao aplicacao = new Aplicacao();
+        /*ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
+        for (int i = 0; i < (emprestimos.size()); i++) {
+            if ((emprestimos.get(i).getCliente().getMatricula()) == checarCliente) {
+                indice = i;
+            }//Consertar o getMatricula
+        }
+        if (emprestimos.get(indice).getLivro() != null) {
+            return true;
+        } else {
+            return false;
+        }
+        return true;
+    }*/
 
-        return false;
+    public boolean validarEmprestimo(ClienteDefault cliente){
+        if (cliente instanceof ClienteAluno){
+            if ((cliente.getEmprestimos().size() == 3 || cliente.consultaPenalidade(cliente))){
+                return false;
+            }
+        } else {
+            if ((cliente.getEmprestimos().size() == 5 || cliente.consultaPenalidade(cliente))){
+                return false;
+            }
+        }
+        return true;
     }
+
 
     public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
@@ -109,6 +139,7 @@ public class Emprestimo {
     public void setLivro(Livro livro) {
         this.livro = livro;
     }
+
 
     @Override
     public String toString() {
