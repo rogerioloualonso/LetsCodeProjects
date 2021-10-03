@@ -6,6 +6,7 @@ import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Emprestimo {
 
@@ -36,7 +37,7 @@ public class Emprestimo {
     }
 
     public LocalDate gerarDataDevolucao() {
-        int diaSomados = 0;
+        int diasSomados = 0;
         int tempoEntrega;
         if (cliente instanceof ClienteAluno){
             tempoEntrega = 10;
@@ -44,12 +45,12 @@ public class Emprestimo {
             tempoEntrega = 20;
         }
         dataDevolucao = dataEmprestimo;
-        while (diaSomados < tempoEntrega){
-            this.dataEmprestimo.plusDays(1);
-            if (this.dataEmprestimo.getDayOfWeek() != DayOfWeek.SATURDAY || this.dataEmprestimo.getDayOfWeek() != DayOfWeek.SUNDAY){
-                if(verificarFeriado(this.dataEmprestimo)) {
+        while (diasSomados < tempoEntrega){
+            dataEmprestimo.plusDays(1);
+            if (dataEmprestimo.getDayOfWeek() != DayOfWeek.SATURDAY && dataEmprestimo.getDayOfWeek() != DayOfWeek.SUNDAY){
+                if(verificarFeriado(dataEmprestimo)) {
                     dataDevolucao = dataDevolucao.plusDays(1);
-                    diaSomados++;
+                    diasSomados++;
                 }
             }
         }
@@ -58,10 +59,15 @@ public class Emprestimo {
 
     public boolean verificarFeriado(LocalDate data){
         //Feriados nacionais
+        String[] feriados = {"01-01", "04-02", "04-21", "05-01", "09-07", "10-12",
+                "11-02", "11-15", "12-25"};
 
-        //Listar feriados e verificar se a data bate
-        //se sim, retorna false
-
+        for(int i = 0; i < 9; i++){
+            String compare = data.format(DateTimeFormatter.ofPattern("dd/MM"));
+            if(compare == feriados[i]){
+                return false;
+            }
+        }
         return true;
     }
 
@@ -69,7 +75,7 @@ public class Emprestimo {
         int checarCliente = 12345678;
         int indice = 0;
 
-        return true;
+        return false;
     }
 
     public LocalDate getDataEmprestimo() {
