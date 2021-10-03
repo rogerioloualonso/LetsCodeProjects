@@ -87,4 +87,8 @@ public abstract class ClienteDefault implements Cliente{
     protected void setTipoCliente(TipoCliente tipoCliente) {
         this.tipoCliente = tipoCliente;
     }
+
+    public TipoCliente getTipoCliente() {
+        return tipoCliente;
+    }
 }
