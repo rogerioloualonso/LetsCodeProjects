@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public class ClienteProfessor extends ClienteDefault{
 
+    public int[] emprestimos = new int[5];
+
     public ClienteProfessor(){
         super();
     }

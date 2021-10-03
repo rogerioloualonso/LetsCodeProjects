@@ -4,11 +4,13 @@ import java.time.LocalDate;
 
 public class ClienteAluno extends ClienteDefault{
 
+    public int[] emprestimos = new int[3];
+
     public ClienteAluno(){
     }
 
     public ClienteAluno(String nome, String email, int matricula, TipoCliente tipoCliente) {
-        //super(nome, email, matricula, tipoCliente);
+        super(nome, email, matricula, tipoCliente);
     }
 
     @Override

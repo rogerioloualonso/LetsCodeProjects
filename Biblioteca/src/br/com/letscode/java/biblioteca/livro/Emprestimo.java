@@ -3,6 +3,8 @@ package br.com.letscode.java.biblioteca.livro;
 import br.com.letscode.java.Aplicacao;
 import br.com.letscode.java.biblioteca.clientes.Cliente;
 import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
+import br.com.letscode.java.biblioteca.clientes.ClienteDefault;
+import br.com.letscode.java.biblioteca.clientes.TipoCliente;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -25,26 +27,34 @@ public class Emprestimo {
         this.livro = livro;
     }
 
-    public void gerarEmprestimo(Cliente cliente, Livro livro){
-        if(livro.isDisponivel()) {
-            setCliente(cliente);
-            this.dataEmprestimo = LocalDate.now();
-            this.dataDevolucao = gerarDataDevolucao();
-            Aplicacao aplicacao = new Aplicacao();
-        /*ArrayList<Livro> listaLivros = aplicacao.getListaLivros();
-        int indice = 0;
-        String nomeLivro = "God of War";
-        for (int i = 0; i < (listaLivros.size()); i++) {
-            if ((listaLivros.get(i).getTitulo()) == nomeLivro) {
-                indice = i;
+    public void gerarEmprestimo(ClienteDefault cliente, Livro livro){
+        if (validarEmprestimo() == true) {
+            if (livro.isDisponivel()) {
+                setCliente(cliente);
+                this.dataEmprestimo = LocalDate.now();
+                this.dataDevolucao = gerarDataDevolucao();
+                livro.setDisponivel(false);
+                System.out.println(this.getCliente().getNome() + " realizou o emprestimo do livro " + livro.getTitulo()
+                        + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
+                if (cliente.getTipoCliente()
+                Aplicacao aplicacao = new Aplicacao();
+            /*ArrayList<Livro> listaLivros = aplicacao.getListaLivros();
+            int indice = 0;
+            String nomeLivro = "God of War";
+            for (int i = 0; i < (listaLivros.size()); i++) {
+                if ((listaLivros.get(i).getTitulo()) == nomeLivro) {
+                    indice = i;
+                }
             }
-        }
-        Livro livro = listaLivros.get(indice);
-        ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();*/
-            Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
-            //emprestimos.add(emprestimo);
-        }else {
-            System.out.println("Livro Indisponível");
+            Livro livro = listaLivros.get(indice);
+            ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();*/
+                Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
+                //emprestimos.add(emprestimo);
+            } else {
+                System.out.println("O livro " + livro.getTitulo() + " está indisponível");//puxar exception
+            }
+        } else {
+            System.out.println("Esta pessoa não pode fazer empréstimo");//puxar exception
         }
     }
 
@@ -66,8 +76,7 @@ public class Emprestimo {
         return dataDevolucao;
     }
 
-    public boolean checarExistenciaEmprestimo() {
-        int checarCliente = 12345678;
+    public boolean checarExistenciaEmprestimo(ClienteDefault cliente) {
         int indice = 0;
         Aplicacao aplicacao = new Aplicacao();
         /*ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
