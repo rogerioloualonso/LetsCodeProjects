@@ -30,6 +30,9 @@ public class Emprestimo {
             setCliente(cliente);
             this.dataEmprestimo = LocalDate.now();
             this.dataDevolucao = gerarDataDevolucao();
+            livro.setDisponivel(false);
+            System.out.println(this.getCliente().getNome() + " realizou o emprestimo do livro " + livro.getTitulo()
+            + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
             Aplicacao aplicacao = new Aplicacao();
         /*ArrayList<Livro> listaLivros = aplicacao.getListaLivros();
         int indice = 0;
@@ -44,7 +47,7 @@ public class Emprestimo {
             Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
             //emprestimos.add(emprestimo);
         }else {
-            System.out.println("Livro Indisponível");
+            System.out.println("O livro "+ livro.getTitulo() + " está indisponível");
         }
     }
 

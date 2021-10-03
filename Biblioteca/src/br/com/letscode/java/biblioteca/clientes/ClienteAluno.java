@@ -8,7 +8,7 @@ public class ClienteAluno extends ClienteDefault{
     }
 
     public ClienteAluno(String nome, String email, int matricula, TipoCliente tipoCliente) {
-        //super(nome, email, matricula, tipoCliente);
+        super(nome, email, matricula, tipoCliente);
     }
 
     @Override

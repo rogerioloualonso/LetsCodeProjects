@@ -22,11 +22,13 @@ public class Biblioteca {
     static public void emprestar (Emprestimo emprestimo, Cliente cliente, Livro livro) {
         emprestimo.gerarEmprestimo(cliente, livro);
     }
-    static public void devolver (Livro livro){
+
+    static public void devolver (Cliente cliente, Livro livro){
         for (Livro l : listaLivro) {
             listaLivro.add(livro);
-            System.out.println("Livro Devolvido");
+            livro.setDisponivel(true);
+        }
+        livro.setDisponivel(true);
+        System.out.println("O livro " + livro.getTitulo() +" foi devolvido");
         }
     }
-
-}
