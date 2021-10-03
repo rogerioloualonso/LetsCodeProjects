@@ -40,7 +40,7 @@ public class Emprestimo {
                     ClienteAluno  = new Aplicacao();
                 }
                 Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
-
+                cliente.getEmprestimos();
             /*ArrayList<Livro> listaLivros = aplicacao.getListaLivros();
             int indice = 0;
             String nomeLivro = "God of War";

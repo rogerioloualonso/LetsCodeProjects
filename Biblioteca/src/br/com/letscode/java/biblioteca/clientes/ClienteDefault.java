@@ -1,10 +1,14 @@
 package br.com.letscode.java.biblioteca.clientes;
 
+import br.com.letscode.java.biblioteca.livro.Emprestimo;
+
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public abstract class ClienteDefault implements Cliente{
 
+    private ArrayList<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
     protected String nome;
     protected String email;
     protected int matricula;
@@ -58,6 +62,22 @@ public abstract class ClienteDefault implements Cliente{
                 ", matricula=" + matricula +
                 ", tipoCliente=" + tipoCliente +
                 '}';
+    }
+
+    public ArrayList<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+
+    public void setEmprestimos(ArrayList<Emprestimo> emprestimos) {
+        this.emprestimos = emprestimos;
+    }
+
+    public LocalDate getDataDevolucao() {
+        return dataDevolucao;
+    }
+
+    public void setDataDevolucao(LocalDate dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
     }
 
     public String getNome() {
