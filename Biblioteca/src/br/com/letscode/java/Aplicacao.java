@@ -13,32 +13,36 @@ public class Aplicacao {
     public static void main(String[] args) {
 
         //Criar aluno
-        Cliente aluno = new ClienteAluno();
-        aluno = new ClienteAluno("joao", "jao123@gmail.com", 12345678, TipoCliente.CLIENTE_ALUNO);
+        //Cliente aluno = new ClienteAluno();
+        Cliente aluno = new ClienteAluno("joao", "jao123@gmail.com", 12345678, TipoCliente.CLIENTE_ALUNO);
 
         //Criar professor
-        Cliente professor = new ClienteProfessor();
-        professor = new ClienteProfessor("kleber", "klb123@gmail.com", 87654321, TipoCliente.CLIENTE_PROFESSOR);
+        //Cliente professor = new ClienteProfessor();
+        Cliente professor = new ClienteProfessor("kleber", "klb123@gmail.com", 87654321, TipoCliente.CLIENTE_PROFESSOR);
 
         //Criar livro
-        Livro livro = new Livro(78484, "Pequeno Principe", "Antoine de Sans", "Agir", true);
-
+        Livro livroUm = new Livro(78484, "Pequeno Principe", "Antoine de Sans", "Agir", true);
+        Livro livroDois = new Livro(78484, "Código limpo", "Robert Cecil Martin", "Alta Books", true);
+        Livro livroTres = new Livro(78484, "Arquitetura limpa: O guia do artesão para estrutura e design de software",
+                "Robert Cecil Martin", "Alta Books", true);
 
         Emprestimo emprestimo = new Emprestimo();
-        // A saída de Aluno está null
-        Biblioteca.emprestar(emprestimo, aluno, livro);
-        System.out.println(emprestimo.toString());
-        Biblioteca.emprestar(emprestimo, professor, livro);
-        //emprestimo.gerarEmprestimo(aluno, livro);
-        System.out.println(emprestimo.toString());
-        boolean check = emprestimo.checarExistenciaEmprestimo();
-        System.out.println(check);
+        Biblioteca.emprestar(emprestimo, aluno, livroUm);
+        Biblioteca.emprestar(emprestimo, professor, livroUm);
+        Biblioteca.emprestar(emprestimo, aluno, livroTres); // teste da restrição
+        Biblioteca.devolver(aluno, livroUm);
+        Biblioteca.emprestar(emprestimo, professor, livroUm);
+        Biblioteca.emprestar(emprestimo, professor, livroDois);
+        Biblioteca.emprestar(emprestimo, aluno, livroTres); // quando restringir aqui libera
+
+        //boolean check = emprestimo.checarExistenciaEmprestimo(cliente);
+        //System.out.println(check);
         try {
-            emprestimo.gerarEmprestimo(aluno, livro);
+            emprestimo.gerarEmprestimo(aluno, livroUm);
             System.out.println(emprestimo.toString());
-            emprestimo.gerarEmprestimo(aluno, livro);
+            emprestimo.gerarEmprestimo(aluno, livroUm);
             System.out.println(emprestimo.toString());
-            emprestimo.gerarEmprestimo(aluno, livro);
+            emprestimo.gerarEmprestimo(aluno, livroUm);
             System.out.println(emprestimo.toString());
             //Isso não pode acontecer, tem que dar erro
         } catch (Exception e) {
