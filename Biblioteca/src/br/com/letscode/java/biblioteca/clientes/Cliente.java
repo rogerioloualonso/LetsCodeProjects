@@ -1,12 +1,14 @@
 package br.com.letscode.java.biblioteca.clientes;
 
+import br.com.letscode.java.biblioteca.livro.Livro;
+
 import java.time.LocalDate;
 
 public interface Cliente {
 
     boolean consultaPenalidade(ClienteDefault cliente);
 
-    LocalDate gerarPenalidade(LocalDate dataSuspensao);
+    void adicionarCarrinho(ClienteDefault cliente, Livro livro);
 
     String getNome();
 }

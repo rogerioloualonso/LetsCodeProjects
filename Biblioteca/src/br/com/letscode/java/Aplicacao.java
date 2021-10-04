@@ -1,9 +1,6 @@
 package br.com.letscode.java;
 
-import br.com.letscode.java.biblioteca.EmprestimoSimultaneoExcedidoException;
-import br.com.letscode.java.biblioteca.clientes.*;
-import br.com.letscode.java.biblioteca.livro.*;
-import br.com.letscode.java.biblioteca.Biblioteca;
+import br.com.letscode.java.biblioteca.*;
 import br.com.letscode.java.biblioteca.clientes.*;
 import br.com.letscode.java.biblioteca.livro.Emprestimo;
 import br.com.letscode.java.biblioteca.livro.Livro;
@@ -35,30 +32,50 @@ public class Aplicacao {
                 "Robert Cecil Martin", "Alta Books", true);
 
         Emprestimo emprestimo = new Emprestimo();
-        emprestimo.gerarEmprestimo(aluno, livroUm);
-        emprestimo.gerarEmprestimo(professor, livroUm);
-        emprestimo.gerarEmprestimo(aluno, livroTres); // teste da restrição
-        Biblioteca.devolver(aluno, livroUm);
-        emprestimo.gerarEmprestimo(professor, livroUm);
-        emprestimo.gerarEmprestimo(professor, livroDois);
-        emprestimo.gerarEmprestimo(aluno, livroTres); // quando restringir aqui libera
 
-        try {
-            emprestimo.gerarEmprestimo(aluno, livroUm);
-            System.out.println(emprestimo);
-            emprestimo.gerarEmprestimo(aluno, livroUm);
-            System.out.println(emprestimo);
-            emprestimo.gerarEmprestimo(aluno, livroUm);
-            System.out.println(emprestimo);
-            //Isso não pode acontecer, tem que dar erro
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+        try{
+            aluno.adicionarCarrinho(aluno, livroUm);
+        } catch (Exception e){
+            e.printStackTrace();
         }
 
-        /*
-        boolean check = emprestimo.checarExistenciaEmprestimo();
-        System.out.println(check);
-        *///Isso deve ser usado em um método
+        try{
+            aluno.adicionarCarrinho(aluno, livroDois);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try {
+            emprestimo.gerarEmprestimo(aluno);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            professor.adicionarCarrinho(professor, livroUm);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try {
+            emprestimo.gerarEmprestimo(professor);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try {
+            aluno.adicionarCarrinho(aluno, livroTres);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try {
+            emprestimo.gerarEmprestimo(aluno);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        Biblioteca.devolver(aluno);
 
     }
 }

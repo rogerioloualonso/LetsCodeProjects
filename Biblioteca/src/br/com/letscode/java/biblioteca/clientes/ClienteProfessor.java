@@ -1,13 +1,12 @@
 package br.com.letscode.java.biblioteca.clientes;
 
 import br.com.letscode.java.biblioteca.livro.Emprestimo;
+import br.com.letscode.java.biblioteca.livro.Livro;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ClienteProfessor extends ClienteDefault{
-
-    int limite = 5;
 
     public ClienteProfessor(){
         super();
@@ -23,13 +22,18 @@ public class ClienteProfessor extends ClienteDefault{
     }
 
     @Override
-    public LocalDate gerarPenalidade(LocalDate dataPenalidade) {
-        return super.gerarPenalidade(dataPenalidade);
+    public String toString() {
+        return super.toString();
     }
 
     @Override
-    public String toString() {
-        return super.toString();
+    public ArrayList<Livro> getCarrinho() {
+        return super.getCarrinho();
+    }
+
+    @Override
+    public void setCarrinho(ArrayList<Livro> carrinho) {
+        super.setCarrinho(carrinho);
     }
 
     @Override
@@ -40,14 +44,6 @@ public class ClienteProfessor extends ClienteDefault{
     @Override
     public void setEmprestimos(ArrayList<Emprestimo> emprestimos) {
         super.setEmprestimos(emprestimos);
-    }
-
-    public int getLimite() {
-        return limite;
-    }
-
-    public void setLimite(int limite) {
-        this.limite = limite;
     }
 
     @Override
