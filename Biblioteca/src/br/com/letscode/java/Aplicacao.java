@@ -28,13 +28,21 @@ public class Aplicacao {
         aluno.adicionarCarrinho(aluno, livroUm);
         aluno.adicionarCarrinho(aluno, livroDois);
 
-        emprestimo.gerarEmprestimo(aluno);
+        try {
+            emprestimo.gerarEmprestimo(aluno);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         professor.adicionarCarrinho(professor, livroUm);
 
         aluno.adicionarCarrinho(aluno,livroTres);
 
-        emprestimo.gerarEmprestimo(aluno);
+        try {
+            emprestimo.gerarEmprestimo(aluno);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Biblioteca.devolver(aluno);
 
