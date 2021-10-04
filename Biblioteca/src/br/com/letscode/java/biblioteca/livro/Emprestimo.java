@@ -65,18 +65,22 @@ public class Emprestimo {
                 System.err.println("Esta pessoa possui uma penalidade de " + cliente.diasPenalidade(cliente) + " dias pendente");
                 return false;
             }
-            if (cliente.getEmprestimos() != null){
-                System.err.println("Esta pessoa já possui um empréstimo em andamento");
-                return false;
+            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
+                if (cliente.getEmprestimos().get(i) != null){
+                    System.err.println("Esta pessoa já possui um empréstimo em andamento");
+                    return false;
+                }
             }
         } else {
             if ((cliente.getCarrinho().size() == 5 || cliente.consultaPenalidade(cliente))){
                 System.err.println("Esta pessoa possui uma penalidade de " + cliente.diasPenalidade(cliente) + " dias pendente");
                 return false;
             }
-            if (cliente.getEmprestimos() != null){
-                System.err.println("Esta pessoa já possui um empréstimo em andamento");
-                return false;
+            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
+                if (cliente.getEmprestimos().get(i) != null){
+                    System.err.println("Esta pessoa já possui um empréstimo em andamento");
+                    return false;
+                }
             }
         }
         return true;
