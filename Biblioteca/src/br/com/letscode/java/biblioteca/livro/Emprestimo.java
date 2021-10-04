@@ -6,6 +6,7 @@ import br.com.letscode.java.biblioteca.clientes.ClienteDefault;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class Emprestimo {
 
@@ -13,6 +14,8 @@ public class Emprestimo {
     protected LocalDate dataDevolucao;
     protected Cliente cliente;
     protected Livro livro;
+    protected Livro livro2;
+    protected Livro livro3;
 
     public Emprestimo(){
     }
@@ -22,6 +25,7 @@ public class Emprestimo {
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
         this.livro = livro;
+        this.livro2 = livro2;
     }
 
     public void gerarEmprestimo(ClienteDefault cliente, Livro livro){
@@ -62,32 +66,24 @@ public class Emprestimo {
         return dataDevolucao;
     }
 
-    //Aguardando esclarecimento do enunciado
-    /*public boolean checarExistenciaEmprestimo(ClienteDefault cliente) {
-        int indice = 0;
-        Aplicacao aplicacao = new Aplicacao();
-        /*ArrayList<Emprestimo> emprestimos = aplicacao.getEmprestimos();
-        for (int i = 0; i < (emprestimos.size()); i++) {
-            if ((emprestimos.get(i).getCliente().getMatricula()) == checarCliente) {
-                indice = i;
-            }//Consertar o getMatricula
-        }
-        if (emprestimos.get(indice).getLivro() != null) {
-            return true;
-        } else {
-            return false;
-        }
-        return true;
-    }*/
-
     public boolean validarEmprestimo(ClienteDefault cliente){
         if (cliente instanceof ClienteAluno){
             if ((cliente.getEmprestimos().size() == 3 || cliente.consultaPenalidade(cliente))){
                 return false;
             }
+            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
+                if (!cliente.getEmprestimos().get(i).getDataEmprestimo().equals(LocalDate.now())){
+                return false;
+                }
+            }
         } else {
             if ((cliente.getEmprestimos().size() == 5 || cliente.consultaPenalidade(cliente))){
                 return false;
+            }
+            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
+                if (!cliente.getEmprestimos().get(i).getDataEmprestimo().equals(LocalDate.now())){
+                    return false;
+                }
             }
         }
         return true;
