@@ -61,22 +61,19 @@ public class Emprestimo {
 
     public boolean validarEmprestimo(ClienteDefault cliente){
         if (cliente instanceof ClienteAluno){
-            if ((cliente.getEmprestimos().size() == 3 || cliente.consultaPenalidade(cliente))){
+            if ((cliente.getCarrinho().size() == 3 || cliente.consultaPenalidade(cliente))){
                 return false;
             }
-            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
-                if (!cliente.getEmprestimos().get(i).getDataEmprestimo().equals(LocalDate.now())){
+            if (cliente.getEmprestimos() != null){
                 return false;
-                }
             }
         } else {
-            if ((cliente.getEmprestimos().size() == 5 || cliente.consultaPenalidade(cliente))){
+            if ((cliente.getCarrinho().size() == 5 || cliente.consultaPenalidade(cliente))){
                 return false;
             }
-            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
-                if (!cliente.getEmprestimos().get(i).getDataEmprestimo().equals(LocalDate.now())){
-                    return false;
-                }
+            if (cliente.getEmprestimos() != null){
+
+                return false;
             }
         }
         return true;

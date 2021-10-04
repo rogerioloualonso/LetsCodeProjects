@@ -30,7 +30,9 @@ public class Aplicacao {
 
         emprestimo.gerarEmprestimo(aluno);
 
+        professor.adicionarCarrinho(professor, livroUm);
 
+        Biblioteca.devolver(aluno);
         /*emprestimo.gerarEmprestimo(aluno, livroUm);
         emprestimo.gerarEmprestimo(professor, livroUm);
         emprestimo.gerarEmprestimo(aluno, livroTres); // teste da restrição
