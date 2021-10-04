@@ -6,7 +6,6 @@ import br.com.letscode.java.biblioteca.clientes.ClienteDefault;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Optional;
 
 public class Emprestimo {
 
@@ -25,7 +24,6 @@ public class Emprestimo {
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
         this.livro = livro;
-        this.livro2 = livro2;
     }
 
     public void gerarEmprestimo(ClienteDefault cliente, Livro livro){
