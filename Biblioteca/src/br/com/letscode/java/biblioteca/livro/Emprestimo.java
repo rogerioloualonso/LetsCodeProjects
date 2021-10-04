@@ -29,9 +29,9 @@ public class Emprestimo {
 
     public void gerarEmprestimo(ClienteDefault cliente) throws Exception {
 
-        exceptionLimiteEmprestimo(cliente);
-        exceptionComPenalidade(cliente);
-        exceptionEmprestimoSimultaneo(cliente);
+        validarLimiteEmprestimo(cliente);
+        validarComPenalidade(cliente);
+        validarEmprestimoSimultaneo(cliente);
 
         if (cliente.getCarrinho().size() > 0){
             setCliente(cliente);
@@ -69,7 +69,19 @@ public class Emprestimo {
         return dataDevolucao;
     }
 
-    public void exceptionLimiteEmprestimo(ClienteDefault cliente){
+    public boolean verificarFeriado(LocalDate data){
+        String[] feriados = {"01-01", "04-02", "04-21", "05-01", "09-07", "10-12",
+                "11-02", "11-15", "12-25"};
+        for(int i = 0; i < 9; i++){
+            String compare = data.format(DateTimeFormatter.ofPattern("dd/MM"));
+            if(compare == feriados[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void validarLimiteEmprestimo(ClienteDefault cliente){
 
         if(cliente instanceof ClienteAluno){
             if (cliente.getCarrinho().size() == 3){
@@ -86,13 +98,13 @@ public class Emprestimo {
     }
 
 
-    public void exceptionComPenalidade( ClienteDefault cliente){
+    public void validarComPenalidade(ClienteDefault cliente){
         if(cliente.consultaPenalidade(cliente)){
             throw new ClienteSuspensoException();
         }
     }
 
-    public void exceptionEmprestimoSimultaneo(ClienteDefault cliente){
+    public void validarEmprestimoSimultaneo(ClienteDefault cliente){
         if (cliente instanceof ClienteAluno){
             for (int i = 0; i < cliente.getEmprestimos().size(); i++){
                 if (cliente.getEmprestimos().get(i) != null){
@@ -106,18 +118,6 @@ public class Emprestimo {
                 }
             }
         }
-    }
-
-    public boolean verificarFeriado(LocalDate data){
-        String[] feriados = {"01-01", "04-02", "04-21", "05-01", "09-07", "10-12",
-                "11-02", "11-15", "12-25"};
-        for(int i = 0; i < 9; i++){
-            String compare = data.format(DateTimeFormatter.ofPattern("dd/MM"));
-            if(compare == feriados[i]){
-                return false;
-            }
-        }
-        return true;
     }
 
     public LocalDate getDataEmprestimo() {
