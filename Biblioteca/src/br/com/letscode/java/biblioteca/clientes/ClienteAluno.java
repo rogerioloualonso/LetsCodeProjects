@@ -1,6 +1,7 @@
 package br.com.letscode.java.biblioteca.clientes;
 
 import br.com.letscode.java.biblioteca.livro.Emprestimo;
+import br.com.letscode.java.biblioteca.livro.Livro;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,6 +28,16 @@ public class ClienteAluno extends ClienteDefault{
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    @Override
+    public ArrayList<Livro> getCarrinho() {
+        return super.getCarrinho();
+    }
+
+    @Override
+    public void setCarrinho(ArrayList<Livro> carrinho) {
+        super.setCarrinho(carrinho);
     }
 
     @Override

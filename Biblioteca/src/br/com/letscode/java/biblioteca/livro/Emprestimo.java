@@ -6,39 +6,36 @@ import br.com.letscode.java.biblioteca.clientes.ClienteDefault;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Emprestimo {
 
     protected LocalDate dataEmprestimo;
     protected LocalDate dataDevolucao;
     protected Cliente cliente;
-    protected Livro livro;
+    protected ArrayList<Livro> livros = new ArrayList<>();
 
     public Emprestimo(){
     }
 
-    public Emprestimo(Cliente cliente, LocalDate dataEmprestimo, LocalDate dataDevolucao, Livro livro){
+    public Emprestimo(Cliente cliente, LocalDate dataEmprestimo, LocalDate dataDevolucao, ArrayList<Livro> livros){
         this.cliente = cliente;
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = gerarDataDevolucao();
-        this.livro = livro;
+        this.livros = livros;
     }
 
-    public void gerarEmprestimo(ClienteDefault cliente, Livro livro){
+    public void gerarEmprestimo(ClienteDefault cliente) {
         if (validarEmprestimo(cliente)) {
-            if (livro.isDisponivel()) {
-                setCliente(cliente);
-                setLivro(livro);
-                this.dataEmprestimo = LocalDate.now();
-                this.dataDevolucao = gerarDataDevolucao();
-                livro.setDisponivel(false);
-                System.out.println(this.getCliente().getNome() + " realizou o emprestimo do livro " + livro.getTitulo()
-                        + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
-                Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao, livro);
-                cliente.getEmprestimos().add(emprestimo);
-            } else {
-                System.err.println("O livro " + livro.getTitulo() + " está indisponível");//puxar exception
-            }
+            setCliente(cliente);
+            ArrayList<Livro> livros = cliente.getCarrinho();
+            setLivros(livros);
+            this.dataEmprestimo = LocalDate.now();
+            this.dataDevolucao = gerarDataDevolucao();
+            System.out.println(this.getCliente().getNome() + " realizou o emprestimo dos livros " + cliente.getCarrinho()
+                    + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
+            Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao, livros);
+            cliente.getEmprestimos().add(emprestimo);
         } else {
             System.out.println("Esta pessoa não pode fazer empréstimo");//puxar exception
         }
@@ -110,14 +107,13 @@ public class Emprestimo {
         this.cliente = cliente;
     }
 
-    public Livro getLivro() {
-        return livro;
+    public ArrayList<Livro> getLivros() {
+        return livros;
     }
 
-    public void setLivro(Livro livro) {
-        this.livro = livro;
+    public void setLivros(ArrayList<Livro> livros) {
+        this.livros = livros;
     }
-
 
     @Override
     public String toString() {
@@ -125,7 +121,7 @@ public class Emprestimo {
                 "dataEmprestimo=" + dataEmprestimo +
                 ", dataDevolucao=" + dataDevolucao +
                 ", cliente=" + cliente +
-                ", livro=" + livro +
+                ", livro=" + livros +
                 '}';
     }
 }

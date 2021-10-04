@@ -1,6 +1,7 @@
 package br.com.letscode.java.biblioteca.clientes;
 
 import br.com.letscode.java.biblioteca.livro.Emprestimo;
+import br.com.letscode.java.biblioteca.livro.Livro;
 
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ public abstract class ClienteDefault implements Cliente{
     protected int matricula;
     protected TipoCliente tipoCliente;
     protected LocalDate dataDevolucao;
+    protected ArrayList<Livro> carrinho = new ArrayList<>();
 
     public ClienteDefault() {
     }
@@ -31,7 +33,6 @@ public abstract class ClienteDefault implements Cliente{
         int numOcorrencias = 0;
         for (int i = 0; i < cliente.getEmprestimos().size(); i++) {
             if ((LocalDate.now()).isAfter(cliente.getEmprestimos().get(i).getDataDevolucao())) {
-                //long penalidade = ChronoUnit.DAYS.between(LocalDate.now(), this.dataDevolucao); //caso precise da quantidade de dias de penalidade
                 numOcorrencias++;
             }
         }
@@ -42,21 +43,20 @@ public abstract class ClienteDefault implements Cliente{
         }
     }
 
-    //A linha abaixo serve se for preciso ter a data de término da penalidade
     @Override
     public LocalDate gerarPenalidade(LocalDate dataPenalidade) {
         dataPenalidade = LocalDate.now().plusDays(ChronoUnit.DAYS.between(LocalDate.now(), this.dataDevolucao));
         return dataPenalidade;
     }
 
-    //A linha abaixo serve se for preciso ter apenas a confirmação se há penalidade ou não
-//    @Override
-//    public boolean gerarPenalidade() {
-//        if (LocalDate.now().isAfter(dataDevolucao)){
-//            return true;
-//        }
-//        return false;
-//    }
+    public void adicionarCarrinho(ClienteDefault cliente, Livro livro){
+        if (livro.isDisponivel()){
+            cliente.getCarrinho().add(livro);
+            livro.setDisponivel(false);
+        } else {
+            System.err.println("O livro " + livro + "não está disponível");
+        }
+    }
 
     @Override
     public String toString() {
@@ -66,6 +66,14 @@ public abstract class ClienteDefault implements Cliente{
                 ", matricula=" + matricula +
                 ", tipoCliente=" + tipoCliente +
                 '}';
+    }
+
+    public ArrayList<Livro> getCarrinho() {
+        return carrinho;
+    }
+
+    public void setCarrinho(ArrayList<Livro> carrinho) {
+        this.carrinho = carrinho;
     }
 
     public ArrayList<Emprestimo> getEmprestimos() {

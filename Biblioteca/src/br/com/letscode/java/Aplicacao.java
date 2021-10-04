@@ -24,7 +24,14 @@ public class Aplicacao {
                 "Robert Cecil Martin", "Alta Books", true);
 
         Emprestimo emprestimo = new Emprestimo();
-        emprestimo.gerarEmprestimo(aluno, livroUm);
+
+        aluno.adicionarCarrinho(aluno, livroUm);
+        aluno.adicionarCarrinho(aluno, livroDois);
+
+        emprestimo.gerarEmprestimo(aluno);
+
+
+        /*emprestimo.gerarEmprestimo(aluno, livroUm);
         emprestimo.gerarEmprestimo(professor, livroUm);
         emprestimo.gerarEmprestimo(aluno, livroTres); // teste da restrição
         Biblioteca.devolver(aluno, livroUm);
@@ -42,6 +49,6 @@ public class Aplicacao {
             //Isso não pode acontecer, tem que dar erro
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        }
+        }*/
     }
 }
