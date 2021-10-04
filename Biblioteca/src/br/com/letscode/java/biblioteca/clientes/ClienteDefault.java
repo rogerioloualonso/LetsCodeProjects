@@ -43,11 +43,6 @@ public abstract class ClienteDefault implements Cliente{
         }
     }
 
-    @Override
-    public LocalDate diasPenalidade(ClienteDefault cliente) {
-        LocalDate dataPenalidade = LocalDate.now().plusDays(ChronoUnit.DAYS.between(LocalDate.now(), this.dataDevolucao));
-        return dataPenalidade;
-    }
 
     public void adicionarCarrinho(ClienteDefault cliente, Livro livro){
         if (livro.isDisponivel()){

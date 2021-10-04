@@ -32,25 +32,12 @@ public class Aplicacao {
 
         professor.adicionarCarrinho(professor, livroUm);
 
-        Biblioteca.devolver(aluno);
-        /*emprestimo.gerarEmprestimo(aluno, livroUm);
-        emprestimo.gerarEmprestimo(professor, livroUm);
-        emprestimo.gerarEmprestimo(aluno, livroTres); // teste da restrição
-        Biblioteca.devolver(aluno, livroUm);
-        emprestimo.gerarEmprestimo(professor, livroUm);
-        emprestimo.gerarEmprestimo(professor, livroDois);
-        emprestimo.gerarEmprestimo(aluno, livroTres); // quando restringir aqui libera
+        aluno.adicionarCarrinho(aluno,livroTres);
 
-        try {
-            emprestimo.gerarEmprestimo(aluno, livroUm);
-            System.out.println(emprestimo);
-            emprestimo.gerarEmprestimo(aluno, livroUm);
-            System.out.println(emprestimo);
-            emprestimo.gerarEmprestimo(aluno, livroUm);
-            System.out.println(emprestimo);
-            //Isso não pode acontecer, tem que dar erro
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }*/
+        emprestimo.gerarEmprestimo(aluno);
+
+        Biblioteca.devolver(aluno);
+
+
     }
 }

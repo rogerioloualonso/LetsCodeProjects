@@ -21,7 +21,7 @@ public class Emprestimo {
     public Emprestimo(Cliente cliente, LocalDate dataEmprestimo, LocalDate dataDevolucao, ArrayList<Livro> livros){
         this.cliente = cliente;
         this.dataEmprestimo = LocalDate.now();
-        this.dataDevolucao = gerarDataDevolucao();
+        this.dataDevolucao = dataDevolucao;
         this.livros = livros;
     }
 
@@ -36,8 +36,6 @@ public class Emprestimo {
                     + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
             Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao, livros);
             cliente.getEmprestimos().add(emprestimo);
-        } else {
-            //System.out.println("Esta pessoa não pode fazer empréstimo");//puxar exception
         }
     }
 
@@ -62,7 +60,7 @@ public class Emprestimo {
     public boolean validarEmprestimo(ClienteDefault cliente){
         if (cliente instanceof ClienteAluno){
             if ((cliente.getCarrinho().size() == 3 || cliente.consultaPenalidade(cliente))){
-                System.err.println("Esta pessoa possui uma penalidade de " + cliente.diasPenalidade(cliente) + " dias pendente");
+                System.err.println("Esta pessoa possui uma penalidade pendente");
                 return false;
             }
             for (int i = 0; i < cliente.getEmprestimos().size(); i++){
@@ -73,7 +71,7 @@ public class Emprestimo {
             }
         } else {
             if ((cliente.getCarrinho().size() == 5 || cliente.consultaPenalidade(cliente))){
-                System.err.println("Esta pessoa possui uma penalidade de " + cliente.diasPenalidade(cliente) + " dias pendente");
+                System.err.println("Esta pessoa possui uma penalidade pendente");
                 return false;
             }
             for (int i = 0; i < cliente.getEmprestimos().size(); i++){

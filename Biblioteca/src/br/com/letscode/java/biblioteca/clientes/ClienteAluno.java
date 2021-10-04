@@ -21,11 +21,6 @@ public class ClienteAluno extends ClienteDefault{
     }
 
     @Override
-    public LocalDate diasPenalidade(ClienteDefault cliente) {
-        return super.diasPenalidade(cliente);
-    }
-
-    @Override
     public String toString() {
         return super.toString();
     }
