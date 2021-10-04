@@ -13,8 +13,6 @@ public class Emprestimo {
     protected LocalDate dataDevolucao;
     protected Cliente cliente;
     protected Livro livro;
-    protected Livro livro2;
-    protected Livro livro3;
 
     public Emprestimo(){
     }

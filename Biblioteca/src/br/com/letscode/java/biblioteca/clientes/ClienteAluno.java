@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 public class ClienteAluno extends ClienteDefault{
 
-    int limite = 3;
-
     public ClienteAluno(){
     }
 
@@ -39,14 +37,6 @@ public class ClienteAluno extends ClienteDefault{
     @Override
     public void setEmprestimos(ArrayList<Emprestimo> emprestimos) {
         super.setEmprestimos(emprestimos);
-    }
-
-    public int getLimite() {
-        return limite;
-    }
-
-    public void setLimite(int limite) {
-        this.limite = limite;
     }
 
     @Override
