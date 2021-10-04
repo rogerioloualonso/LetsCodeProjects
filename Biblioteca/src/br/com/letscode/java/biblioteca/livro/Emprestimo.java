@@ -108,7 +108,6 @@ public class Emprestimo {
             }
             for (int i = 0; i < cliente.getEmprestimos().size(); i++){
                 if (cliente.getEmprestimos().get(i) != null){
-                    System.err.println("Esta pessoa já possui um empréstimo em andamento");
                     throw new EmprestimoSimultaneoException();
                 }
             }

@@ -1,13 +1,13 @@
 package br.com.letscode.java;
 
-import br.com.letscode.java.biblioteca.Biblioteca;
+import br.com.letscode.java.biblioteca.*;
 import br.com.letscode.java.biblioteca.clientes.*;
 import br.com.letscode.java.biblioteca.livro.Emprestimo;
 import br.com.letscode.java.biblioteca.livro.Livro;
 
 public class Aplicacao {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         //Criar aluno
         //Cliente aluno = new ClienteAluno();
@@ -25,8 +25,17 @@ public class Aplicacao {
 
         Emprestimo emprestimo = new Emprestimo();
 
-        aluno.adicionarCarrinho(aluno, livroUm);
-        aluno.adicionarCarrinho(aluno, livroDois);
+        try{
+            aluno.adicionarCarrinho(aluno, livroUm);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try{
+            aluno.adicionarCarrinho(aluno, livroDois);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         try {
             emprestimo.gerarEmprestimo(aluno);
@@ -36,22 +45,29 @@ public class Aplicacao {
 
         try {
             professor.adicionarCarrinho(professor, livroUm);
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
         }
 
-        emprestimo.gerarEmprestimo(professor);
+        try {
+            emprestimo.gerarEmprestimo(professor);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
-        aluno.adicionarCarrinho(aluno,livroTres);
+        try {
+            aluno.adicionarCarrinho(aluno, livroTres);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         try {
             emprestimo.gerarEmprestimo(aluno);
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
         }
 
         Biblioteca.devolver(aluno);
-
 
     }
 }
