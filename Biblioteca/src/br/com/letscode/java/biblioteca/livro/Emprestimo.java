@@ -37,7 +37,7 @@ public class Emprestimo {
             Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao, livros);
             cliente.getEmprestimos().add(emprestimo);
         } else {
-            System.out.println("Esta pessoa não pode fazer empréstimo");//puxar exception
+            //System.out.println("Esta pessoa não pode fazer empréstimo");//puxar exception
         }
     }
 
@@ -62,17 +62,20 @@ public class Emprestimo {
     public boolean validarEmprestimo(ClienteDefault cliente){
         if (cliente instanceof ClienteAluno){
             if ((cliente.getCarrinho().size() == 3 || cliente.consultaPenalidade(cliente))){
+                System.err.println("Esta pessoa possui uma penalidade de " + cliente.diasPenalidade(cliente) + " dias pendente");
                 return false;
             }
             if (cliente.getEmprestimos() != null){
+                System.err.println("Esta pessoa já possui um empréstimo em andamento");
                 return false;
             }
         } else {
             if ((cliente.getCarrinho().size() == 5 || cliente.consultaPenalidade(cliente))){
+                System.err.println("Esta pessoa possui uma penalidade de " + cliente.diasPenalidade(cliente) + " dias pendente");
                 return false;
             }
             if (cliente.getEmprestimos() != null){
-
+                System.err.println("Esta pessoa já possui um empréstimo em andamento");
                 return false;
             }
         }

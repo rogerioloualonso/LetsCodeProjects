@@ -44,8 +44,8 @@ public abstract class ClienteDefault implements Cliente{
     }
 
     @Override
-    public LocalDate gerarPenalidade(LocalDate dataPenalidade) {
-        dataPenalidade = LocalDate.now().plusDays(ChronoUnit.DAYS.between(LocalDate.now(), this.dataDevolucao));
+    public LocalDate diasPenalidade(ClienteDefault cliente) {
+        LocalDate dataPenalidade = LocalDate.now().plusDays(ChronoUnit.DAYS.between(LocalDate.now(), this.dataDevolucao));
         return dataPenalidade;
     }
 

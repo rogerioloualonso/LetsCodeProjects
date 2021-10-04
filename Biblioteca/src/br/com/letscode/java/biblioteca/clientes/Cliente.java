@@ -6,7 +6,7 @@ public interface Cliente {
 
     boolean consultaPenalidade(ClienteDefault cliente);
 
-    LocalDate gerarPenalidade(LocalDate dataSuspensao);
+    LocalDate diasPenalidade(ClienteDefault cliente);
 
     String getNome();
 }

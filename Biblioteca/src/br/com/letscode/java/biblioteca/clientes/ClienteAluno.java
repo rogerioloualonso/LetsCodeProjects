@@ -21,8 +21,8 @@ public class ClienteAluno extends ClienteDefault{
     }
 
     @Override
-    public LocalDate gerarPenalidade(LocalDate dataPenalidade) {
-        return super.gerarPenalidade(dataPenalidade);
+    public LocalDate diasPenalidade(ClienteDefault cliente) {
+        return super.diasPenalidade(cliente);
     }
 
     @Override
