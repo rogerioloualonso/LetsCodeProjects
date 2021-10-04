@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Aplicacao {
 
 
-    public static void main(String[] args) throws EmprestimoSimultaneoExcedidoException {
+    public static void main(String[] args) {
 
         //Criar aluno
         //Cliente aluno = new ClienteAluno();
