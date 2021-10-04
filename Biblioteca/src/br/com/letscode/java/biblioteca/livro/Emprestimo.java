@@ -3,10 +3,7 @@ package br.com.letscode.java.biblioteca.livro;
 import br.com.letscode.java.biblioteca.ClienteSuspensoException;
 import br.com.letscode.java.biblioteca.EmprestimoSimultaneoException;
 import br.com.letscode.java.biblioteca.LimiteDeEmprestimoExcedidoException;
-import br.com.letscode.java.biblioteca.clientes.Cliente;
-import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
-import br.com.letscode.java.biblioteca.clientes.ClienteDefault;
-import br.com.letscode.java.biblioteca.clientes.ClienteProfessor;
+import br.com.letscode.java.biblioteca.clientes.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -71,35 +68,7 @@ public class Emprestimo {
         }
         return dataDevolucao;
     }
-/*
-    public boolean validarEmprestimo(ClienteDefault cliente) {
-        if (cliente instanceof ClienteAluno){
-            if ((cliente.getCarrinho().size() == 3 || cliente.consultaPenalidade(cliente))){
-                System.err.println("Não é possível gerar o empréstimo");
-                //throw new ClienteSuspensoException();
-                return false;
-            }
-            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
-                if (cliente.getEmprestimos().get(i) != null){
-                    System.err.println("Esta pessoa já possui um empréstimo em andamento");
-                    return false;
-                }
-            }
-        } else {
-            if ((cliente.getCarrinho().size() == 5 || cliente.consultaPenalidade(cliente))){
-                System.err.println("Esta pessoa possui uma penalidade pendente");
-                return false;
-            }
-            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
-                if (cliente.getEmprestimos().get(i) != null){
-                    System.err.println("Esta pessoa já possui um empréstimo em andamento");
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-*/
+
     public void exceptionLimiteEmprestimo(ClienteDefault cliente){
 
         if(cliente instanceof ClienteAluno){
@@ -139,31 +108,7 @@ public class Emprestimo {
         }
     }
 
-/*
-    public void gerarException(ClienteDefault cliente) throws Exception {
-        if (cliente instanceof ClienteAluno){
-            if ((cliente.getCarrinho().size() == 3 || cliente.consultaPenalidade(cliente))){
-                throw new ClienteSuspensoException();
-            }
-            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
-                if (cliente.getEmprestimos().get(i) != null){
-                    throw new EmprestimoSimultaneoException();
-                }
-            }
-        } else {
-            if ((cliente.getCarrinho().size() == 5 || cliente.consultaPenalidade(cliente))){
-                throw new ClienteSuspensoException();
-            }
-            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
-                if (cliente.getEmprestimos().get(i) != null){
-                    throw new EmprestimoSimultaneoException();
-                }
-            }
-        }
-    }
-*/
     public boolean verificarFeriado(LocalDate data){
-        //Feriados nacionais
         String[] feriados = {"01-01", "04-02", "04-21", "05-01", "09-07", "10-12",
                 "11-02", "11-15", "12-25"};
         for(int i = 0; i < 9; i++){

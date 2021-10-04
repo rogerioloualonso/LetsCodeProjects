@@ -1,7 +1,5 @@
 package br.com.letscode.java.biblioteca.clientes;
-
-import br.com.letscode.java.biblioteca.livro.Emprestimo;
-import br.com.letscode.java.biblioteca.livro.Livro;
+import br.com.letscode.java.biblioteca.livro.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
