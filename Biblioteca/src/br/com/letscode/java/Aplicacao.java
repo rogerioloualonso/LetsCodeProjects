@@ -7,7 +7,7 @@ import br.com.letscode.java.biblioteca.livro.Livro;
 
 public class Aplicacao {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         //Criar aluno
         //Cliente aluno = new ClienteAluno();
@@ -34,7 +34,13 @@ public class Aplicacao {
             e.printStackTrace();
         }
 
-        professor.adicionarCarrinho(professor, livroUm);
+        try {
+            professor.adicionarCarrinho(professor, livroUm);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        emprestimo.gerarEmprestimo(professor);
 
         aluno.adicionarCarrinho(aluno,livroTres);
 

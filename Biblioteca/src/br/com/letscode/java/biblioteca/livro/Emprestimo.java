@@ -29,15 +29,18 @@ public class Emprestimo {
 
     public void gerarEmprestimo(ClienteDefault cliente) throws Exception {
         if (validarEmprestimo(cliente)) {
-            setCliente(cliente);
-            ArrayList<Livro> livros = cliente.getCarrinho();
-            setLivros(livros);
-            this.dataEmprestimo = LocalDate.now();
-            this.dataDevolucao = gerarDataDevolucao();
-            System.out.println(this.getCliente().getNome() + " realizou o emprestimo dos livros " + cliente.getCarrinho()
-                    + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
-            Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao, livros);
-            cliente.getEmprestimos().add(emprestimo);
+            if (cliente.getCarrinho().size() > 0){
+                setCliente(cliente);
+                ArrayList<Livro> livros = cliente.getCarrinho();
+                setLivros(livros);
+                this.dataEmprestimo = LocalDate.now();
+                this.dataDevolucao = gerarDataDevolucao();
+                System.out.println(this.getCliente().getNome() + " realizou o emprestimo dos livros " + cliente.getCarrinho()
+                        + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
+                Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao, livros);
+                cliente.getEmprestimos().add(emprestimo);
+            }
+
         } else {
                 gerarException(cliente);
         }

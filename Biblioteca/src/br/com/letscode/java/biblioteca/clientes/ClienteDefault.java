@@ -51,12 +51,7 @@ public abstract class ClienteDefault implements Cliente{
             cliente.getCarrinho().add(livro);
             livro.setDisponivel(false);
         } else {
-            try {
-                //System.err.println("O livro " + livro + "não está disponível");
-                //getExceptionCarrinho(cliente, livro);
-            } catch (LivroJaEmprestadoException e) {
-                throw new LivroJaEmprestadoException();
-            }
+            throw new LivroJaEmprestadoException();
         }
     }
 
