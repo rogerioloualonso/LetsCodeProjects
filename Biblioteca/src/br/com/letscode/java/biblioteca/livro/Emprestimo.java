@@ -1,5 +1,7 @@
 package br.com.letscode.java.biblioteca.livro;
 
+import br.com.letscode.java.biblioteca.ClienteSuspensoException;
+import br.com.letscode.java.biblioteca.EmprestimoSimultaneoException;
 import br.com.letscode.java.biblioteca.clientes.Cliente;
 import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
 import br.com.letscode.java.biblioteca.clientes.ClienteDefault;
@@ -25,17 +27,22 @@ public class Emprestimo {
         this.livros = livros;
     }
 
-    public void gerarEmprestimo(ClienteDefault cliente) {
+    public void gerarEmprestimo(ClienteDefault cliente) throws Exception {
         if (validarEmprestimo(cliente)) {
-            setCliente(cliente);
-            ArrayList<Livro> livros = cliente.getCarrinho();
-            setLivros(livros);
-            this.dataEmprestimo = LocalDate.now();
-            this.dataDevolucao = gerarDataDevolucao();
-            System.out.println(this.getCliente().getNome() + " realizou o emprestimo dos livros " + cliente.getCarrinho()
-                    + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
-            Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao, livros);
-            cliente.getEmprestimos().add(emprestimo);
+            if (cliente.getCarrinho().size() > 0){
+                setCliente(cliente);
+                ArrayList<Livro> livros = cliente.getCarrinho();
+                setLivros(livros);
+                this.dataEmprestimo = LocalDate.now();
+                this.dataDevolucao = gerarDataDevolucao();
+                System.out.println(this.getCliente().getNome() + " realizou o emprestimo dos livros " + cliente.getCarrinho()
+                        + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
+                Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao, livros);
+                cliente.getEmprestimos().add(emprestimo);
+            }
+
+        } else {
+                gerarException(cliente);
         }
     }
 
@@ -57,10 +64,11 @@ public class Emprestimo {
         return dataDevolucao;
     }
 
-    public boolean validarEmprestimo(ClienteDefault cliente){
+    public boolean validarEmprestimo(ClienteDefault cliente) {
         if (cliente instanceof ClienteAluno){
             if ((cliente.getCarrinho().size() == 3 || cliente.consultaPenalidade(cliente))){
-                System.err.println("Esta pessoa possui uma penalidade pendente");
+                //System.err.println("Esta pessoa possui uma penalidade pendente");
+                //throw new ClienteSuspensoException();
                 return false;
             }
             for (int i = 0; i < cliente.getEmprestimos().size(); i++){
@@ -82,6 +90,28 @@ public class Emprestimo {
             }
         }
         return true;
+    }
+
+    public void gerarException(ClienteDefault cliente) throws Exception {
+        if (cliente instanceof ClienteAluno){
+            if ((cliente.getCarrinho().size() == 3 || cliente.consultaPenalidade(cliente))){
+                throw new ClienteSuspensoException();
+            }
+            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
+                if (cliente.getEmprestimos().get(i) != null){
+                    throw new EmprestimoSimultaneoException();
+                }
+            }
+        } else {
+            if ((cliente.getCarrinho().size() == 5 || cliente.consultaPenalidade(cliente))){
+                throw new ClienteSuspensoException();
+            }
+            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
+                if (cliente.getEmprestimos().get(i) != null){
+                    throw new EmprestimoSimultaneoException();
+                }
+            }
+        }
     }
 
 

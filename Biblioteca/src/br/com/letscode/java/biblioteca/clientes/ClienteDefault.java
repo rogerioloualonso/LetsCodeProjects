@@ -1,5 +1,7 @@
 package br.com.letscode.java.biblioteca.clientes;
 
+import br.com.letscode.java.biblioteca.LimiteDeEmprestimoExcedidoException;
+import br.com.letscode.java.biblioteca.LivroJaEmprestadoException;
 import br.com.letscode.java.biblioteca.livro.Emprestimo;
 import br.com.letscode.java.biblioteca.livro.Livro;
 
@@ -44,12 +46,12 @@ public abstract class ClienteDefault implements Cliente{
     }
 
 
-    public void adicionarCarrinho(ClienteDefault cliente, Livro livro){
+    public void adicionarCarrinho(ClienteDefault cliente, Livro livro) throws LivroJaEmprestadoException {
         if (livro.isDisponivel()){
             cliente.getCarrinho().add(livro);
             livro.setDisponivel(false);
         } else {
-            System.err.println("O livro " + livro + "não está disponível");
+            throw new LivroJaEmprestadoException();
         }
     }
 
