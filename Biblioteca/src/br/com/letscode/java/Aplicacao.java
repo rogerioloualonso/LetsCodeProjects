@@ -23,7 +23,7 @@ public class Aplicacao {
 
         //Criar biblioteca e adicionar livro
         Biblioteca biblioteca = new Biblioteca ();
-     
+
 
         //Criar livro
         Livro livroUm = new Livro(78484, "Pequeno Principe", "Antoine de Sans", "Agir", true);
@@ -75,7 +75,7 @@ public class Aplicacao {
             e.printStackTrace();
         }
 
-        Biblioteca.devolver(aluno);
+        biblioteca.devolver(aluno);
 
     }
 }

@@ -2,9 +2,11 @@ package br.com.letscode.java.biblioteca.livro;
 
 import br.com.letscode.java.biblioteca.ClienteSuspensoException;
 import br.com.letscode.java.biblioteca.EmprestimoSimultaneoException;
+import br.com.letscode.java.biblioteca.LimiteDeEmprestimoExcedidoException;
 import br.com.letscode.java.biblioteca.clientes.Cliente;
 import br.com.letscode.java.biblioteca.clientes.ClienteAluno;
 import br.com.letscode.java.biblioteca.clientes.ClienteDefault;
+import br.com.letscode.java.biblioteca.clientes.ClienteProfessor;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -29,22 +31,24 @@ public class Emprestimo {
     }
 
     public void gerarEmprestimo(ClienteDefault cliente) throws Exception {
-        if (validarEmprestimo(cliente)) {
-            if (cliente.getCarrinho().size() > 0){
-                setCliente(cliente);
-                ArrayList<Livro> livros = cliente.getCarrinho();
-                setLivros(livros);
-                this.dataEmprestimo = LocalDate.now();
-                this.dataDevolucao = gerarDataDevolucao();
-                System.out.println(this.getCliente().getNome() + " realizou o emprestimo dos livros " + cliente.getCarrinho()
-                        + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
-                Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao, livros);
-                cliente.getEmprestimos().add(emprestimo);
-            }
 
-        } else {
-                gerarException(cliente);
+        exceptionLimiteEmprestimo(cliente);
+        exceptionComPenalidade(cliente);
+        exceptionEmprestimoSimultaneo(cliente);
+
+        if (cliente.getCarrinho().size() > 0){
+            setCliente(cliente);
+            ArrayList<Livro> livros = cliente.getCarrinho();
+            setLivros(livros);
+            this.dataEmprestimo = LocalDate.now();
+            this.dataDevolucao = gerarDataDevolucao();
+            System.out.println(this.getCliente().getNome() + " realizou o emprestimo dos livros:\n " + cliente.getCarrinho()
+                        + " \nNo dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
+            Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao, livros);
+            cliente.getEmprestimos().add(emprestimo);
         }
+
+
     }
 
     public LocalDate gerarDataDevolucao() {
@@ -67,11 +71,11 @@ public class Emprestimo {
         }
         return dataDevolucao;
     }
-
+/*
     public boolean validarEmprestimo(ClienteDefault cliente) {
         if (cliente instanceof ClienteAluno){
             if ((cliente.getCarrinho().size() == 3 || cliente.consultaPenalidade(cliente))){
-                //System.err.println("Esta pessoa possui uma penalidade pendente");
+                System.err.println("Não é possível gerar o empréstimo");
                 //throw new ClienteSuspensoException();
                 return false;
             }
@@ -95,7 +99,47 @@ public class Emprestimo {
         }
         return true;
     }
+*/
+    public void exceptionLimiteEmprestimo(ClienteDefault cliente){
 
+        if(cliente instanceof ClienteAluno){
+            if (cliente.getCarrinho().size() == 3){
+                throw new LimiteDeEmprestimoExcedidoException();
+            }
+        }
+
+        if(cliente instanceof ClienteProfessor){
+            if (cliente.getCarrinho().size() == 5){
+                throw new LimiteDeEmprestimoExcedidoException();
+            }
+        }
+
+    }
+
+
+    public void exceptionComPenalidade( ClienteDefault cliente){
+        if(cliente.consultaPenalidade(cliente)){
+            throw new ClienteSuspensoException();
+        }
+    }
+
+    public void exceptionEmprestimoSimultaneo(ClienteDefault cliente){
+        if (cliente instanceof ClienteAluno){
+            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
+                if (cliente.getEmprestimos().get(i) != null){
+                    throw new EmprestimoSimultaneoException();
+                }
+            }
+        }else{
+            for (int i = 0; i < cliente.getEmprestimos().size(); i++){
+                if (cliente.getEmprestimos().get(i) != null){
+                    throw new EmprestimoSimultaneoException();
+                }
+            }
+        }
+    }
+
+/*
     public void gerarException(ClienteDefault cliente) throws Exception {
         if (cliente instanceof ClienteAluno){
             if ((cliente.getCarrinho().size() == 3 || cliente.consultaPenalidade(cliente))){
@@ -117,7 +161,7 @@ public class Emprestimo {
             }
         }
     }
-
+*/
     public boolean verificarFeriado(LocalDate data){
         //Feriados nacionais
         String[] feriados = {"01-01", "04-02", "04-21", "05-01", "09-07", "10-12",

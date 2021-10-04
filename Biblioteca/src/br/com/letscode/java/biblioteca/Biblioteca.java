@@ -17,7 +17,7 @@ public class Biblioteca {
         Biblioteca.listaLivro = livro;
     }
 
-    static public void devolver (ClienteDefault cliente) {
+    public void devolver (ClienteDefault cliente) {
         for (int i = 0; i < cliente.getCarrinho().size(); i++) {
             Livro livro = cliente.getCarrinho().get(i);
             livro.setDisponivel(true);
