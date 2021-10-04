@@ -28,12 +28,13 @@ public class Emprestimo {
         if (validarEmprestimo(cliente)) {
             if (livro.isDisponivel()) {
                 setCliente(cliente);
+                setLivro(livro);
                 this.dataEmprestimo = LocalDate.now();
                 this.dataDevolucao = gerarDataDevolucao();
                 livro.setDisponivel(false);
                 System.out.println(this.getCliente().getNome() + " realizou o emprestimo do livro " + livro.getTitulo()
                         + " no dia " + getDataEmprestimo() + " com data de devolução para o dia " + getDataDevolucao());
-                Emprestimo emprestimo = new Emprestimo(this.cliente, dataEmprestimo, dataDevolucao, livro);
+                Emprestimo emprestimo = new Emprestimo(cliente, dataEmprestimo, dataDevolucao, livro);
                 cliente.getEmprestimos().add(emprestimo);
             } else {
                 System.err.println("O livro " + livro.getTitulo() + " está indisponível");//puxar exception
